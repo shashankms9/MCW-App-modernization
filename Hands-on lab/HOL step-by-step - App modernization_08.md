@@ -10,7 +10,7 @@ In this task, you open an RDP connection to the LabVM, and downloading a copy of
 
 1. Connect to the **LabVM** from the **Environment Details** page by clicking on **Go to LABVM-Unique Id** button.
 
-   ![The LabVM virtual machine is highlighted in the list of resources.](media/resources-sql-labvm.png "LabVM virtual machine")
+   ![The LabVM virtual machine is highlighted in the list of resources.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/labvm.png?raw=true "LabVM virtual machine")
 
 ### Task 2: Open starter solution with Visual Studio
 
@@ -89,7 +89,7 @@ Before deploying the Web API to Azure, you need to add the required application 
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **API App** by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-api-UniqueId** App service from the list of resources.
 
-   ![The API App resource is highlighted in the list of resources.](media/azure-resources-api-app.png "API App")
+   ![The API App resource is highlighted in the list of resources.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/apiapp.png?raw=true "API App")
 
 2. On the API App blade, select **Configuration** on the left-hand menu.
 
@@ -101,7 +101,7 @@ Before deploying the Web API to Azure, you need to add the required application 
 
 4. We are going to use the Advanced editor to add all three of the Key Vault settings at once. To do this, we are going to replace the content of the Advanced editor with the following, which you need to update as follows:
 
-    - `<your-key-vault-name>`: ```contoso-kv-UniqueId```, Get UniqueId value from Environment Details under Lab Environment tab  and replace with UniqueId in contoso-kv-UniqueId.
+    - `<your-key-vault-name>`: ```contoso-kv-UniqueId```, Get UniqueId value from Environment Details under Azure Credentials tab  and replace with UniqueId in contoso-kv-UniqueId.
     - `<Application Id>`: you can retrieve this value from Service Principal Details under Environment Details tab.
     - `<Secret Key>`:  you can retrieve this valuefrom Service Principal Details under Environment Details tab.
 
