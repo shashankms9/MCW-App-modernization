@@ -26,7 +26,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 4. Once connected, expand **Databases** under SQL2008-UniqueId in the Object Explorer, and then select **ContosoInsurance** from the list of databases.
 
-   ![The ContosoInsurance database is highlighted in the list of databases.](media/ssms-databases.png "Databases")
+   ![The ContosoInsurance database is highlighted in the list of databases.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/ssms2.png?raw=true "Databases")
 
 5. Next, you execute a script in SSMS, which resets the `sa` password, enable mixed mode authentication, create the `WorkshopUser` account, and change the database recovery model to FULL. To create the script, open a new query window in SSMS by selecting **New Query** in the SSMS toolbar.
 
@@ -244,7 +244,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the SQ
 
    Click on **Show Advanced Settings**.
 
-      ![](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/storage1.png?raw=true.png)
+      ![](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/storage1.png?raw=true.png"Azure Cloud Shell")
 
    Use exisiting hands-on-lab-SUFFIX resource group and for:
 
@@ -253,7 +253,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the SQ
    - **file share**: Create new and enter fs{uniqueid}, for example: fs176667
  
 
-   ![In the You have no storage mounted dialog, a subscription has been selected, and the Create Storage button is highlighted.](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/storage2.png?raw=true "Azure Cloud Shell")
+   ![In the You have no storage mounted dialog, a subscription has been selected, and the Create Storage button is highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/storage2.png?raw=true "Azure Cloud Shell")
 
   Then select **Create Storage**.
 
@@ -272,6 +272,9 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the SQ
    ```powershell
    az vm list-ip-addresses -g $resourceGroup -n Sql2008-uniqueid --output table
    ```
+- Replace SQL2008-UniqueId with name of your SQLVM. It will look similar to the one as following:\n    ```
+    az vm list-ip-addresses -g $resourceGroup -n Sql2008-176667 --output table
+    ```
 
    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
@@ -356,7 +359,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
     ![The Migration Wizard summary blade is displayed, with ContosoDataMigration entered into the name field.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/migration5.png?raw=true "Migration Wizard Summary")
 
-14. Select **Run migration**.
+14. Select **Start migration**.
 
 15. Monitor the migration on the status screen that appears. Select the refresh icon in the toolbar to retrieve the latest status.
 
