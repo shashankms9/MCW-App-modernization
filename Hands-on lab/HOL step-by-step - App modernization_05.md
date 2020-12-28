@@ -244,7 +244,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the SQ
 
    Click on **Show Advanced Settings**.
 
-      ![](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/storage1.png?raw=true.png"Azure Cloud Shell")
+      ![](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/storage1.png?raw=true.png "Azure Cloud Shell")
 
    Use exisiting hands-on-lab-SUFFIX resource group and for:
 
@@ -272,7 +272,8 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the SQ
    ```powershell
    az vm list-ip-addresses -g $resourceGroup -n Sql2008-uniqueid --output table
    ```
-- Replace SQL2008-UniqueId with name of your SQLVM. It will look similar to the one as following:\n    ```
+- Replace SQL2008-UniqueId with name of your SQLVM. It will look similar to the one as following:
+    ```
     az vm list-ip-addresses -g $resourceGroup -n Sql2008-176667 --output table
     ```
 
