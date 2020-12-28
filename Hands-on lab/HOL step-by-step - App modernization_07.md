@@ -24,9 +24,7 @@ In this task, you add an access policy to Key Vault to allow secrets to be creat
    - **Certificate permissions**: Leave set to 0 selected.
    - **Select principal**: Click on **None Selected** and enter the email address of the account you are logged into the Azure portal with, select the user object that appears, and then choose **Select**.
 
-   ![The values specified above are entered into the Add access policy dialog.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/accesspolicy1.png?raw=true "Key Vault"
-
-)
+   ![The values specified above are entered into the Add access policy dialog.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/accesspolicy1.png?raw=true "Key Vault")
    - **Authorized application**: Leave set to None selected.
 
    ![The values specified above are entered into the Add access policy dialog.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/accesspolicy2.png?raw=true "Key Vault")
@@ -82,7 +80,7 @@ In this task, you add a secret to Key Vault containing the connection string for
 ### Task 3: Retrieve service principal details
 
 Your environment has a pre-created Service Principal for which details are provided along. The service principal (SP) is used to provide your web and API apps access to secrets stored in Azure Key Vault.
-1. Now to retrieve the details of Service Principal click on **Environment Details** tab then select **Service Principal Details**and you can review it as shown below:
+1. Now to retrieve the details of Service Principal click on **Environment Details** tab then select **Service Principal Details** and you can review it as shown below:
 
    ![Retrieve service principal details](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/principaldetails.png?raw=true "Retrieve service principal details")
 
@@ -90,10 +88,12 @@ Your environment has a pre-created Service Principal for which details are provi
 
 In this task, you assign the service principal you created above to a reader role on your resource group and add an access policy to Key Vault to allow it to view secrets stored there.
 1. Enter the following command at the Cloud Shell prompt, by replacing `<your-subscription-id>` with the value you copied above and `<your-resource-group-name>` with the name of your **hands-on-lab-SUFFIX** resource group, and then press **Enter** to run the command:
+
    ```
    $subscriptionId = "<your-subscription-id>"
-  $resourceGroup = "<your-resource-group-name>"
+   $resourceGroup = "<your-resource-group-name>"
    ```
+
 
 2. Next, run the following command to get the name of your Key Vault:
 
