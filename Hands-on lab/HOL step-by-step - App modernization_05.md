@@ -22,7 +22,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 3. In the SSMS **Connect to Server** dialog, enter **SQL2008-UniqueId** into the Server name box, ensure **Windows Authentication** is selected, and then select **Connect**.
 
-   ![The SQL Server Connect to Search dialog is displayed, with SQL2008-UniqueId entered into the Server name and Windows Authentication selected.](media/sql-server-2008-connect-to-server.png "Connect to Server")
+   ![The SQL Server Connect to Search dialog is displayed, with SQLSERVER2008 entered into the Server name and Windows Authentication selected.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/ssms1.png?raw=true "Connect to Server")
 
 4. Once connected, expand **Databases** under SQL2008-UniqueId in the Object Explorer, and then select **ContosoInsurance** from the list of databases.
 
