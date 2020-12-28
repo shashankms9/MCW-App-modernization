@@ -163,7 +163,7 @@ In this task, you use Visual Studio to deploy the API project into an API App in
 
    ![In the Publish dialog, Azure App Service (Windows) is selected and highlighted in the Specific Target box. The Next button is highlighted.](media/vs-publish-specific-target.png "Publish API App to Azure")
 
-4. Finally, in the **App Service** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the API App.
+4. Finally, in the **App Service** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the Web App "contoso-api-uniqueid"
 
    ![In the Publish dialog, The Contoso API App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp0.png?raw=true "Publish API App to Azure")
 

@@ -31,7 +31,7 @@ In this task, you prepare your Web App to work with the API App by adding the UR
 
 5. In the output, copy two values for use in the next step. Copy the **DefaultHostName** value for your API App (the resource name starts with contoso-**api**) and also copy the Web App **Name** value.
 
-   ![The Web App Name and API App DefaultHostName values are highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list.png "Azure Cloud Shell")
+   ![The Web App Name and API App DefaultHostName values are highlighted in the output of the command above.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp7.png?raw=true "Azure Cloud Shell")
 
 6. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
@@ -46,7 +46,7 @@ In this task, you prepare your Web App to work with the API App by adding the UR
 
 7. In the output, you should see the newly added setting in your Web App's application settings.
 
-   ![The ApiUrl app setting in highlighted in the output of the previous command.](media/azure-cloud-shell-az-webapp-config-output.png "Azure Cloud Shell")
+   ![The ApiUrl app setting in highlighted in the output of the previous command.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp8.png?raw=true "Azure Cloud Shell")
 
 ### Task 2: Deploy web application to Azure
 
@@ -79,7 +79,7 @@ In this task, you publish the `Contoso.Web` application into an Azure Web App.
 
    ![In the Publish dialog, Azure App Service (Windows) is selected and highlighted in the Specific Target box. The Next button is highlighted.](media/vs-publish-specific-target.png "Publish Web App to Azure")
 
-4. Finally, in the **App Service** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the API App.
+4. Finally, in the **App Service** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the Web App "contoso-web-uniqueid"
 
    ![In the Publish dialog, The Contoso Web App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp4.png?raw=true "Publish Web App to Azure")
 
