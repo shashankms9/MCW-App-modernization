@@ -39,7 +39,6 @@ At the end of this hands-on lab, your ability to build solutions for modernizing
 
 ## Azure services and related products
 
-- API Management
 - App Services
 - Azure Active Directory
 - Azure Cognitive Services
@@ -60,4 +59,3 @@ At the end of this hands-on lab, your ability to build solutions for modernizing
 - [MCW](https://microsoftcloudworkshop.com)
 - [Reference architecture for Managed Web Applications](https://docs.microsoft.com/azure/architecture/reference-architectures/app-service-web-app/basic-web-app)
 - [Azure application architecture guide](https://docs.microsoft.com/azure/architecture/guide/)
-
