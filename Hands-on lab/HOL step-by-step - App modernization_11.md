@@ -31,7 +31,7 @@ In this task, you prepare your Azure Function App to work with your new Function
 
 5. In the output, copy the **Name** value for use in the next step.
 
-   ![The Function App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-functionapp-list.png "Azure Cloud Shell")
+   ![The Function App Name value is highlighted in the output of the command above.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/funcapp1.png?raw=true "Azure Cloud Shell")
 
 6. For the next command, you need the URL of your `policies` container and the `SAS token` values you added to your text editor previously. Replace the tokenized values in the following command, and then run it from the Azure Cloud Shell command prompt.
 
@@ -168,17 +168,17 @@ In this task, you deploy your function into an Azure Function App, where the web
 
 2. On the **Publish** dialog, select **Azure** in the Target box and select **Next**.
 
-   ![In the Publish dialog, Azure is selected and highlighted in the Target box.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/funcapp.png?raw=true "Publish Function App to Azure")
+   ![In the Publish dialog, Azure is selected and highlighted in the Target box.](media/vs-publish-function-to-azure.png "Publish Function App to Azure")
 
 3. Next, in the **Function instance** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the API App.
 
-   ![In the Publish dialog, The Contoso Function App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](media/vs-publish-function-app-service.png "Publish Function App to Azure")
+   ![In the Publish dialog, The Contoso Function App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/funcapp.png?raw=true "Publish Function App to Azure")
 
 4. Ensure **Run from package file** is checked and then select **Finish**.
 
 5. Back on the Visual Studio Publish page for the `Contoso.FunctionApp` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
-   ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-function.png "Publish")
+   ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/funcapp0.png?raw=true "Publish")
 
 6. Ensure you see a publish succeeded message in the Visual Studio Output panel.
 
@@ -190,7 +190,7 @@ In this task, you add Application Insights to your Function App in the Azure Por
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-func-UniqueId** App service from the list of resources.
 
-   ![The Function App resource is highlighted in the list of resources.](media/azure-resources-function-app.png "Function App")
+   ![The Function App resource is highlighted in the list of resources.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/funcapp4.png?raw=true "Function App")
 
 2. On the Function App blade, select **Application Insights** under Settings from the left-hand menu.
 
@@ -210,11 +210,11 @@ In this task, you add Application Insights to your Function App in the Azure Por
 
 6. After the Function App restarts, select **View Application Insights data**.
 
-   ![The View Application Insights data link is highlighted.](media/function-app-view-application-insights-data.png "View Application Insights data")
+   ![The View Application Insights data link is highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/aapinsights1.png?raw=true "View Application Insights data")
 
 7. On the Application Insights blade, select **Live Metrics Stream** from the left-hand menu.
 
-   ![Live Metrics Stream is highlighted in the left-hand menu on the Application Insights blade.](media/app-insights-live-metrics-stream.png "Application Insights")
+   ![Live Metrics Stream is highlighted in the left-hand menu on the Application Insights blade.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/appinsights2.png?raw=true "Application Insights")
 
    > **Note**: You may see a message that your app is offline. You handle this below.
 
@@ -247,7 +247,7 @@ In this task, you add the URL of your Azure Function App to the Application sett
 
 5. In the output, copy the **DefaultHostName** value into a text editor for use below.
 
-   ![The Function App DefaultHostName value is highlighted in the output of the command above.](media/azure-cloud-shell-az-functionapp-list-host-name.png "Azure Cloud Shell")
+   ![The Function App DefaultHostName value is highlighted in the output of the command above.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/funcapp2.png?raw=true "Azure Cloud Shell")
 
 6. At the Cloud Shell prompt, run the following command to retrieve both your Web App name:
 
@@ -257,11 +257,11 @@ In this task, you add the URL of your Azure Function App to the Application sett
 
 7. In the output, copy the name of Web App (the resource name starts with contoso-**web**) into a text editor for use below.
 
-   ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
+   ![The Web App Name value is highlighted in the output of the command above.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/funcapp3.png?raw=true "Azure Cloud Shell")
 
 8. The last setting you need is the Default Host Key for your Function App. To get this, navigate to your Function App resource in the Azure portal, select **App keys** under Functions from the left-hand menu, then select **default** under Host Keys, and copy the **Value**.
 
-   ![The Copy button for the default host key is highlighted.](media/function-app-settings-default-host-key.png "Function App")
+   ![The Copy button for the default host key is highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/funcapp5.png?raw=true "Function App")
 
 9. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
@@ -288,7 +288,7 @@ In this task, you open the PolicyConnect web app and download a policy document.
 
    > **Note**: You can retrieve the URL from the Overview blade of your Web App resource in the Azure portal if you aren't sure what it is.
 
-   ![The URL field in highlighted on the Web App overview blade.](media/web-app-url.png "Web App")
+   ![The URL field in highlighted on the Web App overview blade.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapportal.png?raw=true "Web App")
 
 2. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in**:
 

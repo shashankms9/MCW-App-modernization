@@ -8,7 +8,7 @@ Contoso has requested the ability to perform full-text searching on policy docum
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **Storage account** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-UniqueId** Storage account resource from the list of resources.
 
-   ![The Storage Account resource is highlighted in the list of resources.](media/resource-group-resources-storage-account.png "Storage account")
+   ![The Storage Account resource is highlighted in the list of resources.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/storageaccount3.png?raw=true "Storage account")
 
 2. On the Storage account blade, select **Add Azure Search** from the left-hand menu, and then on the **Select a search service** tab, select your search service.
 
