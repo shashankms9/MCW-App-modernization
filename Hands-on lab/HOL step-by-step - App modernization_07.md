@@ -10,7 +10,7 @@ In this task, you add an access policy to Key Vault to allow secrets to be creat
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **Key Vault** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-kv-UniqueId** Key vault resource from the list of resources.
 
-   ![The contosokv Key vault resource is highlighted in the list of resources.](media/azure-resources-key-vault.png "Key vault")
+   ![The contosokv Key vault resource is highlighted in the list of resources.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/keyvault1.png?raw=true "Key vault")
 
 2. On the Key Vault blade, select **Access policies** under Settings in the left-hand menu, and then select **+ Add Access Policy**.
 
@@ -61,7 +61,7 @@ In this task, you add a secret to Key Vault containing the connection string for
 
 7. In the [Azure portal](https://portal.azure.com), navigate back to your **Key Vault** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-kv-UniqueId** Key vault resource from the list of resources.
 
-   ![The contosokv Key vault resource is highlighted in the list of resources.](media/azure-resources-key-vault.png "Key vault")
+   ![The contosokv Key vault resource is highlighted in the list of resources.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/keyvault1.png?raw=true "Key vault")
 
 8. On the Key Vault blade, select **Secrets** under Settings in the left-hand menu, and then select **+ Generate/Import**.
 
