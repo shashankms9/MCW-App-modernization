@@ -1,179 +1,110 @@
-## Exercise 9: Import and publish APIs into APIM
+## Exercise 9: Create an app in PowerApps
 
-Duration: 30 minutes
+Duration: 15 minutes
 
-In this exercise, you publish your API App and Function App API endpoints through API Management.
+Since creating mobile apps is a long development cycle, Contoso is interested in using PowerApps to create mobile applications to add functionality not currently offered by their app rapidly. In this scenario, they want to be able to edit the Policy lookup values (Silver, Gold, Platinum, etc.), which they are unable to do in the current app. In this task, you get them up and running with a new app created in PowerApps, which connects to the `ContosoInsurance` database and performs basic CRUD (Create, Read, Update, and Delete) operations against the Policies table.
 
-### Task 1: Import API App
+### Task 1: Sign up for a PowerApps account
 
-In this task, you import your API App into APIM, using the OpenAPI specification, which leverages the Swagger definition associated with your API app.
+1. Go to <https://web.powerapps.com> and sign up for a new account, using the same account you have been using in Azure.
 
-1. In the Azure portal, navigate to your **API Management Service** by selecting it from the list of resources under your hands-on-lab-SUFFIX resource group.
+2. You may receive an email asking you to verify your account request, with a link to continue the process.
 
-   ![The API Management service is highlighted in the resources list.](media/azure-resources-api-management.png "API Management service")
+3. Download and install **PowerApps Studio** from the Microsoft store: <https://www.microsoft.com/en-us/store/p/powerapps/9nblggh5z8f3>.
 
-2. On the API Management service select the **APIs** blade, and then select **+ Add API** and select **OpenAPI**.
+> **Note**: If you are unable to install PowerApps on the LabVM, you can run install it on your local machine and run the steps for this exercise there.
 
-   ![API Management Service with APIs blade selected. A button to add a new OpenAPI is highlighted](media/apim-add-api.png "API Management Service Add OpenAPI")
+### Task 2: Create new SQL connection
 
-3. A dialog to Create from OpenAPI specification is displayed. Select **Full** to expand the options that need to be entered.
+1. From the PowerApps website, expand the **Data** option from the left-hand navigation menu, then select **Connections**.
 
-   ![The Create from OpenAPI specification dialog is displayed and Full is highlighted](media/e8-t1-create-api-dialog.png "Create from OpenAPI specification")
+2. Select the **+ New connection** button.
 
-4. Retrieve the value for the OpenAPI specification field from the `swagger` page of your API APP. (This is the URL of your API app, which you can retrieve from its overview blade in the Azure portal) plus "/swagger". `(e.g., <https://contoso-api-jt7yc3zphxfda.azurewebsites.net/swagger>)`.
+   ![Connections is highlighted in the left-hand menu and the Create a connection button is highlighted.](media/powerapps-new-connection.png "PowerApps Connections")
 
-5. On the Swagger page for your API App, right-click on the `swagger/v1/swagger.json` file link just below the PolicyConnect API title, and select **Copy link address**.
+3. Type **SQL** into the search box, and then select the SQL Server item in the list below.
 
-   ![A context menu is displayed next to the swagger/v1/swagger.json link, and Copy link address is highlighted.](media/swagger-copy-json-link-address.png "Swagger")
+   ![In the New connection section, the search field is set to SQL. In the item list below, SQL Server is selected.](media/powerapps_create_connection.png "PowerApps New Connection")
 
-6. Return to the API Management Create from OpenAPI specification dialog, and enter the following:
+4. Within the SQL Server connection dialog, enter the following:
 
-   - **OpenAPI specification**: Paste the copied link address from your Swagger page.
-   - **Display name**: This is automatically populated from the Swagger definition.
-   - **Name**: This is automatically populated from the Swagger definition.
-   - **URL scheme**: Choose **HTTPS**.
-   - **Products**: Select the **Unlimited** tag by clicking the field and selecting it from the dropdown list.
+   - **Authentication Type**: Select **SQL Server Authentication**.
+   - **SQL Server name**: Enter the server name of your Azure SQL database. For example, `contosoinsurance-jjbp34uowoybc.database.windows.net`.
+   - **SQL Database name**: Enter **ContosoInsurance**
+   - **Username**: Enter **demouser**
+   - **Password**: Enter **Password.1!!**
 
-   ![Create from OpenAPI specification dialog is filled and the create button is highlighted.](media/open-api-dialog-complete.png "Create OpenAPI specification")
+   ![The SQL Server dialog box fields are completed.](media/powerapps_connection_sqlserver.png "SQL Server dialog box")
 
-7. After creating the API, select the **PolicyConnect API** from the list of APIs on the left, and on the Design tab, with All operations selected, select the **Policies** icon in the Inbound process tile.
+5. Select **Create**.
 
-   ![On the All operations section, the Inbound processing policies icon is highlighted.](media/apim-inbound-processing.png "API Management")
+### Task 3: Create a new app
 
-8. On the Policies screen, insert the code below between the `<inbound></inbound>` tags, and below the `<base />` tag. You need to **replace** `<your-web-app-url>` between the `<origin></origin>` tags with the URL for your Web App.
+1. Open the PowerApps Studio application you downloaded previously and sign in with your PowerApps account.
 
-   ```xml
-   <cors allow-credentials="true">
-       <allowed-origins>
-           <origin><your-web-app-url></origin>
-       </allowed-origins>
-       <allowed-methods>
-           <method>*</method>
-       </allowed-methods>
-       <allowed-headers>
-           <header>*</header>
-       </allowed-headers>
-       <expose-headers>
-           <header>*</header>
-       </expose-headers>
-   </cors>
-   ```
+2. Select **New** on the left-hand side and in the browser windows that opens confirm your country/region and select **Get started**.
 
-   Your updated policies value should look similar to the following:
+3. Then **select the right arrow** next to the **Start with your data** list.
 
-   ![The XML code above has been inserted into the Policies XML document.](media/apim-policies.png "API Management")
+   ![In the PowerApps Studio, the New button on the left is selected. The right arrow to the right of Create an app from your data is also selected.](media/powerapps_new.png "PowerApps Studio")
 
-   > **Note**: The policy added above is for handling cross-origin resource sharing (CORS). If you are testing the web app locally, you need to add another `<origin></origin>` tag within `<allowed-origins></allowed-origins>` that contains `https://localhost:<port-number>`, where `<port-number>` is the port assigned by your debugger (as is shown in the screenshot above).
+4. Select the **SQL Server connection** you created in the previous task.
 
-9. Select **Save**.
+   ![PowerApps - New option from left-hand side highlighted, as well as previously-created SQL Server connection. ](media/powerapps_create_newapp.png "PowerApps Studio")
 
-10. Next, select the **Settings** tab. On the Settings tab, enter the URL of your API App, starting with `https://`. **Note**: You can copy this value from the text editor you have been using to store values throughout this lab.
+5. Select the **policies** table from the Choose a table list.
 
-    ![The settings tab for the PolicyConnect API is displayed, with the API App url entered into the Web Service URL field.](media/apim-policyconnect-api-settings.png "API Settings")
+   ![PowerApps - Previously-created Connection from the left-hand menu highlighted, as well as the Policies table. ](media/powerapps_select_table.png "PowerApps Studio")
 
-11. Select **Save** on the Settings tab.
+6. Select **Connect**.
 
-### Task 2: Import Function App
+### Task 4: Design app
 
-In this task, you import your Function App into APIM.
+1. The new app is automatically created and displayed within the designer. Select the title for the first page (currently named [dbo].[Policies]) and edit the text in the field to read **Policies**.
 
-1. Select **+ Add API** again, and this time select **Function App** as the source of the API.
+   ![All of the Policy options display.](media/powerapps-update-app-title.png "Policies section")
 
-   ![Add API is highlighted in the left-hand menu, and the Function App tile is highlighted.](media/api-management-add-function-app.png "API Management")
+2. Select the **DetailScreen1** screen in the left-hand menu.
 
-2. On the Create from Function App dialog, select the **Browse** button next to the Function App field.
+   ![On the Home tab, under Screens, DetailScreen1 is selected.](media/powerapp_select_detailsscreen.png "DetailScreen")
 
-3. In the Import Azure Functions blade, select **Function App Configure required settings** and then select your Function App from the list, and choose **Select**.
+3. Reorder the fields on the form by selecting them, then dragging them by the **Card: <field_name>** tag to the desired location. The new order should be **Name**, **Description**, **DefaultDeductible**, then **DefaultOutOfPocketMax**.
 
-   ![The Select Function App dialog is displayed, and hands-on-lab-SUFFIX is entered into the filter box.](media/select-function-app.png "Select Function App")
+   ![In the dbo.policies window, the new order of the fields displays.](media/powerapp_reorder_fields.png "dbo.policies window")
 
-   > **Note**: You can filter using your resource group name, if needed.
+4. On the form, edit the **DefaultDeductible** and **DefaultOutOfPocketMax** labels to be **Default Deductible** and **Default Out of Pocket Max**, respectively. To do so, select the field and type the new title in quotes within the formula field.
 
-4. Back on the Import Azure Functions blade, ensure the PolicyDocs function is checked, and choose **Select**.
+   > **Hint**: You need to select **Unlock** in order to change fields.
 
-   ![The Import Azure Functions blade is displayed, with the configuration specified above set.](media/import-azure-functions.png "Import Azure Functions")
+5. Rename the screen title to Policy by typing "Policy" in quotation marks within the formula field.
 
-5. Back on the Create from Function App dialog in APIM, all of the properties for the API are set from your Azure Function. Set the Products to Unlimited, as you did previously. Note, you may need to select **Full** at the top to see the Products box.
+   ![The formula field is set to "Policy".](media/powerapp_update_fields_names.png "Formula field")
 
-   ![On the Create from Function App dialog, the values specified above are entered into the form.](media/apim-create-from-function-app.png "API Management")
+6. Select EditScreen on the left-hand menu.
 
-6. Select **Create**.
+7. Repeat steps 4-6 on the edit screen.
 
-7. After the Function App API is created, select it from the left-hand menu, select the **Settings** tab, and under **Products** select **Unlimited**.
+### Task 5: Edit the app settings and run the app
 
-   ![On the Settings tab for the newly created Function App managed API, Unlimited is highlighted in the Products field.](media/apim-create-from-function-app-settings.png "API settings for Function App")
+1. Select **File** on the top menu.
 
-8. Select **Save**.
+   ![The File menu is highlighted in the PowerApps page.](media/power-apps-file-menu.png "Power Apps")
 
-### Task 3: Open Developer Portal and retrieve you API key
+2. Select **Name + icon** under Settings and enter in a new **Name**, such as "PolicyConnect Plus".
 
-In this task, you quickly look at the APIs in the Developer Portal, and retrieve your key. The Developer Portal allows you to check the list of APIs and endpoints as well as find useful information about them.
+   ![In PowerShell App Studio, under Settings, Name + icon is selected, and the Name is set to PolicyConnectPlus.](media/powerapps-settings-name-icon.png "PowerShell App Studio")
 
-1. Open the APIM Developer Portal by selecting **Developer portal (legacy)** from the Overview blade of your API Management service in the Azure portal.
+3. Select **Save** on the left-hand menu to save the app to the cloud, then select the **Save** button below.
 
-   ![On the APIM Service Overview blade the link for the developer portal is highlighted.](media/apim-developer-portal.png "Developer Portal")
+   ![The Save menu is highlighted on the left-hand menu and the Save button is highlighted on the Save form.](media/powerapps-save.png "Save App")
 
-2. In the Azure API Management portal, select **APIs** from the top menu, and then select the API associated with your Function App.
+4. After saving, select the left arrow on top of the left-hand menu.
 
-   ![In the Developer portal, the APIs menu item is selected and highlighted, and the Function App API is highlighted.](media/dev-portal-apis-function-app.png "Developer portal")
+   ![The left arrow on top of the left-hand menu highlighted. ](media/powerapp_save_app.png "PowerShell App Studio")
 
-3. The API page allows you to view and test your API endpoints directly in the Developer portal.
+5. Select **BrowseScreen1** from the left-hand menu and then select the **Run** button on the top menu to preview the app. You should be able to view the current policies, edit their values, and create new policies.
 
-   ![The Profile link is highlighted on the API page for the Function App API.](media/apim-endpoint-details.png "API Management")
+   ![The Run button is highlighted in the toolbar.](media/powerapp_run_app.png "PowerShell App Studio")
 
-4. Copy the highlighted request URL. This is the new value you use for the `PolicyDocumentsPath` setting in the next task.
-
-   > **Note**: We don't need to do this for the PolicyConnect API because the path is defined by the Swagger definition. The only thing that needs to change for that is the base URL, which points to APIM and not your API App.
-
-5. Next, select the **Administrator** drop down located near the top right of the API page, and then select **Profile** from the fly-out menu. The **Profile** page allows you to retrieve your `Ocp-Apim-Subscription-Key` value, which you need to retrieve so the PolicyConnect web application can access the APIs through APIM.
-
-6. On the Profile page, select **Show** next to the Primary Key for the **Unlimited** Product, copy the key value and paste it into a text editor for use below.
-
-   ![The Primary Key field is highlighted under the Unlimited subscription.](media/apim-dev-portal-subscription-keys.png "API Management Developer Portal")
-
-### Task 4: Update Web App to use API Management Endpoints
-
-In this task, you use the Azure Cloud Shell and Azure CLI to update the `ApiUrl` and `PolicyDocumentsPath` settings for the PolicyConnect Web App. You also add a new setting for the APIM access key.
-
-1. In the **Azure portal** `https://portal.azure.com`, select the Azure Cloud Shell icon from the menu at the top right of the screen.
-
-   ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
-
-2. In the Cloud Shell window that opens at the bottom of your browser window, select **PowerShell**.
-
-   ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
-
-3. After a moment, you receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
-
-   ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
-
-4. At the Cloud Shell prompt, run the following command to retrieve your Web App name, making sure to replace `<your-resource-group-name>` with your resource group name:
-
-   ```powershell
-   $resourceGroup = "<your-resource-group-name>"
-   az webapp list -g $resourceGroup --output table
-   ```
-
-5. In the output, copy the name of Web App (the resource name starts with contoso-**web**) into a text editor for use below.
-
-   ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
-
-6. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
-
-   - `<your-web-app-name>`: Replace with your Web App name, which you copied in above.
-   - `<your-apim-gateway-url>`: Replace with the Gateway URL of your API Management instance, which you can find on the Overview blade of the API Management Service in the Azure portal.
-   - `<your-apim-subscription-key>`: Replace with the APIM `Ocp-Apim-Subscription-Key` value that you copied into a text editor above.
-   - `<your-apim-function-app-path>`: Replace with path you copied for your Function App within API Management, that is to be used for the `PolicyDocumentsPath` setting.
-
-   ```powershell
-   $webAppName = "<your-web-app-name>"
-   $apimUrl = "<your-apim-gateway-url>"
-   $apimKey = "<your-apim-subscription-key>"
-   $policyDocsPath = "<your-apim-function-app-path>"
-   az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=$policyDocsPath" "ApiUrl=$apimUrl" "ApimSubscriptionKey=$apimKey"
-   ```
-
-7. In the output, note the newly added and updated settings in your Web App's application settings. The settings were updated by the script above and triggered a restart of your web app.
-
-8. In a web browser, navigate to the Web app URL, and verify you still see data when you select one of the tabs.
+6. Browse through the various policies in the app to explore the functionality.
 

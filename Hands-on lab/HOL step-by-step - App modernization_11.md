@@ -8,7 +8,7 @@ Contoso has made some updates to prepare their applications, but there are some 
 
 In this task, you prepare your Azure Function App to work with your new Function by adding your storage account policies container URL and SAS token values to the Application Settings of your Function App, using the Azure Cloud Shell and Azure CLI.
 
-1. In the **Azure portal** `https://portal.azure.com`, select the Azure Cloud Shell icon from the menu at the top right of the screen.
+1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
    ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
 
@@ -36,7 +36,7 @@ In this task, you prepare your Azure Function App to work with your new Function
 6. For the next command, you need the URL of your `policies` container and the `SAS token` values you added to your text editor previously. Replace the tokenized values in the following command, and then run it from the Azure Cloud Shell command prompt.
 
    - `<your-function-app-name>`: Replace with your Function App name, which you copied in the previous step.
-   - `<your-policies-container-url>`: Replace with the default hostname of your API app that you copied into a text editor previously.
+   - `<your-policies-container-url>`: Replace with the `policies` container URL you copied into a text editor previously.
    - `<your-storage-account-sas-token>`: Replace with the `SAS Token` of your Storage account, which you copied into a text editor previously.
 
    ```powershell
@@ -52,7 +52,9 @@ Functions can use environment variables to retrieve configuration settings. To t
 
 In this task, you create some environment variables on your LabVM, which allows for debugging your Function App locally on the LabVM.
 
-1. In Solution Explorer, right-click the **Contoso-FunctionApp** project, then select **Properties**
+1. In Solution Explorer, right-click the **Contoso-FunctionApp** project, then select **Properties**.
+
+   ![Adding environment variables via visual studio project settings.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/vsproperties.png?raw=true "Add environment variables")
 
 2. Select the **Debug** tab.
 
@@ -117,7 +119,7 @@ In this task, you use Visual Studio to create an Azure Function. This Function s
 
 In this task, you run your Function locally through the Visual Studio debugger, to verify that it is properly configured and able to retrieve documents from the `policy` container in your Storage account.
 
-> **IMPORTANT**: Internet Explorer on Windows Server 2019 does not include functionality to open PDF documents. To view the downloaded policy documents in this task, you need to use Microsoft Edge Browser in your LabVM..
+> **IMPORTANT**: Internet Explorer on Windows Server 2019 does not include functionality to open PDF documents. To view the downloaded policy documents in this task, you need to [download and install the Microsoft Edge browser](https://www.microsoft.com/edge) for Windows 10 on your LabVM.
 
 1. In the Visual Studio Solution Explorer, right-click the `Contoso.FunctionApp` project, and then select **Debug** and **Start new instance**.
 
@@ -148,7 +150,7 @@ In this task, you run your Function locally through the Visual Studio debugger, 
 
    > **Note**: Paths for documents in Azure Blob Storage are case sensitive, so the policyholder Name and Policy number casing need to match the values specified above.
 
-6. Paste the updated into the address bar of a new Chrome web browser window and press Enter.
+6. Paste the updated into the address bar of a new Microsoft Edge web browser window and press Enter.
 
 7. In the browser, the policy document opens in a new window.
 
@@ -166,7 +168,7 @@ In this task, you deploy your function into an Azure Function App, where the web
 
 2. On the **Publish** dialog, select **Azure** in the Target box and select **Next**.
 
-   ![In the Publish dialog, Azure is selected and highlighted in the Target box.](media/vs-publish-function-to-azure.png "Publish Function App to Azure")
+   ![In the Publish dialog, Azure is selected and highlighted in the Target box.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/funcapp.png?raw=true "Publish Function App to Azure")
 
 3. Next, in the **Function instance** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the API App.
 
@@ -186,7 +188,7 @@ In this task, you deploy your function into an Azure Function App, where the web
 
 In this task, you add Application Insights to your Function App in the Azure Portal, to be able to collect insights into requests against the Function.
 
-1. In the **Azure portal** `https://portal.azure.com`, navigate to your **Function App** by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-func-UniqueId** App service from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-func-UniqueId** App service from the list of resources.
 
    ![The Function App resource is highlighted in the list of resources.](media/azure-resources-function-app.png "Function App")
 
@@ -222,7 +224,7 @@ In this task, you add Application Insights to your Function App in the Azure Por
 
 In this task, you add the URL of your Azure Function App to the Application settings configuration of your Web App.
 
-1. In the **Azure portal** `https://portal.azure.com`, select the Azure Cloud Shell icon from the menu at the top right of the screen.
+1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
    ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
 
@@ -316,4 +318,6 @@ In this task, you open the PolicyConnect web app and download a policy document.
 2. The page should now display a dashboard featuring telemetry for requests hitting your Function App. Look under the Sample Telemetry section on the right, and you locate the document request you just made. Select the Trace whose message begins with "PolicyDocs function received a request...", and observe the details in the panel below it.
 
    ![Sample telemetry data is displayed on the Live Metrics Stream page.](media/application-insights-sample-telemetry.png "Application Insights")
+
+3. Click on **Next** button.
 

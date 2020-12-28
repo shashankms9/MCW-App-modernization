@@ -8,7 +8,7 @@ As part of their efforts to put tighter security controls in place, Contoso has 
 
 In this task, you add an access policy to Key Vault to allow secrets to be created with your account.
 
-1. In the **Azure portal** `https://portal.azure.com`, navigate to your **Key Vault** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-kv-UniqueId** Key vault resource from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Key Vault** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-kv-UniqueId** Key vault resource from the list of resources.
 
    ![The contosokv Key vault resource is highlighted in the list of resources.](media/azure-resources-key-vault.png "Key vault")
 
@@ -22,10 +22,14 @@ In this task, you add an access policy to Key Vault to allow secrets to be creat
    - **Key permissions**: Leave set to 0 selected.
    - **Secret permissions**: Select this, and then choose **Select All**, to give yourself full rights to manage secrets.
    - **Certificate permissions**: Leave set to 0 selected.
-   - **Select principal**: Enter the email address of the account you are logged into the Azure portal with, select the user object that appears, and then choose **Select**.
+   - **Select principal**: Click on **None Selected** and enter the email address of the account you are logged into the Azure portal with, select the user object that appears, and then choose **Select**.
+
+   ![The values specified above are entered into the Add access policy dialog.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/accesspolicy1.png?raw=true "Key Vault"
+
+)
    - **Authorized application**: Leave set to None selected.
 
-   ![The values specified above are entered into the Add access policy dialog.](media/key-vault-add-access-policy.png "Key Vault")
+   ![The values specified above are entered into the Add access policy dialog.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/accesspolicy2.png?raw=true "Key Vault")
 
 4. Select **Add**.
 
@@ -37,7 +41,7 @@ In this task, you add an access policy to Key Vault to allow secrets to be creat
 
 In this task, you add a secret to Key Vault containing the connection string for the `ContosoInsurance` Azure SQL database.
 
-1. First, you need to retrieve the connection string to your Azure SQL Database. In the **Azure portal** `https://portal.azure.com`, navigate to your **SQL database** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **ContosoInsurance** SQL database resource from the list of resources.
+1. First, you need to retrieve the connection string to your Azure SQL Database. In the [Azure portal](https://portal.azure.com), navigate to your **SQL database** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **ContosoInsurance** SQL database resource from the list of resources.
 
    ![The contosoinsurance SQL database resource is highlighted in the list of resources.](media/resources-azure-sql-database.png "SQL database")
 
@@ -57,7 +61,7 @@ In this task, you add a secret to Key Vault containing the connection string for
 
 6. Copy your updated connection string from the text editor.
 
-7. In the **Azure portal** `https://portal.azure.com`, navigate back to your **Key Vault** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-kv-UniqueId** Key vault resource from the list of resources.
+7. In the [Azure portal](https://portal.azure.com), navigate back to your **Key Vault** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-kv-UniqueId** Key vault resource from the list of resources.
 
    ![The contosokv Key vault resource is highlighted in the list of resources.](media/azure-resources-key-vault.png "Key vault")
 
@@ -75,27 +79,39 @@ In this task, you add a secret to Key Vault containing the connection string for
 
 10. Select **Create**.
 
-### Task 3: Assign the service principal access to Key Vault
+### Task 3: Retrieve service principal details
+
+Your environment has a pre-created Service Principal for which details are provided along. The service principal (SP) is used to provide your web and API apps access to secrets stored in Azure Key Vault.
+1. Now to retrieve the details of Service Principal click on **Environment Details** tab then select **Service Principal Details**and you can review it as shown below:
+
+   ![Retrieve service principal details](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/principaldetails.png?raw=true "Retrieve service principal details")
+
+### Task 4: Assign the service principal access to Key Vault
 
 In this task, you assign the service principal you created above to a reader role on your resource group and add an access policy to Key Vault to allow it to view secrets stored there.
+1. Enter the following command at the Cloud Shell prompt, by replacing `<your-subscription-id>` with the value you copied above and `<your-resource-group-name>` with the name of your **hands-on-lab-SUFFIX** resource group, and then press **Enter** to run the command:
+   ```
+   $subscriptionId = "<your-subscription-id>"
+  $resourceGroup = "<your-resource-group-name>"
+   ```
 
-1. Next, run the following command to get the name of your Key Vault:
+2. Next, run the following command to get the name of your Key Vault:
 
    ```powershell
    az keyvault list -g $resourceGroup --output table
    ```
 
-2. In the output from the previous command, copy the value from the `name` field into a text editor. You use it in the next step and also for configuration of your web and API apps.
+3. In the output from the previous command, copy the value from the `name` field into a text editor. You use it in the next step and also for configuration of your web and API apps.
 
-   ![The value of the name property is highlighted in the output from the previous command.](media/azure-cloud-shell-az-keyvault-list.png "Azure Cloud Shell")
+   ![The value of the name property is highlighted in the output from the previous command.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/keyvault.png?raw=true "Azure Cloud Shell")
 
-3. To assign permissions to your service principal to read Secrets from Key Vault, run the following command, replacing `<your-key-vault-name>` with the name of your Key Vault that you copied in the previous step and pasted into a text editor and **Application Id** with the Application Id value from Lab Environment page
+4. To assign permissions to your service principal to read Secrets from Key Vault, run the following command, replacing `<your-key-vault-name>` with the name of your Key Vault that you copied in the previous step and pasted into a text editor and replacing **http://contoso-apps** in --spn with the **application id** of the pre-created service principal that you can copy from lab details page.
 
    ```powershell
-   az keyvault set-policy -n <your-key-vault-name> --spn <Application Id> --secret-permissions get list
+   az keyvault set-policy -n <your-key-vault-name> --spn https://contoso-apps --secret-permissions get list
    ```
 
-4. In the output, you should see your service principal appId listed with "get" and "list" permissions for secrets.
+5. In the output, you should see your service principal appId listed with "get" and "list" permissions for secrets.
 
    ![In the output from the command above, the secrets array is highlighted.](media/azure-cloud-shell-az-keyvault-set-policy.png "Azure Cloud Shell")
 

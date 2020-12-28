@@ -2,11 +2,11 @@
 
 Duration: 15 minutes
 
-Contoso has requested the ability to perform full-text searching on policy documents. Previously, they have not been able to extract information from the documents in a usable way, but they have read about cognitive search with the Azure Cognitive Search Service `(https://docs.microsoft.com/azure/search/cognitive-search-concept-intro)`, and are interested to learn if it could be used to make the data in their search index more useful. In this exercise, you configure cognitive search for the policies blob storage container.
+Contoso has requested the ability to perform full-text searching on policy documents. Previously, they have not been able to extract information from the documents in a usable way, but they have read about [cognitive search with the Azure Cognitive Search Service](https://docs.microsoft.com/azure/search/cognitive-search-concept-intro), and are interested to learn if it could be used to make the data in their search index more useful. In this exercise, you configure cognitive search for the policies blob storage container.
 
 ### Task 1: Add Azure Cognitive Search to Storage account
 
-1. In the **Azure portal** `https://portal.azure.com`, navigate to your **Storage account** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-UniqueId** Storage account resource from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Storage account** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-UniqueId** Storage account resource from the list of resources.
 
    ![The Storage Account resource is highlighted in the list of resources.](media/resource-group-resources-storage-account.png "Storage account")
 
@@ -28,6 +28,8 @@ Contoso has requested the ability to perform full-text searching on policy docum
    ![On the Connect to your data tab, the values specified above are entered in to the form.](media/add-azure-search-connect-to-your-data.png "Add Azure Search")
 
 5. Select **Next: Add cognitive skills (Optional)**.
+
+   > **Note**: Skipping this step will cause issues in Task 2, as the Free (Limited enrichments) option restricts the number of documents indexed to 20. If you use the Free cognitive services option, you will receive a message that indexing was stopped after reaching the limit.
 
 6. On the **Add cognitive skills** tab, set the following configuration:
 
@@ -62,13 +64,15 @@ Contoso has requested the ability to perform full-text searching on policy docum
 
 In this task, you run a query against your search index to review the enrichments added by cognitive search to policy documents.
 
-1. In the **Azure portal** `https://portal.azure.com`, navigate to your **Search service** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-search-UniqueId** Search service resource from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Search service** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-search-UniqueId** Search service resource from the list of resources.
 
    ![The Search service resource is highlighted in the list of resources.](media/azure-resources-search.png "Search service")
 
-2. On the Search service blade, select **Indexers**.
+2. On the Search service overview blade, scroll down and select **Indexers**.
 
    ![In Contoso Insurance search service, Indexers is highlighted and selected.](media/azure-search-indexers.png "Search Service")
+
+   > **Note**: If you see a message that the indexer was stopped because the free skillset execution quota has been reached, you will need to return to Exercise 8, Task 1, Step 6, and select your cognitive services account.
 
 3. Note the status of the policy-docs-indexer. Once the indexer has run, it should display a status of **Success**. If the status is **In progress**, select **Refresh** every 20-30 seconds until it changes to **Success**.
 

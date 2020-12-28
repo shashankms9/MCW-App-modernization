@@ -8,7 +8,7 @@ In this exercise, you update the `Contoso.Web` web application to connect to you
 
 In this task, you prepare your Web App to work with the API App by adding the URL of your published API App to the Application Settings of your Web App, using the Azure Cloud Shell and Azure CLI.
 
-1. In the **Azure portal** `https://portal.azure.com`, select the Azure Cloud Shell icon from the menu at the top right of the screen.
+1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
    ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
 
@@ -51,8 +51,23 @@ In this task, you prepare your Web App to work with the API App by adding the UR
 ### Task 2: Deploy web application to Azure
 
 In this task, you publish the `Contoso.Web` application into an Azure Web App.
+1. In Visual Studio on your LabVM, right-click the `Contoso.Web` project in the Solution Explorer, and then select **Manage NuGet Packages** from the context menu.
 
-1. In Visual Studio on your LabVM, right-click the `Contoso.Web` project in the Solution Explorer, and then select **Publish** from the context menu.
+   ![Publish in highlighted in the context menu for the Contoso.Web project.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/nuget1.png?raw=true "Publish")
+
+2. On the **NuGet Package Manager** blade, select **Browse** then search for and select **Microsoft.NET.Sdk.Razor** package. Click on **Install** to install the package.
+
+    ![Publish in highlighted in the context menu for the Contoso.Web project.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/nuget2.png?raw=true "Publish")
+
+3. On the **Preview features** blade, click on **Ok**.
+
+    ![Publish in highlighted in the context menu for the Contoso.Web project.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/nuget3.png?raw=true "Publish")
+
+4. On the **License Acceptance** blade, click on **I Agree**
+
+    ![Publish in highlighted in the context menu for the Contoso.Web project.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/nuget4.png?raw=true "Publish")
+
+5. Once the package installation is done,  right-click the `Contoso.Web` project in the Solution Explorer, and then select **Publish** from the context menu.
 
    ![Publish in highlighted in the context menu for the Contoso.Web project.](media/vs-web-publish.png "Publish")
 
@@ -66,40 +81,41 @@ In this task, you publish the `Contoso.Web` application into an Azure Web App.
 
 4. Finally, in the **App Service** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the API App.
 
-   ![In the Publish dialog, The Contoso Web App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](media/vs-publish-web-app-service.png "Publish Web App to Azure")
+   ![In the Publish dialog, The Contoso Web App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp4.png?raw=true "Publish Web App to Azure")
 
 5. Select **Finish**.
 
-6. Back on the Visual Studio Publish page for the `Contoso.Web` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
+10. Back on the Visual Studio Publish page for the `Contoso.Web` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
-   ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-web.png "Publish")
+   ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp6.png?raw=true "Publish")
 
-7. In the Visual Studio **Web Publish Activity** view, observe the Publish Succeeded message, along with the URL to the site.
+11. In the Visual Studio **Web Publish Activity** view, observe the Publish Succeeded message, along with the URL to the site.
 
-   ![Web Publish Activity view with the publish process status and Web App url](media/vs-web-publish-succeeded.png "Web Publish Activity")
+   ![Web Publish Activity view with the publish process status and Web App url](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp5.png?raw=true "Web Publish Activity")
 
-8. A web browser should open to the published site. If not, open the URL of the published Web App in a browser window.
+12. A web browser should open to the published site. If not, open the URL of the published Web App in a browser window
 
-9. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in**:
+13. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in
 
    - **Username**: demouser
    - **Password**: Password.1!!
 
    ![The credentials above are entered into the login screen for the PolicyConnect web site.](media/web-app-login.png "PolicyConnect")
 
-10. Once logged in, select **Managed Policy Holders** from the top menu.
+14. Once logged in, select **Managed Policy Holders** from the top menu.
 
     ![Manage Policy Holders is highlighted in the PolicyConnect web site's menu.](media/web-app-managed-policy-holders.png "PolicyConnect")
 
     > **Note**: It can take a few seconds for data to appear the first time the page is loaded, as the API must also be initialized.
 
-11. On the Policy Holders page, review the list of policy holder, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
+15. On the Policy Holders page, review the list of policy holder, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
 
     ![Policy holder data is displayed on the page.](media/web-app-policy-holders-data.png "PolicyConnect")
 
-12. On the Policy Holder Details page, select the link under **File Path**, and notice that the result is a page not found error.
+16. On the Policy Holder Details page, select the link under **File Path**, and notice that the result is a page not found error.
 
     ![The File Path link is highlighted on the Policy Holder Details page.](media/web-app-policy-holder-details.png "PolicyConnect")
 
-13. Contoso is storing their policy documents on a network file share, so these are not accessible to the deployed web app. In the next exercises, you address that issue.
+17. Contoso is storing their policy documents on a network file share, so these are not accessible to the deployed web app. In the next exercises, you address that issue.
+18. Click on **Next** button.
 

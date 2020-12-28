@@ -6,54 +6,33 @@ In this exercise, you use the Microsoft Data Migration Assistant (DMA) to assess
 
 > DMA helps you upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. DMA recommends performance and reliability improvements for your target environment and allows you to move your schema, data, and uncontained objects from your source server to your target server. To learn more, read the **Data Migration Assistant documentation** here `https://docs.microsoft.com/sql/dma/dma-overview?view=azuresqldb-mi-current`.
 
-### Task 1: Configure the ContosoInsurance database on the Sql2008-UniqueId VM
+### Task 1: Configure the ContosoInsurance database on the SQL2008-UniqueId VM
 
 Before you begin the assessment, you need to configure the `ContosoInsurance` database on your SQL Server 2008 R2 instance. In this task, you execute a SQL script against the `ContosoInsurance` database on the SQL Server 2008 R2 instance.
 
 > **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2, which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
 
-1. In the **Azure portal** `https://portal.azure.com`, navigate to your **Sql2008-UniqueId** VM by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **Sql2008-UniqueId** VM from the list of resources.
+1. Connect to the **SQL2008-UniqueId** Virtual Machine from your lab details page by clicking on **GO TO SQL2008-uniqueid** button.
 
-   ![The Sql2008-UniqueId virtual machine is highlighted in the list of resources.](media/resources-sql-server-2008-vm.png "SQL Server 2008 VM")
+   ![The SQL2008-UniqueId virtual machine is highlighted in the list of resources.](media/resources-sql-server-2008-vm.png "SQL Server 2008 VM")
 
-2. On the Sql2008-UniqueId Virtual Machine's **Overview** blade, select **Connect** and **RDP** on the top menu.
-
-   ![The Sql2008-UniqueId VM blade is displayed, with the Connect button highlighted in the top menu.](./media/connect-vm-rdp.png "Connect to Sql2008-UniqueId VM")
-
-3. On the Connect to virtual machine blade, select **Download RDP File**, then open the downloaded RDP file.
-
-4. Select **Connect** on the Remote Desktop Connection dialog.
-
-   ![In the Remote Desktop Connection Dialog Box, the Connect button is highlighted.](./media/remote-desktop-connection-sql-2008.png "Remote Desktop Connection dialog")
-
-5. Enter the following credentials when prompted, and then select **OK**:
-
-   - **Username**: demouser
-   - **Password**: Password.1!!
-
-   ![The credentials specified above are entered into the Enter your credentials dialog.](media/rdc-credentials-sql-2008.png "Enter your credentials")
-
-6. Select **Yes** to connect, if prompted that the identity of the remote computer cannot be verified.
-
-   ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](./media/remote-desktop-connection-identity-verification-sqlserver2008.png "Remote Desktop Connection dialog")
-
-7. Once logged into the Sql2008-UniqueId VM, open **Microsoft SQL Server Management Studio** (SSMS) by entering "sql server" into the search bar in the Windows Start menu and selecting **Microsoft SQL Server Management Studio 17** from the results.
+2. Once connected to the SQL2008-UniqueId VM, search for ```sql server``` into  Windows Start menu and select **Microsoft SQL Server Management Studio 17** from the results and open it.
 
    ![SQL Server is entered into the Windows Start menu search box, and Microsoft SQL Server Management Studio 17 is highlighted in the search results.](media/start-menu-ssms-17.png "Windows start menu search")
 
-8. In the SSMS **Connect to Server** dialog, enter **SQL2008-UniqueId** into the Server name box, ensure **Windows Authentication** is selected, and then select **Connect**.
+3. In the SSMS **Connect to Server** dialog, enter **SQL2008-UniqueId** into the Server name box, ensure **Windows Authentication** is selected, and then select **Connect**.
 
    ![The SQL Server Connect to Search dialog is displayed, with SQL2008-UniqueId entered into the Server name and Windows Authentication selected.](media/sql-server-2008-connect-to-server.png "Connect to Server")
 
-9. Once connected, expand **Databases** under SQL2008-UniqueId in the Object Explorer, and then select **ContosoInsurance** from the list of databases.
+4. Once connected, expand **Databases** under SQL2008-UniqueId in the Object Explorer, and then select **ContosoInsurance** from the list of databases.
 
    ![The ContosoInsurance database is highlighted in the list of databases.](media/ssms-databases.png "Databases")
 
-10. Next, you execute a script in SSMS, which resets the `sa` password, enable mixed mode authentication, create the `WorkshopUser` account, and change the database recovery model to FULL. To create the script, open a new query window in SSMS by selecting **New Query** in the SSMS toolbar.
+5. Next, you execute a script in SSMS, which resets the `sa` password, enable mixed mode authentication, create the `WorkshopUser` account, and change the database recovery model to FULL. To create the script, open a new query window in SSMS by selecting **New Query** in the SSMS toolbar.
 
     ![The New Query button is highlighted in the SSMS toolbar.](media/ssms-new-query.png "SSMS Toolbar")
 
-11. Copy and paste the SQL script below into the new query window:
+6. Copy and paste the SQL script below into the new query window:
 
     ```sql
     USE master;
@@ -92,25 +71,25 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
     GO
     ```
 
-12. To run the script, select **Execute** from the SSMS toolbar.
+7. To run the script, select **Execute** from the SSMS toolbar.
 
     ![The Execute button is highlighted in the SSMS toolbar.](media/ssms-execute.png "SSMS Toolbar")
 
-13. For Mixed Mode Authentication and the new `sa` password to take effect, you must restart the SQL Server (MSSQLSERVER) Service on the Sql2008-UniqueId VM. To do this, you can use SSMS. Right-click the SQL2008-UniqueId instance in the SSMS Object Explorer, and then select **Restart** from the context menu.
+8. For Mixed Mode Authentication and the new `sa` password to take effect, you must restart the SQL Server (MSSQLSERVER) Service on the SQL2008-UniqueId VM. To do this, you can use SSMS. Right-click the SQL2008-UniqueId instance in the SSMS Object Explorer, and then select **Restart** from the context menu.
 
     ![In the SSMS Object Explorer, the context menu for the SQL2008-UniqueId instance is displayed, and Restart is highlighted.](media/ssms-object-explorer-restart-sqlserver2008.png "Object Explorer")
 
-14. When prompted about restarting the MSSQLSERVER service, select **Yes**. The service takes a few seconds to restart.
+9. When prompted about restarting the MSSQLSERVER service, select **Yes**. The service takes a few seconds to restart.
 
     ![The Yes button is highlighted on the dialog asking if you are sure you want to restart the MSSQLSERVER service.](media/ssms-restart-service.png "Restart MSSQLSERVER service")
 
 ### Task 2: Perform assessment for migration to Azure SQL Database
 
-Contoso would like an assessment to see what potential issues they might need to address in moving their database to Azure SQL Database. In this task, you use the **Microsoft Data Migration Assistant** (DMA) to perform an assessment of the `ContosoInsurance` database against Azure SQL Database (Azure SQL DB). Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. It recommends performance and reliability improvements for your target environment. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and the Azure SQL DB service.
+Contoso would like an assessment to see what potential issues they might need to address in moving their database to Azure SQL Database. In this task, you use the [Microsoft Data Migration Assistant](https://docs.microsoft.com/sql/dma/dma-overview?view=sql-server-2017) (DMA) to perform an assessment of the `ContosoInsurance` database against Azure SQL Database (Azure SQL DB). Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. It recommends performance and reliability improvements for your target environment. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and the Azure SQL DB service.
 
-> **Note**: The Database Migration Assistant has already been installed on your Sql2008-UniqueId VM. It can also be downloaded from the **Microsoft Download Center** at `https://www.microsoft.com/download/details.aspx?id=53595`.
+> **Note**: The Database Migration Assistant has already been installed on your SQL2008-UniqueId VM. It can also be downloaded from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53595).
 
-1. On the Sql2008-UniqueId VM, launch DMA from the Windows Start menu by typing "data migration" into the search bar, and then selecting **Microsoft Data Migration Assistant** in the search results.
+1. On the SQL2008-UniqueId VM, launch DMA from the Windows Start menu by typing "data migration" into the search bar, and then selecting **Microsoft Data Migration Assistant** in the search results.
 
    ![In the Windows Start menu, "data migration" is entered into the search bar, and Microsoft Data Migration Assistant is highlighted in the Windows start menu search results.](media/windows-start-menu-dma.png "Data Migration Assistant")
 
@@ -143,7 +122,7 @@ Contoso would like an assessment to see what potential issues they might need to
    - **Encrypt connection**: Check this box.
    - **Trust server certificate**: Check this box.
 
-   ![In the Connect to a server dialog, the values specified above are entered into the appropriate fields.](media/dma-connect-to-a-server.png "Connect to a server")
+   ![In the Connect to a server dialog, the values specified above are entered into the appropriate fields.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/sqlserver1.png?raw=true "Connect to a server")
 
 7. Select **Connect**.
 
@@ -169,7 +148,7 @@ Contoso would like an assessment to see what potential issues they might need to
 
 After you have reviewed the assessment results and you have ensured the database is a candidate for migration to Azure SQL Database, use the Data Migration Assistant to migrate the schema to Azure SQL Database.
 
-1. On the Sql2008-UniqueId VM, return to the Data Migration Assistant, and select the New **(+)** icon in the left-hand menu.
+1. On the SQL2008-UniqueId VM, return to the Data Migration Assistant, and select the New **(+)** icon in the left-hand menu.
 
 2. In the New project dialog, enter the following:
 
@@ -197,7 +176,7 @@ After you have reviewed the assessment results and you have ensured the database
 
 5. Select **Next**.
 
-6. For the **Select target** tab, retrieve the server name associated with your Azure SQL Database. In the **Azure portal** `https://portal.azure.com`, navigate to your **SQL database** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **ContosoInsurance** SQL database resource from the list of resources.
+6. For the **Select target** tab, retrieve the server name associated with your Azure SQL Database. In the [Azure portal](https://portal.azure.com), navigate to your **SQL database** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **ContosoInsurance** SQL database resource from the list of resources.
 
    ![The contosoinsurance SQL database resource is highlighted in the list of resources.](media/resources-azure-sql-database.png "SQL database")
 
@@ -233,7 +212,7 @@ After you have reviewed the assessment results and you have ensured the database
 
     ![The schema deployment results are displayed, with 23 commands executed and 0 errors highlighted.](media/data-migration-assistant-migration-deployment-results.png "Schema deployment results")
 
-14. Next, open SSMS on the Sql2008-UniqueId VM, and connect to your Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
+14. Next, open SSMS on the SQL2008-UniqueId VM, and connect to your Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
 
     - **Server name**: Paste the server name of your Azure SQL Database you copied above.
     - **Authentication type**: Select SQL Server Authentication.
@@ -251,9 +230,9 @@ After you have reviewed the assessment results and you have ensured the database
 
 ### Task 4: Retrieve connection information for SQL databases
 
-In this task, you use the Azure Cloud shell to retrieve the IP address of the Sql2008-UniqueId VM, which is needed to connect to your Sql2008-UniqueId VM from DMS.
+In this task, you use the Azure Cloud shell to retrieve the IP address of the SQL2008-UniqueId VM, which is needed to connect to your SQL2008-UniqueId VM from DMS.
 
-1. In the **Azure portal** `https://portal.azure.com`, select the Azure Cloud Shell icon from the top menu.
+1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the top menu.
 
    ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
 
@@ -261,11 +240,22 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
    ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
-3. If prompted that you have no storage mounted, select the subscription you are using for this hands-on lab and select **Create storage**.
+3. Now you need to select **Advanced settings** and specify the subscription, region and resource group for the new storage account as mentioned below: 
 
-   ![In the You have no storage mounted dialog, a subscription has been selected, and the Create Storage button is highlighted.](media/cloud-shell-create-storage.png "Azure Cloud Shell")
+   Click on **Show Advanced Settings**.
 
-   > **Note**: If creation fails, you may need to select **Advanced settings** and specify the subscription, region, and existing resource group and enter storage account name as saUniqueId and file share as fsUniqueId and click on Create Storage button, get UniqueId value from lab details page.
+      ![](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/storage1.png?raw=true.png)
+
+   Use exisiting hands-on-lab-SUFFIX resource group and for:
+
+   - **storage account**: Create new and enter sa{uniqueid}, for example: sa176667.
+
+   - **file share**: Create new and enter fs{uniqueid}, for example: fs176667
+ 
+
+   ![In the You have no storage mounted dialog, a subscription has been selected, and the Create Storage button is highlighted.](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/storage2.png?raw=true "Azure Cloud Shell")
+
+  Then select **Create Storage**.
 
 4. After a moment, a message that you have successfully requested a Cloud Shell appears, and a PS Azure prompt is displayed.
 
@@ -277,17 +267,17 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
    $resourceGroup = "<your-resource-group-name>"
    ```
 
-6. Next, retrieve the public IP address of the Sql2008-UniqueId VM, which is used to connect to the database on that server. Enter and run the following PowerShell command:
+6. Next, retrieve the public IP address of the Sql2008-uniqueid VM, which is used to connect to the database on that server. Enter and run the following PowerShell command:(Make sure to replace the Uniqueid and run the command)
 
    ```powershell
-   az vm list-ip-addresses -g $resourceGroup -n Sql2008-UniqueId --output table
+   az vm list-ip-addresses -g $resourceGroup -n Sql2008-uniqueid --output table
    ```
 
    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
 7. Within the output of the command above, locate and copy the value of the `ipAddress` property within the `publicIPAddresses` object. Paste the value into a text editor, such as Notepad.exe, for later reference.
 
-   ![The output from the az vm list-ip-addresses command is displayed in the Cloud Shell, and the publicIpAddress for the Sql2008-UniqueId VM is highlighted.](media/cloud-shell-az-vm-list-ip-addresses.png "Azure Cloud Shell")
+   ![The output from the az vm list-ip-addresses command is displayed in the Cloud Shell, and the publicIpAddress for the SQL2008-UniqueId VM is highlighted.](media/cloud-shell-az-vm-list-ip-addresses.png "Azure Cloud Shell")
 
 8. Next, run a second command to retrieve the server name of your Azure SQL Database:
 
@@ -303,9 +293,9 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
 At this point, you have migrated the database schema using DMA. In this task, you migrate the data from the `ContosoInsurance` database into the new Azure SQL Database using the Azure Database Migration Service.
 
-> The **Azure Database Migration Service** `(https://docs.microsoft.com/azure/dms/dms-overview)` integrates some of the functionality of Microsoft existing tools and services to provide customers with a comprehensive, highly available database migration solution. The service uses the Data Migration Assistant to generate assessment reports that provide recommendations to guide you through the changes required prior to performing a migration. When you're ready to begin the migration process, Azure Database Migration Service performs all of the required steps.
+> The [Azure Database Migration Service](https://docs.microsoft.com/azure/dms/dms-overview) integrates some of the functionality of Microsoft existing tools and services to provide customers with a comprehensive, highly available database migration solution. The service uses the Data Migration Assistant to generate assessment reports that provide recommendations to guide you through the changes required prior to performing a migration. When you're ready to begin the migration process, Azure Database Migration Service performs all of the required steps.
 
-1. In the **Azure portal** `https://portal.azure.com`, navigate to your Azure Database Migration Service by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-dms-UniqueId** Azure Database Migration Service in the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your Azure Database Migration Service by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-dms-UniqueId** Azure Database Migration Service in the list of resources.
 
    ![The contoso-dms Azure Database Migration Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-dms-resource.png "Resources")
 
@@ -318,7 +308,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
    - **Project name**: Enter DataMigration.
    - **Source server type**: Select SQL Server.
    - **Target server type**: Select Azure SQL Database.
-   - **Choose type of activity**: Select **Offline data migration** and select **Save**.
+   - **Choose type of activity**: Let it be on default i.e. **Offline data migration**.
 
    ![The New migration project blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-new-migration-project-blade.png "New migration project")
 
@@ -326,15 +316,15 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 5. On the Migration Wizard **Select source** blade, enter the following:
 
-   - **Source SQL Server instance name**: Enter the IP address of your Sql2008-UniqueId VM that you copied into a text editor in the previous task. For example, `51.143.12.114`.
+   - **Source SQL Server instance name**: Enter the IP address of your SQL2008-UniqueId VM that you copied into a text editor in the previous task. For example, `51.143.12.114`.
    - **Authentication type**: Select SQL Authentication.
    - **Username**: Enter **WorkshopUser**
    - **Password**: Enter **Password.1!!**
    - **Connection properties**: Check both Encrypt connection and Trust server certificate.
 
-   ![The Migration Wizard Select source blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-source.png "Migration Wizard Select source")
+   ![The Migration Wizard Select source blade is displayed, with the values specified above entered into the appropriate fields.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/migration1.png?raw=true "Migration Wizard Select source")
 
-6. Select **Save**.
+6. Select **Next : Select target**.
 
 7. On the Migration Wizard **Select target** blade, enter the following:
 
@@ -344,27 +334,27 @@ At this point, you have migrated the database schema using DMA. In this task, yo
    - **Password**: Enter **Password.1!!**
    - **Connection properties**: Check Encrypt connection.
 
-   ![The Migration Wizard Select target blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-target.png "Migration Wizard Select target")
+   ![The Migration Wizard Select target blade is displayed, with the values specified above entered into the appropriate fields.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/migration2.png?raw=true "Migration Wizard Select target")
 
-8. Select **Save**.
+8. Select **Next : Map to target databases**.
 
-9. On the Migration Wizard **Map to target databases** blade, confirm that **ContosoInsurance** is checked as the source database, and that it is also the target database on the same line, then select **Save**.
+9. On the Migration Wizard **Map to target databases** blade, confirm that **ContosoInsurance** is checked as the source database, and that it is also the target database on the same line.
 
-   ![The Migration Wizard Map to target database blade is displayed, with the ContosoInsurance line highlighted.](media/dms-migration-wizard-map-to-target-databases.png "Migration Wizard Map to target databases")
+   ![The Migration Wizard Map to target database blade is displayed, with the ContosoInsurance line highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/migration3.png?raw=true "Migration Wizard Map to target databases")
 
-10. Select **Save**.
+10. Select **Next : Configure migration settings**.
 
 11. On the Migration Wizard **Configure migration settings** blade, expand the **ContosoInsurance** database and verify all the tables are selected.
 
-    ![The Migration Wizard Configure migration settings blade is displayed, with the expand arrow for ContosoInsurance highlighted, and all the tables checked.](media/dms-migration-wizard-configure-migration-settings.png "Migration Wizard Configure migration settings")
+    ![The Migration Wizard Configure migration settings blade is displayed, with the expand arrow for ContosoInsurance highlighted, and all the tables checked.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/migration4.png?raw=true "Migration Wizard Configure migration settings")
 
-12. Select **Save**.
+12. Select **Next : Summary**.
 
 13. On the Migration Wizard **Summary** blade, enter the following:
 
     - **Activity name**: Enter ContosoDataMigration.
 
-    ![The Migration Wizard summary blade is displayed, with ContosoDataMigration entered into the name field.](media/dms-migration-wizard-migration-summary.png "Migration Wizard Summary")
+    ![The Migration Wizard summary blade is displayed, with ContosoDataMigration entered into the name field.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/migration5.png?raw=true "Migration Wizard Summary")
 
 14. Select **Run migration**.
 
@@ -397,4 +387,6 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 20. The reason for the warning can be found in the Validation Summary section. In the report below, you can see that a storage object schema difference triggered a warning. However, the report also reveals that everything was migrated successfully.
 
     ![The output of the database migration report is displayed.](media/dms-migration-wizard-report.png "Database migration report")
+
+21. Click on **Next** button.
 

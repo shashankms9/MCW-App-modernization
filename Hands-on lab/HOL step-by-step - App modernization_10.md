@@ -8,7 +8,7 @@ Contoso is currently storing all of their scanned PDF documents on a shared loca
 
 In this task, you create a new blob container in your storage account for the scanned PDF policy documents.
 
-1. In the **Azure portal** `https://portal.azure.com`, navigate to your **Storage account** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosoUniqueId** Storage account resource from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Storage account** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosoUniqueId** Storage account resource from the list of resources.
 
    ![The Storage Account resource is highlighted in the list of resources.](media/resource-group-resources-storage-account.png "Storage account")
 
@@ -16,17 +16,17 @@ In this task, you create a new blob container in your storage account for the sc
 
    ![Containers is selected on the Overview blade of the Storage account.](media/storage-account-containers.png "Storage account")
 
-3. On the Container blade, select **+ Container** to create a new container, and in the New container dialog, enter "policies" as the container name. Leave the Public access level set to **Private (no anonymous access)**, and then select **OK**.
+3. On the Container blade, select **+ Container** to create a new container, and in the New container dialog, enter "policies" as the container name. Leave the Public access level set to **Private (no anonymous access)**, and then select **Create**.
 
-   ![The New container dialog is displayed with a name of "policies" entered, and the Public access level set to Container (anonymous read access for containers and blobs).](media/e5-03.png "Container")
+   ![The New container dialog is displayed with a name of "policies" entered, and the Public access level set to Container (anonymous read access for containers and blobs).](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/storageaccount.png?raw=true "Container")
 
 4. After the container has been created, select it on the Container blade, then select **Properties** from the left-hand menu, and copy the URL from the policies - Properties blade. Paste the copied URL into a text editor for later reference.
 
    ![The policies container is selected, with the Properties blade selected, and the URL of the storage container highlighted.](media/e5-04.png "Container properties")
 
-5. Next retrieve the access key for your storage account, which you need to provide to AzCopy below to connect to your storage container. On your Storage account blade in the Azure portal, select **Access keys** from the left-hand menu, and copy the **key1 Key** value to a text editor for use below.
+5. Next retrieve the access key for your storage account, which you need to provide to AzCopy below to connect to your storage container. On your Storage account blade in the Azure portal, select **Access keys** from the left-hand menu, click on **Show Keys** and copy the **key1 Key** value to a text editor for use below.
 
-   ![Access Keys is selected on the Storage account. On the blade, access keys and buttons to copy are displayed](media/e5-05.png "Access Keys")
+   ![Access Keys is selected on the Storage account. On the blade, access keys and buttons to copy are displayed](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/storageaccount2.png?raw=true "Access Keys")
 
 ### Task 2: Create a SAS token
 
@@ -53,9 +53,9 @@ In this task, you generate a shared access signature (SAS) token for your storag
 
 ### Task 3: Bulk upload PDFs to blob storage using AzCopy
 
-In this task, you download and install **AzCopy**. You then use AzCopy to copy the PDF files from the "on-premises" location into the policies container in Azure storage.
+In this task, you download and install [AzCopy](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy). You then use AzCopy to copy the PDF files from the "on-premises" location into the policies container in Azure storage.
 
-1. On your LabVM, open a web browser and download the latest version of AzCopy from `https://aka.ms/downloadazcopy`.
+1. On your LabVM, open a web browser and download the latest version of AzCopy from <https://aka.ms/downloadazcopy>.
 
 2. Run the downloaded installer, accepting the license agreement and all the defaults, to complete the AzCopy install.
 
@@ -70,7 +70,7 @@ In this task, you download and install **AzCopy**. You then use AzCopy to copy t
 5. Enter the following command at the command prompt. The tokenized values should be replaced as follows:
 
    - `[FILE-SOURCE]`: This is the path to the `policy-documents` folder your downloaded copy of the GitHub repo. If you used the extraction path of `C:\MCW`, the path is `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\policy-documents`.
-   - `[STORAGE-CONTAINER-URL]`: This is the URL to your storage account's policies container, which you copied in the last step of the previous task. (e.g., https://contoso216266.blob.core.windows.net/policies)
+   - `[STORAGE-CONTAINER-URL]`: This is the URL to your storage account's policies container, which you copied in the last step of the previous task. (e.g., <https://contosojt7yc3zphxfda.blob.core.windows.net/policies>)
    - `[STORAGE-ACCOUNT-KEY]`: This is the blob storage account key you copied previously in this task. (e.g., `eqgxGSnCiConfgshXQ1rFwBO+TtCH6sduekk6s8PxPBxHWOmFumycTeOlL3myb8eg4Ba2dn7rtdHnk/1pi6P/w==`)
 
    ```bash
@@ -90,4 +90,6 @@ In this task, you download and install **AzCopy**. You then use AzCopy to copy t
 8. You can verify the upload by navigating to the policies container in your Azure Storage account.
 
    ![The policies Container with the Overview blade selected shows the list of uploaded files.](media/e5-07.png "Policies Container")
+
+9. Click on Next button.
 

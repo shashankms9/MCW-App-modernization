@@ -4,7 +4,15 @@ Duration: 45 minutes
 
 The developers at Contoso have been working toward migrating their apps to the cloud, and they have provided you with a starter solution developed using ASP.NET Core 2.2. As such, most of the pieces are already in place to deploy the apps to Azure, as well as configure them to communicate with the new app services. Since the required services have already been provisioned, what remains is to integrate Azure Key Vault into the API, apply application-level configuration settings, and then deploy the apps from the Visual Studio starter solution. In this task, you apply application settings to the Web API using the Azure Portal. Once the application settings have been set, you deploy the Web App and API App into Azure from Visual Studio.
 
-### Task 1: Open starter solution with Visual Studio
+### Task 1: Connect to the LabVM
+
+In this task, you open an RDP connection to the LabVM, and downloading a copy of the starter solution provided by Contoso. The application deployments are handled using Visual Studio 2019, installed on the LabVM.
+
+1. Connect to the **LabVM** from the **Environment Details** page by clicking on **Go to LABVM-Unique Id** button.
+
+   ![The LabVM virtual machine is highlighted in the list of resources.](media/resources-sql-labvm.png "LabVM virtual machine")
+
+### Task 2: Open starter solution with Visual Studio
 
 In this task, you open the `Contoso` starter solution in Visual Studio. The Visual Studio solution contains the following projects:
 
@@ -22,15 +30,15 @@ In this task, you open the `Contoso` starter solution in Visual Studio. The Visu
 
    ![Visual Studio 2019 is highlighted in the How do you want to open this file? dialog.](media/solution-file-open-with.png "Visual Studio 2019")
 
-3. Sign in to Visual Studio using your Azure account credentials. You can get the Azure Account credentials from **Lab Environment** page
+3. Sign in to Visual Studio using your Azure account credentials. You can get the Azure Account credentials from **Environment Details** page
 
    ![The Sign in button is highlighted on the Visual Studio Welcome screen.](media/visual-studio-sign-in.png "Visual Studio 2019")
 
-4. When prompted with a security warning, uncheck **Ask me for every project in this solution**, and then select **OK**.
+4. When prompted with a security warning, uncheck **Ask me for every project in this solution**, and then select **Create**.
 
    ![On the security warning dialog, the Ask me for every project in this solution box is unchecked and highlighted.](media/visual-studio-security-warning.png "Visual Studio")
 
-### Task 2: Update Web API to use Key Vault
+### Task 3: Update Web API to use Key Vault
 
 In this task, you update the `Contoso.WebApi` project to use Azure Key Vault for storing and retrieving application secrets. You start by adding the connection information to the `appsettings.json` file in the `Contoso.WebApi` project, and then add some code to enable the use of Azure Key Vault.
 
@@ -75,11 +83,11 @@ In this task, you update the `Contoso.WebApi` project to use Azure Key Vault for
 
 8. Your Web API is now fully configured to retrieve secrets from Azure Key Vault.
 
-### Task 3: Copy KeyVault configuration section to API App in Azure
+### Task 4: Copy KeyVault configuration section to API App in Azure
 
 Before deploying the Web API to Azure, you need to add the required application settings into the configuration for the Azure API App. In this task, you use the advanced configuration editor in your API App to add in the configuration settings required to connect to and retrieve secrets from Key Vault.
 
-1. In the **Azure portal** `https://portal.azure.com`, navigate to your **API App** by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-api-UniqueId** App service from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **API App** by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-api-UniqueId** App service from the list of resources.
 
    ![The API App resource is highlighted in the list of resources.](media/azure-resources-api-app.png "API App")
 
@@ -93,9 +101,9 @@ Before deploying the Web API to Azure, you need to add the required application 
 
 4. We are going to use the Advanced editor to add all three of the Key Vault settings at once. To do this, we are going to replace the content of the Advanced editor with the following, which you need to update as follows:
 
-   - `<your-key-vault-name>`: ```contoso-kv-UniqueId```, Get UniqueId value from Environment Details under Lab Environment tab  and replace with UniqueId in contoso-kv-UniqueId.
-   - `<Application Id>`: you can retrieve this value from Service Principal Details under Lab Environment tab.
-   - `<Secret Key>`:  you can retrieve this valuefrom Service Principal Details under Lab Environment tab.
+    - `<your-key-vault-name>`: ```contoso-kv-UniqueId```, Get UniqueId value from Environment Details under Lab Environment tab  and replace with UniqueId in contoso-kv-UniqueId.
+    - `<Application Id>`: you can retrieve this value from Service Principal Details under Environment Details tab.
+    - `<Secret Key>`:  you can retrieve this valuefrom Service Principal Details under Environment Details tab.
 
    ```json
    [
@@ -120,7 +128,7 @@ Before deploying the Web API to Azure, you need to add the required application 
    [
      {
        "name": "KeyVaultName",
-       "value": "contoso-kv-UniqueId"
+       "value": "contoso-kv-281470"
      },
      {
        "name": "KeyVaultClientId",
@@ -128,7 +136,7 @@ Before deploying the Web API to Azure, you need to add the required application 
      },
      {
        "name": "KeyVaultClientSecret",
-       "value": "Ej4fUGhxP9D~8aXgk_HFNhJhN8lhSWEInX"
+       "value": "nokf54VBF*DO"
      }
    ]
    ```
@@ -139,7 +147,7 @@ Before deploying the Web API to Azure, you need to add the required application 
 
    ![The Save button is highlighted on the toolbar.](media/api-app-configuration-save.png "Save")
 
-### Task 4: Deploy the API to Azure
+### Task 5: Deploy the API to Azure
 
 In this task, you use Visual Studio to deploy the API project into an API App in Azure.
 
@@ -157,17 +165,17 @@ In this task, you use Visual Studio to deploy the API project into an API App in
 
 4. Finally, in the **App Service** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the API App.
 
-   ![In the Publish dialog, The Contoso API App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](media/vs-publish-api-app-service.png "Publish API App to Azure")
+   ![In the Publish dialog, The Contoso API App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp0.png?raw=true "Publish API App to Azure")
 
 5. Select **Finish**.
 
 6. Back on the Visual Studio Publish page for the `Contoso.WebApi` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
-   ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-api.png "Publish")
+   ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp1.png?raw=true "Publish")
 
 7. In the Visual Studio **Web Publish Activity** view, you should see a status that indicates the Web API was published successfully, along with the URL to the site.
 
-   ![Web Publish Activity view with the publish process status and API site url](media/visual-studio-web-publish-activity-api.png "Web Publish Activity")
+   ![Web Publish Activity view with the publish process status and API site url](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp2.png?raw=true "Web Publish Activity")
 
    > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log.
 
@@ -175,11 +183,11 @@ In this task, you use Visual Studio to deploy the API project into an API App in
 
    ![A page can't be found error message is displayed in the web browser.](media/web-api-publish-page-not-found.png "Page not found")
 
-9. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar `(e.g., <https://contoso-api-jjbp34uowoybc.azurewebsites.net/swagger/>)`. This brings up the Swagger UI page of your API, which displays a list of the available API endpoints.
+9. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <https://contoso-api-jjbp34uowoybc.azurewebsites.net/swagger/>). This brings up the Swagger UI page of your API, which displays a list of the available API endpoints.
 
    ![Swagger screen displayed for the API App.](media/swagger-ui.png "Validate published Web API")
 
-   > **Note**: Swagger UI `(https://swagger.io/tools/swagger-ui/)` automatically generates visual documentation for REST APIs following the OpenAPI Specification. It makes it easy for developers to visualize and interact with the API's endpoints without having any of the implementation logic in place.
+   > **Note**: [Swagger UI](https://swagger.io/tools/swagger-ui/) automatically generates visual documentation for REST APIs following the OpenAPI Specification. It makes it easy for developers to visualize and interact with the API's endpoints without having any of the implementation logic in place.
 
 10. You can test the functionality of the API by selecting one of the `GET` endpoints, and selecting **Try it out**.
 
@@ -191,5 +199,6 @@ In this task, you use Visual Studio to deploy the API project into an API App in
 
 12. In the Response, you should see a Response Code of 200, and JSON objects in the Response body.
 
-    ![The response to the execute request is displayed.](media/swagger-execute-response.png "Swagger")
+
+13. Click on **Next** button.
 
