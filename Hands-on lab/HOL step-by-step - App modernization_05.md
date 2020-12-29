@@ -115,7 +115,7 @@ Contoso would like an assessment to see what potential issues they might need to
 
 6. On the **Sources** screen, enter the following into the **Connect to a server** dialog that appears on the right-hand side:
 
-   - **Server name**: Enter **SQL2008-UniqueId**.
+   - **Server name**: Enter ```Sql2008-uniqueid```. For example: Sql2008-176667
    - **Authentication type**: Select **SQL Server Authentication**.
    - **Username**: Enter **WorkshopUser**
    - **Password**: Enter **Password.1!!**
@@ -164,7 +164,7 @@ After you have reviewed the assessment results and you have ensured the database
 
 4. On the **Select source** tab, enter the following:
 
-   - **Server name**: Enter **SQL2008-UniqueId**.
+   - **Server name**: Enter ```Sql2008-uniqueid```. For example: Sql2008-176667
    - **Authentication type**: Select **SQL Server Authentication**.
    - **Username**: Enter **WorkshopUser**
    - **Password**: Enter **Password.1!!**
