@@ -118,7 +118,7 @@ In this task, you enable [Dynamic Data Masking](https://docs.microsoft.com/sql/r
 
    ![The Save button is highlighted on the DDM toolbar.](media/ddm-save.png "Dynamic Data Masking")
 
-5. To view the impact of the Dynamic Data Masking, return to SSMS on your SQL2008-UniqueId VM and run a few queries against the `people` table. On your SQL2008-UniqueId VM, open SSMS and connect to the Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
+5. To view the impact of the Dynamic Data Masking, return to SSMS on your Sql2008-UniqueId VM and run a few queries against the `people` table. On your Sql2008-UniqueId VM, open SSMS and connect to the Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
 
    - **Server name**: Paste the server name of your Azure SQL Database, as you've done previously.
    - **Authentication type**: Select SQL Server Authentication.
@@ -173,7 +173,7 @@ In this task, you enable [Dynamic Data Masking](https://docs.microsoft.com/sql/r
 
     ![In the query results, the DOB field is highlighted, showing how all the birth dates appear as the actual birth date, and not a masked value.](media/ssms-unmasked-results.png "SSMS Query Results")
 
-> **Note**: The SQL2008-UniqueId VM is not needed for the remaining exercises of this hands-on lab. You can log off of that VM.
+> **Note**: The Sql2008-UniqueId VM is not needed for the remaining exercises of this hands-on lab. You can log off of that VM.
 
 13. Click on **Next** button.
 

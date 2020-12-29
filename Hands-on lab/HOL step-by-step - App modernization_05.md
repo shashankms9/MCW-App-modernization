@@ -6,17 +6,17 @@ In this exercise, you use the Microsoft Data Migration Assistant (DMA) to assess
 
 > DMA helps you upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. DMA recommends performance and reliability improvements for your target environment and allows you to move your schema, data, and uncontained objects from your source server to your target server. To learn more, read the **Data Migration Assistant documentation** here `https://docs.microsoft.com/sql/dma/dma-overview?view=azuresqldb-mi-current`.
 
-### Task 1: Configure the ContosoInsurance database on the SQL2008-UniqueId VM
+### Task 1: Configure the ContosoInsurance database on the Sql2008-UniqueId VM
 
 Before you begin the assessment, you need to configure the `ContosoInsurance` database on your SQL Server 2008 R2 instance. In this task, you execute a SQL script against the `ContosoInsurance` database on the SQL Server 2008 R2 instance.
 
 > **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2, which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
 
-1. Connect to the **SQL2008-UniqueId** Virtual Machine from your lab details page by clicking on **GO TO SQL2008-Uniqueid** button.
+1. Connect to the **Sql2008-UniqueId** Virtual Machine from your lab details page by clicking on **GO TO SQL2008-Uniqueid** button.
 
-   ![The SQL2008-UniqueId virtual machine is highlighted in the list of resources.](media/resources-sql-server-2008-vm.png "SQL Server 2008 VM")
+   ![The Sql2008-UniqueId virtual machine is highlighted in the list of resources.](media/resources-sql-server-2008-vm.png "SQL Server 2008 VM")
 
-2. Once connected to the SQL2008-UniqueId VM, search for ```sql server``` into  Windows Start menu and select **Microsoft SQL Server Management Studio 17** from the results and open it.
+2. Once connected to the Sql2008-UniqueId VM, search for ```sql server``` into  Windows Start menu and select **Microsoft SQL Server Management Studio 17** from the results and open it.
 
    ![SQL Server is entered into the Windows Start menu search box, and Microsoft SQL Server Management Studio 17 is highlighted in the search results.](media/start-menu-ssms-17.png "Windows start menu search")
 
@@ -75,7 +75,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
     ![The Execute button is highlighted in the SSMS toolbar.](media/ssms-execute.png "SSMS Toolbar")
 
-8. For Mixed Mode Authentication and the new `sa` password to take effect, you must restart the SQL Server (MSSQLSERVER) Service on the SQL2008-UniqueId VM. To do this, you can use SSMS. Right-click the SQL2008-UniqueId instance in the SSMS Object Explorer, and then select **Restart** from the context menu.
+8. For Mixed Mode Authentication and the new `sa` password to take effect, you must restart the SQL Server (MSSQLSERVER) Service on the Sql2008-UniqueId VM. To do this, you can use SSMS. Right-click the SQL2008-UniqueId instance in the SSMS Object Explorer, and then select **Restart** from the context menu.
 
     ![In the SSMS Object Explorer, the context menu for the SQL2008-UniqueId instance is displayed, and Restart is highlighted.](media/ssms-object-explorer-restart-sqlserver2008.png "Object Explorer")
 
@@ -87,9 +87,9 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 Contoso would like an assessment to see what potential issues they might need to address in moving their database to Azure SQL Database. In this task, you use the [Microsoft Data Migration Assistant](https://docs.microsoft.com/sql/dma/dma-overview?view=sql-server-2017) (DMA) to perform an assessment of the `ContosoInsurance` database against Azure SQL Database (Azure SQL DB). Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. It recommends performance and reliability improvements for your target environment. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and the Azure SQL DB service.
 
-> **Note**: The Database Migration Assistant has already been installed on your SQL2008-UniqueId VM. It can also be downloaded from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53595).
+> **Note**: The Database Migration Assistant has already been installed on your Sql2008-UniqueId VM. It can also be downloaded from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53595).
 
-1. On the SQL2008-UniqueId VM, launch DMA from the Windows Start menu by typing "data migration" into the search bar, and then selecting **Microsoft Data Migration Assistant** in the search results.
+1. On the Sql2008-UniqueId VM, launch DMA from the Windows Start menu by typing "data migration" into the search bar, and then selecting **Microsoft Data Migration Assistant** in the search results.
 
    ![In the Windows Start menu, "data migration" is entered into the search bar, and Microsoft Data Migration Assistant is highlighted in the Windows start menu search results.](media/windows-start-menu-dma.png "Data Migration Assistant")
 
@@ -148,7 +148,7 @@ Contoso would like an assessment to see what potential issues they might need to
 
 After you have reviewed the assessment results and you have ensured the database is a candidate for migration to Azure SQL Database, use the Data Migration Assistant to migrate the schema to Azure SQL Database.
 
-1. On the SQL2008-UniqueId VM, return to the Data Migration Assistant, and select the New **(+)** icon in the left-hand menu.
+1. On the Sql2008-UniqueId VM, return to the Data Migration Assistant, and select the New **(+)** icon in the left-hand menu.
 
 2. In the New project dialog, enter the following:
 
@@ -212,7 +212,7 @@ After you have reviewed the assessment results and you have ensured the database
 
     ![The schema deployment results are displayed, with 23 commands executed and 0 errors highlighted.](media/data-migration-assistant-migration-deployment-results.png "Schema deployment results")
 
-14. Next, open SSMS on the SQL2008-UniqueId VM, and connect to your Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
+14. Next, open SSMS on the Sql2008-UniqueId VM, and connect to your Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
 
     - **Server name**: Paste the server name of your Azure SQL Database you copied above.
     - **Authentication type**: Select SQL Server Authentication.
@@ -230,7 +230,7 @@ After you have reviewed the assessment results and you have ensured the database
 
 ### Task 4: Retrieve connection information for SQL databases
 
-In this task, you use the Azure Cloud shell to retrieve the IP address of the SQL2008-UniqueId VM, which is needed to connect to your SQL2008-UniqueId VM from DMS.
+In this task, you use the Azure Cloud shell to retrieve the IP address of the Sql2008-UniqueId VM, which is needed to connect to your Sql2008-UniqueId VM from DMS.
 
 1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the top menu.
 
@@ -272,7 +272,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the SQ
    ```powershell
    az vm list-ip-addresses -g $resourceGroup -n Sql2008-uniqueid --output table
    ```
-- Replace SQL2008-UniqueId with name of your SQLVM. It will look similar to the one as following:
+- Replace Sql2008-UniqueId with name of your SQLVM. It will look similar to the one as following:
     ```
     az vm list-ip-addresses -g $resourceGroup -n Sql2008-176667 --output table
     ```
@@ -281,7 +281,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the SQ
 
 7. Within the output of the command above, locate and copy the value of the `ipAddress` property within the `publicIPAddresses` object. Paste the value into a text editor, such as Notepad.exe, for later reference.
 
-   ![The output from the az vm list-ip-addresses command is displayed in the Cloud Shell, and the publicIpAddress for the SQL2008-UniqueId VM is highlighted.](media/cloud-shell-az-vm-list-ip-addresses.png "Azure Cloud Shell")
+   ![The output from the az vm list-ip-addresses command is displayed in the Cloud Shell, and the publicIpAddress for the Sql2008-UniqueId VM is highlighted.](media/cloud-shell-az-vm-list-ip-addresses.png "Azure Cloud Shell")
 
 8. Next, run a second command to retrieve the server name of your Azure SQL Database:
 
@@ -320,7 +320,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 5. On the Migration Wizard **Select source** blade, enter the following:
 
-   - **Source SQL Server instance name**: Enter the IP address of your SQL2008-UniqueId VM that you copied into a text editor in the previous task. For example, `51.143.12.114`.
+   - **Source SQL Server instance name**: Enter the IP address of your Sql2008-UniqueId VM that you copied into a text editor in the previous task. For example, `51.143.12.114`.
    - **Authentication type**: Select SQL Authentication.
    - **Username**: Enter **WorkshopUser**
    - **Password**: Enter **Password.1!!**
