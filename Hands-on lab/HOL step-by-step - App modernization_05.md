@@ -14,7 +14,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 1. Connect to the **Sql2008-UniqueId** Virtual Machine from your lab details page by clicking on **GO TO SQL2008-Uniqueid** button.
 
-   ![The Sql2008-UniqueId virtual machine is highlighted in the list of resources.](media/resources-sql-server-2008-vm.png "SQL Server 2008 VM")
+   ![The Sql2008-UniqueId virtual machine is highlighted in the list of resources.](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/resources-sql-server-2008-vm.png?raw=true "SQL Server 2008 VM")
 
 2. Once connected to the Sql2008-UniqueId VM, search for ```sql server``` into  Windows Start menu and select **Microsoft SQL Server Management Studio 17** from the results and open it.
 
@@ -100,7 +100,7 @@ Contoso would like an assessment to see what potential issues they might need to
 3. In the New project pane, set the following:
 
    - **Project type**: Select Assessment.
-   - **Project name**: Enter Assessment.
+   - **Project name**: Enter Assessment
    - **Assessment type**: Select Database Engine.
    - **Source server type**: Select SQL Server.
    - **Target server type**: Select Azure SQL Database.
@@ -153,7 +153,7 @@ After you have reviewed the assessment results and you have ensured the database
 2. In the New project dialog, enter the following:
 
    - **Project type**: Select Migration.
-   - **Project name**: Enter Migration.
+   - **Project name**: Enter Migration
    - **Source server type**: Select SQL Server.
    - **Target server type**: Select Azure SQL Database.
    - **Migration scope**: Select Schema only.
@@ -172,17 +172,17 @@ After you have reviewed the assessment results and you have ensured the database
    - **Trust server certificate**: Check this box.
    - Select **Connect**, and then ensure the `ContosoInsurance` database is selected from the list of databases.
 
-   ![The Select source tab of the Data Migration Assistant is displayed, with the values specified above entered into the appropriate fields.](media/data-migration-assistant-migration-select-source.png "Data Migration Assistant Select source")
+   ![The Select source tab of the Data Migration Assistant is displayed, with the values specified above entered into the appropriate fields.](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/data-migration-assistant-migration-select-source.png?raw=true "Data Migration Assistant Select source")
 
 5. Select **Next**.
 
 6. For the **Select target** tab, retrieve the server name associated with your Azure SQL Database. In the [Azure portal](https://portal.azure.com), navigate to your **SQL database** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **ContosoInsurance** SQL database resource from the list of resources.
 
-   ![The contosoinsurance SQL database resource is highlighted in the list of resources.](media/resources-azure-sql-database.png "SQL database")
+   ![The contosoinsurance SQL database resource is highlighted in the list of resources.](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/resources-azure-sql-database.png?raw=true "SQL database")
 
 7. On the Overview blade of your SQL database, copy the **Server name**.
 
-   ![The server name value is highlighted on the SQL database Overview blade.](media/sql-database-server-name.png "SQL database")
+   ![The server name value is highlighted on the SQL database Overview blade.](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/sql-database-server-name.png?raw=true "SQL database")
 
 8. Return to DMA, and on the **Select target** tab, enter the following:
 
@@ -194,7 +194,7 @@ After you have reviewed the assessment results and you have ensured the database
    - **Trust server certificate**: Check this box.
    - Select **Connect**, and then ensure the `ContosoInsurance` database is selected from the list of databases.
 
-   ![The Select target tab of the Data Migration Assistant is displayed, with the values specified above entered into the appropriate fields.](media/data-migration-assistant-migration-select-target.png "Data Migration Assistant Select target")
+   ![The Select target tab of the Data Migration Assistant is displayed, with the values specified above entered into the appropriate fields.](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/data-migration-assistant-migration-select-target.png?raw=true "Data Migration Assistant Select target")
 
 9. Select **Next**.
 
@@ -220,13 +220,13 @@ After you have reviewed the assessment results and you have ensured the database
     - **Password**: Enter **Password.1!!**
     - **Remember password**: Check this box.
 
-    ![The SSMS Connect to Server dialog is displayed, with the Azure SQL Database name specified, SQL Server Authentication selected, and the demouser credentials entered.](media/ssms-connect-azure-sql-database.png "Connect to Server")
+    ![The SSMS Connect to Server dialog is displayed, with the Azure SQL Database name specified, SQL Server Authentication selected, and the demouser credentials entered.](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/ssms-connect-azure-sql-database.png?raw=true "Connect to Server")
 
 15. Select **Connect**.
 
 16. Once connected, expand **Databases**, and expand **ContosoInsurance**, then expand **Tables**, and observe the schema has been created.
 
-    ![In the SSMS Object Explorer, Databases, ContosoInsurance, and Tables are expanded, showing the tables created by the deploy schema script.](media/ssms-databases-contosoinsurance-tables.png "SSMS Object Explorer")
+    ![In the SSMS Object Explorer, Databases, ContosoInsurance, and Tables are expanded, showing the tables created by the deploy schema script.](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/ssms-databases-contosoinsurance-tables.png?raw=true "SSMS Object Explorer")
 
 ### Task 4: Retrieve connection information for SQL databases
 
@@ -259,7 +259,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
 4. After a moment, a message that you have successfully requested a Cloud Shell appears, and a PS Azure prompt is displayed.
 
-   ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
+   ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/cloud-shell-ps-azure-prompt.png?raw=true "Azure Cloud Shell")
 
 5. At the prompt, enter the following command, **replacing `<your-resource-group-name>`** with the name resource group:
 
@@ -281,7 +281,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
 7. Within the output of the command above, locate and copy the value of the `ipAddress` property within the `publicIPAddresses` object. Paste the value into a text editor, such as Notepad.exe, for later reference.
 
-   ![The output from the az vm list-ip-addresses command is displayed in the Cloud Shell, and the publicIpAddress for the Sql2008-UniqueId VM is highlighted.](media/cloud-shell-az-vm-list-ip-addresses.png "Azure Cloud Shell")
+   ![The output from the az vm list-ip-addresses command is displayed in the Cloud Shell, and the publicIpAddress for the Sql2008-UniqueId VM is highlighted.](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/cloud-shell-az-vm-list-ip-addresses.png?raw=true "Azure Cloud Shell")
 
 8. Next, run a second command to retrieve the server name of your Azure SQL Database:
 
@@ -289,7 +289,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
    az sql server list -g $resourceGroup
    ```
 
-   ![The output from the az sql server list command is displayed in the Cloud Shell, and the fullyQualifiedDomainName for the server is highlighted.](media/cloud-shell-az-sql-server-list.png "Azure Cloud Shell")
+   ![The output from the az sql server list command is displayed in the Cloud Shell, and the fullyQualifiedDomainName for the server is highlighted.](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/cloud-shell-az-sql-server-list.png?raw=true "Azure Cloud Shell")
 
 9. Copy the **fullyQualifiedDomainName** value into a text editor for use below.
 
@@ -301,7 +301,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your Azure Database Migration Service by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-dms-UniqueId** Azure Database Migration Service in the list of resources.
 
-   ![The contoso-dms Azure Database Migration Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-dms-resource.png "Resources")
+   ![The contoso-dms Azure Database Migration Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/resource-group-dms-resource.png?raw=true "Resources")
 
 2. On the Azure Database Migration Service blade, select **+New Migration Project**.
 
@@ -309,12 +309,12 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 3. On the New migration project blade, enter the following:
 
-   - **Project name**: Enter DataMigration.
+   - **Project name**: Enter DataMigration
    - **Source server type**: Select SQL Server.
    - **Target server type**: Select Azure SQL Database.
    - **Choose type of activity**: Let it be on default i.e. **Offline data migration**.
 
-   ![The New migration project blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-new-migration-project-blade.png "New migration project")
+   ![The New migration project blade is displayed, with the values specified above entered into the appropriate fields.](media/https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/dms-add-new-migration-project.png?raw=true "New migration project")
 
 4. Select **Create and run activity**.
 
@@ -332,7 +332,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 7. On the Migration Wizard **Select target** blade, enter the following:
 
-   - **Target server name**: Enter the `fullyQualifiedDomainName` value of your Azure SQL Database (e.g., contosoinsurance-jt7yc3zphxfda.database.windows.net), which you copied in the previous task.
+   - **Target server name**: Enter the `fullyQualifiedDomainName` value of your Azure SQL Database (e.g., contosoinsurance-288892.database.windows.net), which you copied in the previous task.
    - **Authentication type**: Select SQL Authentication.
    - **Username**: Enter **demouser**
    - **Password**: Enter **Password.1!!**
@@ -356,7 +356,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 13. On the Migration Wizard **Summary** blade, enter the following:
 
-    - **Activity name**: Enter ContosoDataMigration.
+    - **Activity name**: Enter ContosoDataMigration
 
     ![The Migration Wizard summary blade is displayed, with ContosoDataMigration entered into the name field.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/migration5.png?raw=true "Migration Wizard Summary")
 
