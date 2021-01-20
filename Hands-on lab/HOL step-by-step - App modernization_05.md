@@ -305,7 +305,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 2. On the Azure Database Migration Service blade, select **+New Migration Project**.
 
-   ![On the Azure Database Migration Service blade, +New Migration Project is highlighted in the toolbar.](media/dms-add-new-migration-project.png "Azure Database Migration Service New Project")
+   ![The New migration project blade is displayed, with the values specified above entered into the appropriate fields.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/dms-add-new-migration-project.png?raw=true "New migration project")
 
 3. On the New migration project blade, enter the following:
 
