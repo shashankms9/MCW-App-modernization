@@ -314,7 +314,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
    - **Target server type**: Select Azure SQL Database.
    - **Choose type of activity**: Let it be on default i.e. **Offline data migration**.
 
-   ![The New migration project blade is displayed, with the values specified above entered into the appropriate fields.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/dms-add-new-migration-project.png?raw=true "New migration project")
+   ![The New migration project blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-new-migration-project-blade.png "New migration project")
 
 4. Select **Create and run activity**.
 
