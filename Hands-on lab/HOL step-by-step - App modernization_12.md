@@ -48,7 +48,7 @@ Contoso has requested the ability to perform full-text searching on policy docum
    - Check the top Retrievable box, to check all items underneath it.
    - Check the top Searchable box, to check all items underneath it.
 
-   ![The Customize target index tab is displayed with the Index name, Retrievable checkbox and Searchable checkbox highlighted.](media/add-azure-search-customize-target-index.png "Add Azure Search")
+   ![The Customize target index tab is displayed with the Index name, Retrievable checkbox and Searchable checkbox highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/add-azure-search-customize-target-index.png?raw=true "Add Azure Search")
 
 9. Select **Next: Create an indexer**.
 
