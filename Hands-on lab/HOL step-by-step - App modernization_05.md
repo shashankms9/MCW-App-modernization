@@ -31,7 +31,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
    ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](./media/remote-desktop-connection-identity-verification-sqlserver2008.png "Remote Desktop Connection dialog")
 
-5. Once connected to the Sql2008-UniqueId VM, search for ```sql server``` into  Windows Start menu and select **Microsoft SQL Server Management Studio 17** from the results and open it.
+5. Once connected to the Sql2008-UniqueId VM, search for ```sql server``` into  Windows Start menu of Sql2008-UniqueId VM and select **Microsoft SQL Server Management Studio 17** from the results and open it.
 
    ![SQL Server is entered into the Windows Start menu search box, and Microsoft SQL Server Management Studio 17 is highlighted in the search results.](media/start-menu-ssms-17.png "Windows start menu search")
 
