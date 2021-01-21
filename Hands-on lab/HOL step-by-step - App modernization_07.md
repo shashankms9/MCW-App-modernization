@@ -87,12 +87,11 @@ Your environment has a pre-created Service Principal for which details are provi
 ### Task 4: Assign the service principal access to Key Vault
 
 In this task, you assign the service principal you created above to a reader role on your resource group and add an access policy to Key Vault to allow it to view secrets stored there.
-1. Enter the following command at the Cloud Shell prompt, by replacing `<your-subscription-id>` with the value you copied above and `<your-resource-group-name>` with the name of your **hands-on-lab-SUFFIX** resource group, and then press **Enter** to run the command:
+1. Enter the following command at the Cloud Shell prompt, by replacing the `<your-resource-group-name>` with the name of your **hands-on-lab-SUFFIX** resource group, and then press **Enter** to run the command:
 
    ```
    $resourceGroup = "<your-resource-group-name>"
    ```
-
 
 2. Next, run the following command to get the name of your Key Vault:
 
