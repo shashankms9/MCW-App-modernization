@@ -25,7 +25,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
    - **Username**: `demouser`
    - **Password**: `Password.1!!`
 
-   ![The credentials specified above are entered into the Enter your credentials dialog.](media/rdc-credentials-sql-2008.png "Enter your credentials")
+   ![The credentials specified above are entered into the Enter your credentials dialog.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/rdp-03.png?raw=true "Enter your credentials")
    
 4. Select **Yes** to connect, if prompted that the identity of the remote computer cannot be verified.
 
