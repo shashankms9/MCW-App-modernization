@@ -16,7 +16,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
    ![The Sql2008-UniqueId virtual machine is highlighted in the list of resources.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/rdp-01.png?raw=true "RDP")
 
-2. On the  Remote Desktop Connection dialog, enter **Sqlvm DNS Name** in computer filed and select **Connect**. You can get **Sqlvm DNS Name** from the environment details tab.
+2. On the  Remote Desktop Connection dialog, enter **Sqlvm DNS Name** in computer field and select **Connect**. You can get **Sqlvm DNS Name** from the environment details tab.
 
    ![The Sql2008-UniqueId virtual machine is highlighted in the list of resources.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/rdp-02.png?raw=true "RDP")
 
