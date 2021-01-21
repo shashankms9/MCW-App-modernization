@@ -10,7 +10,7 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
 2. You may receive an email asking you to verify your account request, with a link to continue the process.
 
-3. Download and install **PowerApps Studio** from the Microsoft store: <https://www.microsoft.com/en-us/store/p/powerapps/9nblggh5z8f3>.
+3. Download and install **PowerApps Studio** from the Microsoft store: <https://www.microsoft.com/en-us/store/p/powerapps/9nblggh5z8f3>
 
 > **Note**: If you are unable to install PowerApps on the LabVM, you can run install it on your local machine and run the steps for this exercise there.
 

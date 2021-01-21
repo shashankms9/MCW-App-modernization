@@ -6,13 +6,13 @@ Contoso has requested the ability to perform full-text searching on policy docum
 
 ### Task 1: Add Azure Cognitive Search to Storage account
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **Storage account** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-UniqueId** Storage account resource from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Storage account** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosoUniqueId** Storage account resource from the list of resources.
 
    ![The Storage Account resource is highlighted in the list of resources.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/storageaccount3.png?raw=true "Storage account")
 
 2. On the Storage account blade, select **Add Azure Search** from the left-hand menu, and then on the **Select a search service** tab, select your search service.
 
-   ![Add Azure Search is selected and highlighted in the left-hand menu, and the search service is highlighted on the Select a search service tab.](media/add-azure-search-select-a-search-service.png "Add Azure Search")
+   ![Add Azure Search is selected and highlighted in the left-hand menu, and the search service is highlighted on the Select a search service tab.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/add-azure-search-select-a-search-service.png?raw=true "Add Azure Search")
 
 3. Select **Next: Connect to your data**.
 
@@ -38,7 +38,7 @@ Contoso has requested the ability to perform full-text searching on policy docum
      - **Skillset name**: Enter **policy-docs-skillset**.
      - **Text cognitive skills**: Check this box to select all the skills.
 
-   ![The configuration specified above is entered into the Add cognitive search tab.](media/add-azure-search-add-cognitive-skills.png "Add Azure Search")
+   ![The configuration specified above is entered into the Add cognitive search tab.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/add-azure-search-add-cognitive-skills.png?raw=true "Add Azure Search")
 
 7. Select **Next: Customize target index**.
 
@@ -66,7 +66,7 @@ In this task, you run a query against your search index to review the enrichment
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **Search service** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-search-UniqueId** Search service resource from the list of resources.
 
-   ![The Search service resource is highlighted in the list of resources.](media/azure-resources-search.png "Search service")
+   ![The Search service resource is highlighted in the list of resources.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/azure-resources-search.png?raw=true "Search service")
 
 2. On the Search service overview blade, scroll down and select **Indexers**.
 

@@ -65,7 +65,7 @@ In this task, you add a secret to Key Vault containing the connection string for
 
 8. On the Key Vault blade, select **Secrets** under Settings in the left-hand menu, and then select **+ Generate/Import**.
 
-   ![On the Key Vault blade, Secrets is selected and the +Generate/Import button is highlighted.](media/key-vault-secrets.png "Key Vault Secrets")
+   ![On the Key Vault blade, Secrets is selected and the +Generate/Import button is highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/key-vault-secrets.png?raw=true "Key Vault Secrets")
 
 9. On the Create a secret blade, enter the following:
 

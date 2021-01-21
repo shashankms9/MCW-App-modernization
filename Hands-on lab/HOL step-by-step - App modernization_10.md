@@ -55,7 +55,7 @@ In this task, you generate a shared access signature (SAS) token for your storag
 
 In this task, you download and install [AzCopy](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy). You then use AzCopy to copy the PDF files from the "on-premises" location into the policies container in Azure storage.
 
-1. On your LabVM, open a web browser and download the latest version of AzCopy from <https://aka.ms/downloadazcopy>.
+1. On your LabVM, open a web browser and download the latest version of AzCopy from <https://aka.ms/downloadazcopy>
 
 2. Run the downloaded installer, accepting the license agreement and all the defaults, to complete the AzCopy install.
 

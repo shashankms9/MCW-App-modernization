@@ -93,7 +93,7 @@ Before deploying the Web API to Azure, you need to add the required application 
 
 2. On the API App blade, select **Configuration** on the left-hand menu.
 
-   ![The Configuration item is highlighted in the API App left-hand menu.](media/api-app-configuration-menu.png "API App")
+   ![The Configuration item is highlighted in the API App left-hand menu.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/api-app-configuration-menu.png?raw=true "API App")
 
 3. On the Application settings tab of the Configuration blade, select **Advanced edit** under Application settings. The Advanced edit screen allows you to paste JSON directly into the configuration.
 
@@ -183,7 +183,7 @@ In this task, you use Visual Studio to deploy the API project into an API App in
 
    ![A page can't be found error message is displayed in the web browser.](media/web-api-publish-page-not-found.png "Page not found")
 
-9. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <https://contoso-api-jjbp34uowoybc.azurewebsites.net/swagger/>). This brings up the Swagger UI page of your API, which displays a list of the available API endpoints.
+9. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <https://contoso-api-288892.azurewebsites.net/swagger/>). This brings up the Swagger UI page of your API, which displays a list of the available API endpoints.
 
    ![Swagger screen displayed for the API App.](media/swagger-ui.png "Validate published Web API")
 
@@ -198,6 +198,8 @@ In this task, you use Visual Studio to deploy the API project into an API App in
     ![The Execute button is displayed.](media/swagger-execute.png "Swagger")
 
 12. In the Response, you should see a Response Code of 200, and JSON objects in the Response body.
+
+   ![Retrieve service principal details](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/status200.png?raw=true "Status 200")
 
 
 13. Click on **Next** button.
