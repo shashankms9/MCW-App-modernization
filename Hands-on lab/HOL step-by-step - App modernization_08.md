@@ -177,7 +177,7 @@ In this task, you use Visual Studio to deploy the API project into an API App in
 
    ![Web Publish Activity view with the publish process status and API site url](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp2.png?raw=true "Web Publish Activity")
 
-   > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log.
+   > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Web Publish Activity
 
 8. A web browser should open to the published site. If not, open the URL of the published Web API in a browser window. Initially, you should see a message that the page cannot be found.
 
@@ -199,7 +199,7 @@ In this task, you use Visual Studio to deploy the API project into an API App in
 
 12. In the Response, you should see a Response Code of 200, and JSON objects in the Response body.
 
-   ![Retrieve service principal details](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/status200.png?raw=true "Status 200")
+    ![Retrieve service principal details](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/status200.png?raw=true "Status 200")
 
 
 13. Click on **Next** button.

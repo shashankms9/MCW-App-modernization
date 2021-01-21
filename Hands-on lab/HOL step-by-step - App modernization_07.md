@@ -115,3 +115,5 @@ In this task, you assign the service principal you created above to a reader rol
 
    ![In the output from the command above, the secrets array is highlighted.](media/azure-cloud-shell-az-keyvault-set-policy.png "Azure Cloud Shell")
 
+6. The Sql2008-UniqueId VM is not needed for the remaining exercises of this hands-on lab. You can log off of that VM.
+

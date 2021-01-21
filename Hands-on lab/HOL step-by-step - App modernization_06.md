@@ -175,7 +175,6 @@ In this task, you enable [Dynamic Data Masking](https://docs.microsoft.com/sql/r
 
     ![In the query results, the DOB field is highlighted, showing how all the birth dates appear as the actual birth date, and not a masked value.](media/ssms-unmasked-results.png "SSMS Query Results")
 
-> **Note**: The Sql2008-UniqueId VM is not needed for the remaining exercises of this hands-on lab. You can log off of that VM.
+
 
 13. Click on **Next** button.
-

@@ -63,16 +63,15 @@ In this task, you create some environment variables on your LabVM, which allows 
    - **Name**: Enter **PolicyStorageSas**
    - **Value**: Paste in the **SAS token** you created and copied into a text editor in the previous exercise.
 
-4. Select **OK**.
 
-5. Select **Add** again, and in the New User Variable dialog, enter the following:
+6. Select **Add** again, and in the New User Variable dialog, enter the following:
 
    - **Name**: Enter **PolicyStorageUrl**
    - **Value**: Paste in the **URL** of the policies container you copied into a text editor in the previous exercise.
 
    ![Adding environment variables via visual studio project settings.](media/vs-env-variables.png "Add environment variables")
 
-6. Save the project.
+7. Save the project.
 
 ### Task 3: Create an Azure Function in Visual Studio
 
