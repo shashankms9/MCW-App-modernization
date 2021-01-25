@@ -204,7 +204,7 @@ In this task, you add Application Insights to your Function App in the Azure Por
      - Name: `contoso-ai-uniqueid`
      - Location: `westus2`
 
-   ![The Create New Application Insights blade is displayed with a unique name set under Create new resource.](media/function-app-app-insights.png "Add Application Insights")
+   ![The Create New Application Insights blade is displayed with a unique name set under Create new resource.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/appinsights-1.png?raw=true "Add Application Insights")
 
 5. Select **Yes** when prompted about restarting the Function App to apply monitoring settings.
 
