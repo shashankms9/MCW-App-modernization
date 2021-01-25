@@ -276,7 +276,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
    ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/cloud-shell-ps-azure-prompt.png?raw=true "Azure Cloud Shell")
 
-5. At the prompt, enter the following command, **replacing `<your-resource-group-name>`** with the name resource group:
+5. At the prompt, enter the following command, **replacing `<your-resource-group-name>`** with the name of your resource group **hands-on-lab-SUFFIX** :
 
    ```powershell
    $resourceGroup = "<your-resource-group-name>"
