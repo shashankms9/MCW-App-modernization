@@ -45,7 +45,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 8. Next, you execute a script in SSMS, which resets the `sa` password, enable mixed mode authentication, create the `WorkshopUser` account, and change the database recovery model to FULL. To create the script, open a new query window in SSMS by selecting **New Query** in the SSMS toolbar.
 
-    ![The New Query button is highlighted in the SSMS toolbar.](media/ssms-new-query.png "SSMS Toolbar")
+    ![The New Query button is highlighted in the SSMS toolbar.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/ssms-new-query.png "SSMS Toolbar")
 
 9. Copy and paste the SQL script below into the new query window:
 
@@ -88,11 +88,11 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 10. To run the script, select **Execute** from the SSMS toolbar.
 
-    ![The Execute button is highlighted in the SSMS toolbar.](media/ssms-execute.png "SSMS Toolbar")
+    ![The Execute button is highlighted in the SSMS toolbar.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/ssms-execute.png "SSMS Toolbar")
 
 11. For Mixed Mode Authentication and the new `sa` password to take effect, you must restart the SQL Server (MSSQLSERVER) Service on the Sql2008-UniqueId VM. To do this, you can use SSMS. Right-click the SQL2008-UniqueId instance in the SSMS Object Explorer, and then select **Restart** from the context menu.
 
-    ![In the SSMS Object Explorer, the context menu for the SQL2008-UniqueId instance is displayed, and Restart is highlighted.](media/ssms-object-explorer-restart-sqlserver2008.png "Object Explorer")
+    ![In the SSMS Object Explorer, the context menu for the SQL2008-UniqueId instance is displayed, and Restart is highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/ssms-object-explorer-restart-sqlserver2008.png "Object Explorer")
 
 12. When prompted about restarting the MSSQLSERVER service, select **Yes**. The service takes a few seconds to restart.
 
@@ -143,19 +143,19 @@ Contoso would like an assessment to see what potential issues they might need to
 
 8. On the **Add sources** dialog that appears next, check the box for `ContosoInsurance` and select **Add**.
 
-   ![The ContosoInsurance box is checked on the Add sources dialog.](media/dma-add-sources.png "Add sources")
+   ![The ContosoInsurance box is checked on the Add sources dialog.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/dma-add-sources.png "Add sources")
 
 9. Select **Start Assessment**.
 
-   ![Start assessment](media/dma-start-assessment-to-azure-sql-db.png "Start assessment")
+   ![Start assessment](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/dma-start-assessment-to-azure-sql-db.png "Start assessment")
 
 10. Take a moment to review the assessment for migrating to Azure SQL DB. The SQL Server feature parity report shows that Analysis Services and SQL Server Reporting Services are unsupported, but these do not affect any objects in the `ContosoInsurance` database, so won't block a migration.
 
-    ![The feature parity report is displayed, and the two unsupported features are highlighted.](media/dma-feature-parity-report.png "Feature parity")
+    ![The feature parity report is displayed, and the two unsupported features are highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/dma-feature-parity-report.png "Feature parity")
 
 11. Now, select **Compatibility issues** so you can review that report as well.
 
-    ![The Compatibility issues option is selected and highlighted.](media/dma-compatibility-issues.png "Compatibility issues")
+    ![The Compatibility issues option is selected and highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/dma-compatibility-issues.png "Compatibility issues")
 
 > The DMA assessment for a migrating the `ContosoInsurance` database to a target platform of Azure SQL DB reveals that there are no issues or features preventing Contoso from migrating their database to Azure SQL DB. You can select **Export Assessment** at the top right to save the report as a JSON file, if desired.
 
@@ -219,13 +219,13 @@ After you have reviewed the assessment results and you have ensured the database
 
 11. On the **Script & deploy schema** tab, review the script. Notice the view also provides a note that there are not blocking issues.
 
-    ![The Script & deploy schema tab of the Data Migration Assistant is displayed, with the generated script shown.](media/data-migration-assistant-migration-script-and-deploy-schema.png "Data Migration Assistant Script & deploy schema")
+    ![The Script & deploy schema tab of the Data Migration Assistant is displayed, with the generated script shown.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/data-migration-assistant-migration-script-and-deploy-schema.png "Data Migration Assistant Script & deploy schema")
 
 12. Select **Deploy schema**.
 
 13. After the schema is deployed, review the deployment results, and ensure there were no errors.
 
-    ![The schema deployment results are displayed, with 23 commands executed and 0 errors highlighted.](media/data-migration-assistant-migration-deployment-results.png "Schema deployment results")
+    ![The schema deployment results are displayed, with 23 commands executed and 0 errors highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/data-migration-assistant-migration-deployment-results.png "Schema deployment results")
 
 14. Next, open SSMS on the Sql2008-UniqueId VM, and connect to your Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
 
@@ -379,19 +379,19 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 15. Monitor the migration on the status screen that appears. Select the refresh icon in the toolbar to retrieve the latest status.
 
-    ![On the Migration job blade, the Refresh button is highlighted, and a status of Full backup uploading is displayed and highlighted.](media/dms-migration-wizard-status-running.png "Migration status")
+    ![On the Migration job blade, the Refresh button is highlighted, and a status of Full backup uploading is displayed and highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/dms-migration-wizard-status-running.png "Migration status")
 
     > The migration takes approximately 2 - 3 minutes to complete.
 
 16. When the migration is complete, you should see the status as **Completed**, but may also see a status of **Warning**.
 
-    ![On the Migration job blade, the status of Completed is highlighted.](media/dms-migration-wizard-status-complete.png "Migration with Completed status")
+    ![On the Migration job blade, the status of Completed is highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/dms-migration-wizard-status-complete.png "Migration with Completed status")
 
     ![On the Migration job blade, the status of Completed is highlighted.](media/dms-migration-wizard-status-warning.png "Migration with Warning status")
 
 17. When the migration is complete, select the **ContosoInsurance** migration item.
 
-    ![The ContosoInsurance migration item is highlighted on the ContosoDataMigration blade.](media/dms-migration-completion.png "ContosoDataMigration details")
+    ![The ContosoInsurance migration item is highlighted on the ContosoDataMigration blade.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/dms-migration-completion.png "ContosoDataMigration details")
 
 18. Review the database migration details.
 
@@ -403,7 +403,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 20. If you received a status of "Warning" for your migration, you can find more details by selecting **Download report** from the ContosoDataMigration screen.
 
-    ![The Download report button is highlighted on the DMS Migration toolbar.](media/dms-toolbar-download-report.png "Download report")
+    ![The Download report button is highlighted on the DMS Migration toolbar.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/dms-toolbar-download-report.png "Download report")
 
     > **Note**: The **Download report** button will be disabled if the migration completed without warnings or errors.
 
