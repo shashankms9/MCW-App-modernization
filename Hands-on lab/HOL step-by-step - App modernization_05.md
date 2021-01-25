@@ -96,7 +96,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 12. When prompted about restarting the MSSQLSERVER service, select **Yes**. The service takes a few seconds to restart.
 
-    ![The Yes button is highlighted on the dialog asking if you are sure you want to restart the MSSQLSERVER service.](media/ssms-restart-service.png "Restart MSSQLSERVER service")
+    ![The Yes button is highlighted on the dialog asking if you are sure you want to restart the MSSQLSERVER service.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/ssms-restart-service.png "Restart MSSQLSERVER service")
 
 ### Task 2: Perform assessment for migration to Azure SQL Database
 
