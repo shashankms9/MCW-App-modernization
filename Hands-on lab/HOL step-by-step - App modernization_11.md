@@ -128,7 +128,7 @@ In this task, you run your Function locally through the Visual Studio debugger, 
 
 3. A new console dialog appears, and the function app is loaded. At the of the console, note the output, which provides the local URL of the Function.
 
-   ![The Function console window is displayed with the `PolicyDocs` local URL highlighted.](media/vs-function-app-debug-console.png "Debug")
+   ![The Function console window is displayed with the `PolicyDocs` local URL highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/vs-function-app-debug-console.png "Debug")
 
 4. Copy the URL that appears after `PolicyDocs`, and paste it into a text editor. The copied value should look like:
 
@@ -280,7 +280,7 @@ In this task, you add the URL of your Azure Function App to the Application sett
 
 10. In the output, the newly added `PolicyDocumentsPath` setting in your Web App's application settings is visible.
 
-    ![The ApiUrl app setting in highlighted in the output of the previous command.](media/azure-cloud-shell-az-webapp-config-output-policy-documents-path.png "Azure Cloud Shell")
+    ![The ApiUrl app setting in highlighted in the output of the previous command.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/azure-cloud-shell-az-webapp-config-output-policy-documents-path.png "Azure Cloud Shell")
 
 ### Task 8: Test document retrieval from web app
 
