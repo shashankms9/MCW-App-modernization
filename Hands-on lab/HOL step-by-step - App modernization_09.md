@@ -46,7 +46,7 @@ In this task, you prepare your Web App to work with the API App by adding the UR
 
 7. In the output, you should see the newly added setting in your Web App's application settings.
 
-   ![The ApiUrl app setting in highlighted in the output of the previous command.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp8.png?raw=true "Azure Cloud Shell")
+   ![The ApiUrl app setting in highlighted in the output of the previous command.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/webapp8.png?raw=true "Azure Cloud Shell")
 
 ### Task 2: Deploy web application to Azure
 
