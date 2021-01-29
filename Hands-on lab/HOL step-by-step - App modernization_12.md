@@ -25,7 +25,7 @@ Contoso has requested the ability to perform full-text searching on policy docum
    - **Connection string**: Leave this set to the pre-populated connection string for your Storage account.
    - **Container name**: Enter **policies**.
 
-   ![On the Connect to your data tab, the values specified above are entered in to the form.](media/add-azure-search-connect-to-your-data.png "Add Azure Search")
+   ![On the Connect to your data tab, the values specified above are entered in to the form.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/add-azure-search-connect-to-your-data.png?raw=true "Add Azure Search")
 
 5. Select **Next: Add cognitive skills (Optional)**.
 
