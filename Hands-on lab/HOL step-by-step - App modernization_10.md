@@ -22,7 +22,7 @@ In this task, you create a new blob container in your storage account for the sc
 
 4. After the container has been created, select it on the Container blade, then select **Properties** from the left-hand menu, and copy the URL from the policies - Properties blade. Paste the copied URL into a text editor for later reference.
 
-   ![The policies container is selected, with the Properties blade selected, and the URL of the storage container highlighted.](media/e5-04.png "Container properties")
+   ![The policies container is selected, with the Properties blade selected, and the URL of the storage container highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/e5-04.png "Container properties")
 
 5. Next retrieve the access key for your storage account, which you need to provide to AzCopy below to connect to your storage container. On your Storage account blade in the Azure portal, select **Access keys** from the left-hand menu, click on **Show Keys** and copy the **key1 Key** value to a text editor for use below.
 
@@ -47,7 +47,7 @@ In this task, you generate a shared access signature (SAS) token for your storag
 
 3. Select **Generate SAS and connection string** and then copy the SAS token value by selecting the Copy to clipboard button to the right of the value.
 
-   ![On the Share access signature blade, the Generate SAS and connection string button is highlighted, and the copy to clipboard button is highlighted to the right of the SAS token value.](media/storage-shared-access-signature-generate.png "Shared access signature")
+   ![On the Share access signature blade, the Generate SAS and connection string button is highlighted, and the copy to clipboard button is highlighted to the right of the SAS token value.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/storage-shared-access-signature-generate1.png "Shared access signature")
 
 4. Paste the SAS token into a text editor for later use.
 
@@ -85,7 +85,7 @@ In this task, you download and install [AzCopy](https://docs.microsoft.com/en-us
 
 7. In the output of the command, you should see that 650 files were transferred successfully.
 
-   ![The output of the AzCopy command is displayed.](media/e5-06.png "AzCopy output")
+   ![The output of the AzCopy command is displayed.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/e5-06.png "AzCopy output")
 
 8. You can verify the upload by navigating to the policies container in your Azure Storage account.
 
