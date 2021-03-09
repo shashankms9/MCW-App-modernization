@@ -1,200 +1,294 @@
-## Exercise 4: Deploy Web API into Azure App Services
+## Exercise 4: Setup CI/CD pipeline with GitHub Actions for the web app
 
-Duration: 45 minutes
+Duration: 55 minutes
 
-The developers at Contoso have been working toward migrating their apps to the cloud, and they have provided you with a starter solution developed using ASP.NET Core 2.2. As such, most of the pieces are already in place to deploy the apps to Azure, as well as configure them to communicate with the new app services. Since the required services have already been provisioned, what remains is to integrate Azure Key Vault into the API, apply application-level configuration settings, and then deploy the apps from the Visual Studio starter solution. In this task, you apply application settings to the Web API using the Azure Portal. Once the application settings have been set, you deploy the Web App and API App into Azure from Visual Studio.
+In this exercise, you will move the codebase to a GitHub Repo, create a staging environment in Azure App Service using App Service Deployment Slots, and finally connect the pieces with a CI/CD Pipeline built on GitHub Actions.
 
-### Task 1: Open starter solution with Visual Studio
+### Task 1: Moving the codebase to a GitHub repo
 
-In this task, you open the `Contoso` starter solution in Visual Studio. The Visual Studio solution contains the following projects:
+1. Login to [GitHub](https://github.com) with your account. Select the New button positioned on top of the repositories list. As an alternative you can [navigate to the new repository site here](https://github.com/new).
 
-- **Contoso.Azure**: Common library containing helper classes used by other projects within the solution to communicate with Azure services.
-- **Contoso.Data**: Library containing data access objects.
-- **Contoso.FunctionApp**: Contains an Azure Function that is used to retrieve policy documents from Blob storage.
-- **Contoso.Web**: ASP.NET Core 2.2 PolicyConnect web application.
-- **Contoso.WebApi**: ASP.NET Core 2.2 Web API used by the web application to communicate with the database.
+    ![GitHub.com Landing page is shown. New button to create a new repository is highlighted.](media/github-new-repo.png "GitHub new repo")
 
-> **Note**: Make sure you are performing the below tasks in LabVM.
+2. Type in `partsunlimited` **(1)** as your repository name. Select **Private (2)** to prevent public access to the repository. Select **Create repository (3)** to continue.
 
-1. In File Explorer, navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src` and double-click the `Contoso.sln` file to open the solution in Visual Studio.
+    ![Repository name is set to partsunlimited. Private access is selected. Create repository button is highlighted.](media/github-partsunlimited-repo.png "Create a new repository")
 
-   ![The Contoso.sln file is highlighted in the folder specified above.](media/file-explorer-vs-solution.png "File explorer")
+3. Select the **clipboard copy command** to copy the Git endpoint for your repository and paste the value into a text editor, such as Notepad.exe, for later reference.
 
-2. If prompted about how to open the file, select **Visual Studio 2019** and then select **OK**.
+    ![GitHub repository page is shown. Endpoint copy to clipboard button is highlighted.](media/github-endpoint-copy.png "Repository endpoint")
 
-   ![Visual Studio 2019 is highlighted in the How do you want to open this file? dialog.](media/solution-file-open-with.png "Visual Studio 2019")
+    So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-Premises IIS server. Now that we are done with the migration of Parts Unlimited's web site. We will use the VM to execute some development tasks.
 
-3. Sign in to Visual Studio using your Azure account credentials. You can get the Azure Account credentials from **Environment Details** page
+4. Connect to your WebVM VM with RDP.
 
-   ![The Sign in button is highlighted on the Visual Studio Welcome screen.](media/visual-studio-sign-in.png "Visual Studio 2019")
+   ![The WebVM virtual machine is highlighted in the list of resources.](media/webvm-selection.png "WebVM Selection")
 
-4. When prompted with a security warning, uncheck **Ask me for every project in this solution**, and then select **Create**.
+5. Right-click on the Windows Start Menu and select **Windows PowerShell (Admin)** to launch a terminal window.
 
-   ![On the security warning dialog, the Ask me for every project in this solution box is unchecked and highlighted.](media/visual-studio-security-warning.png "Visual Studio")
+    ![Start Menu context menu is open. Windows PowerShell (Admin) command is highlighted.](media/launch-powershell.png "Windows PowerShell")
 
-### Task 2: Update Web API to use Key Vault
+6. The Parts Unlimited website's source code is already copied into the VM as part of the **Before the hands-on lab exercises**. Run the command below to navigate to the source code folder.
 
-In this task, you update the `Contoso.WebApi` project to use Azure Key Vault for storing and retrieving application secrets. You start by adding the connection information to the `appsettings.json` file in the `Contoso.WebApi` project, and then add some code to enable the use of Azure Key Vault.
+    ```powershell
+    cd "C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src"
+    ```
 
-> The required NuGet package to enable interaction with Key Vault has already been referenced in the project to save time. The package added to facilitate this is: `Microsoft.Extensions.Configuration.AzureKeyVault`.
+7. Run the following command to initialize a local Git repository.
 
-1. In Visual Studio, expand the `Contoso.WebApi` project in the Solution Explorer, locate the `Program.cs` file and open it by double-clicking on it.
+    ```powershell
+    git init
+    ```
 
-   ![In the Visual Studio Solution Explorer, the Program.cs file is highlighted under the Contoso.WebApi project.](media/vs-api-program-cs.png "Solution Explorer")
+    ![PowerShell terminal is shown. Git init is highlighted and executed.](media/git-init.png "Git init")
 
-2. In the `Program.cs` file, locate the `TODO #1` block (line 23) within the `CreateWebHostBuilder` method.
+8. Next, we will define the remote endpoint as an origin to our local repository. Replace `{YourEndpointURL}` with the endpoint URL you copied previously from GitHub. Run the final command in your PowerShell terminal.
 
-   ![The TODO #1 block is highlighted within the Program.cs code.](media/vs-program-cs-todo-1.png "Program.cs")
+    ```powershell
+    git remote add origin {YourEndpointURL}
+    ```
 
-3. Complete the code within the block, using the following code, to add Key Vault to the configuration, and provide Key Vault with the appropriate connection information.
+    ![PowerShell terminal is shown. Git remote add origin is highlighted and executed. ](media/git-remote-add.png "Git remote add")
 
-   ```csharp
-   config.AddAzureKeyVault(
-       KeyVaultConfig.GetKeyVaultEndpoint(buildConfig["KeyVaultName"]),
-       buildConfig["KeyVaultClientId"],
-       buildConfig["KeyVaultClientSecret"]
-   );
-   ```
+9. Run the following commands to rename current branch to **Main** and add stage all the files for a git commit.
 
-4. Save `Program.cs`. The updated `CreateWebHostBuilder` method should now look like the following:
+    ```powershell
+    git branch -M main
+    git add .
+    ```
 
-   ![Screenshot of the updated Program.cs file.](media/vs-program-cs-updated.png "Program.cs")
+10. Before we commit our changes, we have to identify our git user name and e-mail. In the following command, replace `John Doe` with your name and `johndoe@example.com` with your e-mail address. Once ready, run the command in your PowerShell terminal.
 
-5. Next, you update the `Startup.cs` file in the `Contoso.WebApi` project. Locate the file in the Solution Explorer and double-click it.
+    ```powershell
+    git config --global user.name "John Doe"
+    git config --global user.email johndoe@example.com
+    ```
 
-6. In the previous exercise, you added the connection string for your Azure SQL Database to Key Vault, and assigned the secret a name of `SqlConnectionString`. Using the code below, update the `TODO #2` block (line 38), within the `Startup.cs` file's `Configuration` property. This allows your application to retrieve the connection string from Key Vault using the secret name.
+11. We are ready to commit the source code to our local Git repository. Run the following command to continue.
 
-   ![The TODO #2 block is highlighted within the Startup.cs code.](media/vs-startup-cs-todo-2.png "Startup.cs")
+    ```powershell
+    git commit -m "Initial Commit"
+    ```
 
-   ```csharp
-   services.AddDbContext<ContosoDbContext>(options =>
-       options.UseSqlServer(Configuration["SqlConnectionString"]));
-   ```
+12. Let's push our code to GitHub. Run the following command in your PowerShell terminal.
 
-7. Save `Startup.cs`. The updated `Configuration` property now looks like the following:
+    ```powershell
+    git push -u origin main
+    ```
 
-   ![Screenshot of the updated Startup.cs file.](media/vs-startup-cs-updated.png "Startup.cs")
+13. GitHub authentication screen will pop up. Select **Sign in with your browser (2)**. A new browser pop-up will appear with the GitHub login page.
 
-8. Your Web API is now fully configured to retrieve secrets from Azure Key Vault.
+    ![PowerShell terminal shows git push command and the GitHub Sign In experoence. Sign in with your browser button is highlighted.](media/github-sign-in.png "GitHub Sign In")
 
-### Task 3: Copy KeyVault configuration section to API App in Azure
+14. Fill-in your GitHub account credentials on the browser window to Sign-In.
 
-Before deploying the Web API to Azure, you need to add the required application settings into the configuration for the Azure API App. In this task, you use the advanced configuration editor in your API App to add in the configuration settings required to connect to and retrieve secrets from Key Vault.
+15. On the **Authorize Git Credential Manager** screen select **Authorize GotCredentialManager**. This will give your local environment permission to push the code to GitHub.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **API App** by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-api-UniqueId** App service from the list of resources.
+    ![Authorize Git Credential Manager is open. Authorize GotCredentialManager buttin is highligted.](media/github-access.png "Authoriez Git Credential Manager")
 
-   ![The API App resource is highlighted in the list of resources.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/apiapp.png?raw=true "API App")
+16. Close the browser.
 
-2. On the API App blade, select **Configuration** on the left-hand menu.
+17. Go back to GitHub and observe the repository with the source code uploaded.
 
-   ![The Configuration item is highlighted in the API App left-hand menu.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/api-app-configuration-menu.png?raw=true "API App")
+    ![GitHub shown with the partsunlimited repository populated with source code.](media/github-partsunlimited-repo-loaded.png "GitHub repository page")
 
-3. On the Application settings tab of the Configuration blade, select **Advanced edit** under Application settings. The Advanced edit screen allows you to paste JSON directly into the configuration.
+### Task 2: Creating a staging deployment slot
 
-   ![Advanced edit is highlighted on the Application settings tab.](media/api-app-configuration-advanced-edit.png "API App")
+1. Go back to your lab resource group, navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your Web App and App Service Plan
 
-4. We are going to use the Advanced editor to add all three of the Key Vault settings at once. To do this, we are going to replace the content of the Advanced editor with the following, which you need to update as follows:
+   ![The search box for resources is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
 
-    - `<your-key-vault-name>`: ```contoso-kv-UniqueId```, Get UniqueId value from Environment Details under Azure Credentials tab  and replace with UniqueId in contoso-kv-UniqueId.
-    - `<Application Id>`: you can retrieve this value from Service Principal Details under Environment Details tab.
-    - `<Secret Key>`:  you can retrieve this valuefrom Service Principal Details under Environment Details tab.
+2. Switch to the **Deployment slots (1)** tab and select **Add Slot (2)**.
 
-   ```json
-   [
-     {
-       "name": "KeyVaultName",
-       "value": "<your-key-vault-name>"
-     },
-     {
-       "name": "KeyVaultClientId",
-       "value": "<Application Id>"
-     },
-     {
-       "name": "KeyVaultClientSecret",
-       "value": "<Secret Key>"
-     }
-   ]
-   ```
+    ![App Service Deployment Slots tab is open. Add slot button highlighted.](media/app-service-add-deployment-slot.png "Deployment slots")
 
-5. The final contents of the editor should look similar to the following:
+3. Type in **staging** as the name **(1)** of the new slot. Select your app service name from the **Clone settings from (2)** dropdown list. This will ensure our web site configurations for the production environment are copied over to the staging environment as a starting point. Select **Add (3)** to add the new slot.
 
-   ```json
-   [
-     {
-       "name": "KeyVaultName",
-       "value": "contoso-kv-281470"
-     },
-     {
-       "name": "KeyVaultClientId",
-       "value": "94ee2739-794b-4038-a378-573a5f52918c"
-     },
-     {
-       "name": "KeyVaultClientSecret",
-       "value": "nokf54VBF*DO"
-     }
-   ]
-   ```
+    ![Add a slot panel is open. Name is set staging. Partsunlimited-web-20 is selected for the clone settings from dropdown list. Add button is highlighted.](media/app-service-staging-slot.png "Adding deployment slot")
 
-6. Select **OK**.
+4. Once you receive the success message, close **(1)** the panel. Observe **(2)** the two environments we have for the App Service in the deployment slots list.
 
-7. Select **Save** on the Configuration blade and then select **Continue** when prompted about restarting the app.
+    ![Successfully created slot staging message is shown. The close button is highlighted. The current list of slots is presented.](media/app-service-staging-slot-added.png "Deployment slots")
 
-   ![The Save button is highlighted on the toolbar.](media/api-app-configuration-save.png "Save")
+### Task 3: Setting up CI/CD with GitHub Actions
 
-### Task 4: Deploy the API to Azure
+1. Select your staging slot from the list of deployment slots.
 
-In this task, you use Visual Studio to deploy the API project into an API App in Azure.
+    ![Deployment slots are listed. Staging slot named partsunlimited-web-20-staging is highlighted.](media/app-service-staging-select.png "Staging deployment slot")
 
-1. In Visual Studio, right-click on the **Contoso.WebApi** project in the Solution Explorer and select **Publish** from the context menu.
+2. Switch to the **Deployment Center (1)** tab. Select **Go to Settings (2)**.
 
-   ![The Contoso.WebApi project is selected, and Publish is highlighted in the context menu.](media/e4-02.png "Publish Web API")
+    ![Deployment Center tab is selected. Go to Settings button is highlighted.](media/app-service-goto-deployment-settings.png "Deployment Center")
 
-2. On the **Publish** dialog, select **Azure** in the Target box and select **Next**.
+3. Select **GitHub (1)** as your source; **.NET Core (2)** as the runtime stack and **.NET Core 2.1 (LTS) (3)** for version. Select **Authorize** to create the connection between the App Service deployment slot and the GitHub repository we previously prepared.
 
-   ![In the Publish dialog, Azure is selected and highlighted in the Target box. The Next button is highlighted.](media/vs-publish-to-azure.png "Publish API App to Azure")
+    ![Deployment Settings page is open. Source is set to GitHub. Runtime stack is set to .NET Core. Version is set to .NET Core 2.1 (LTS). Authorize button for GitHub is highlighted. ](media/app-service-deployment-settings.png "Deployment Center Settings")
 
-3. Next, in the **Specific target** box, select **Azure App Service (Windows)**.
+4. Login with your GitHub credentials and provide authorization to App Service to access the repository by selecting **Authorize AzureAppService**.
 
-   ![In the Publish dialog, Azure App Service (Windows) is selected and highlighted in the Specific Target box. The Next button is highlighted.](media/vs-publish-specific-target.png "Publish API App to Azure")
+    ![Authorize AzureAppService button is highlighted.](media/app-service-github-repo-access.png "Authorize Azure App Service")
 
-4. Finally, in the **App Service** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the Web App "contoso-api-uniqueid"
+5. Once GitHub authorization is complete go back to the browser with the Azure Portal. Select the GitHub **Organization (1)** where you created the GitHub repository. This might be your personal account name if that is where you created the repository. Select the repository **partsunlimited (2)** and the branch **main (3)** as the source for the CI/CD pipeline. Select **Save (4)** to create CI/CD pipeline.
 
-   ![In the Publish dialog, The Contoso API App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp0.png?raw=true "Publish API App to Azure")
+    ![Authorize AzureAppService button is highlighted.](media/app-service-cicd-settings-save.png "Deployment Center Settings")
 
-5. Select **Finish**.
+    Once you select **Save**, the portal will add your App Service publishing profile as a secret to your GitHub repository. This will allow GitHub Actions to publish the Parts Unlimited web site to the staging deployment slot. Additionally, the portal will create a YAML file that describes the steps required to build and publish the code in the partsunlimited repository.
 
-6. Back on the Visual Studio Publish page for the `Contoso.WebApi` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
+6. Visit your GitHub repository on GitHub.com to look for changes. Navigate to `.github/workflows` **(1)** to see the **YAML file (2)** and the commit **(3)** made to the repository on your behalf.
 
-   ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp1.png?raw=true "Publish")
+    ![Partsunlimited repository is open on GitHub.com. .github/workflows folder is shown. A new commit that includes a main_partsunlimited-web-20(staging).yml file is highlighted.](media/github-inital-yaml-commit.png "GitHub Actions worklfow")
 
-7. In the Visual Studio **Web Publish Activity** view, you should see a status that indicates the Web API was published successfully, along with the URL to the site.
+7. Select **Actions (1)** to navigate to the Actions page where you can see the list of workflow runs on the repository. Noticed that the latest run has failed **(2)**. Select the failed run (2) to investigate the issue.
 
-   ![Web Publish Activity view with the publish process status and API site url](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/media/local/webapp2.png?raw=true "Web Publish Activity")
+    ![GitHub Actions for the repository is open](media/github-actions-failed.png "Github Actions")
 
-   > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Web Publish Activity
+8. Select the failed job to dig deeper.
 
-8. A web browser should open to the published site. If not, open the URL of the published Web API in a browser window. Initially, you should see a message that the page cannot be found.
+    ![Details for the GitHub workflow run is shown. A failed job named build-and-deploy is highlighted.](media/github-actions-failed-net-core-version.png "GitHub Actions failed build")
 
-   ![A page can't be found error message is displayed in the web browser.](media/web-api-publish-page-not-found.png "Page not found")
+9. In the error message, we can see a mismatch between the .NET Core version the build job is using and the one the project is built against. When we set up our CI/CD pipeline, the Azure Portal listed .NET Core LTS (Long Term Support) versions only. Unfortunately, Parts Unlimited uses a .NET Core version that hit the end of life on December 23, 2019. We will have to change our pipeline setup manually to accommodate project requirements.
 
-9. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <https://contoso-api-288892.azurewebsites.net/swagger/>). This brings up the Swagger UI page of your API, which displays a list of the available API endpoints.
+    ![Build-and-deploy job error message is shown. SDK version requirement 2.2.207 is highlighted.](media/github-actions-version-error.png "Build Error")
 
-   ![Swagger screen displayed for the API App.](media/swagger-ui.png "Validate published Web API")
+10. Select **Code (1)** to switch back to the repository code view. Select **.github/workflows (2)** to navigate to the location where the workflow YAML code is stored.
 
-   > **Note**: [Swagger UI](https://swagger.io/tools/swagger-ui/) automatically generates visual documentation for REST APIs following the OpenAPI Specification. It makes it easy for developers to visualize and interact with the API's endpoints without having any of the implementation logic in place.
+    ![Partsunlimited GitHub repository root folder is shown. .github/workflows folders are highlighted. ](media/github-navigate-to-yaml.png "GitHub Actions Workflow")
 
-10. You can test the functionality of the API by selecting one of the `GET` endpoints, and selecting **Try it out**.
+11. Select the YAML file name `main_partsunlimited-web-20(staging).yml`.
 
-    ![The Try it out button is highlighted under the Dependents GET endpoint](media/swagger-try-it-out.png "Swagger")
+    ![The main_partsunlimited-web-20(staging).yml file is highlighted in the GitHub / workflows folder.](media/github-select-yaml-file.png "Workflow YAML")
 
-11. Select **Execute**.
+12. Select the **Edit this file (1)** button to modify the YAML file.
 
-    ![The Execute button is displayed.](media/swagger-execute.png "Swagger")
+    ![The main_partsunlimited-web-20(staging).yml file is on screen. Edit this file button is highlighted.](media/github-yaml-edit.png "Workflow YAML Editing")
 
-12. In the Response, you should see a Response Code of 200, and JSON objects in the Response body.
+13. We have to change the **dotnet-version (1)** number to `2.2.207`. Additionally, we have to add the solution file name **(2)** and the project file name **(3)** to dotnet build and publish commands. The reason behind this change is the fact that Parts Unlimited has multiple solutions and projects in their codebase.
 
-    ![Retrieve service principal details](https://github.com/CloudLabs-MCW/MCW-App-modernization/blob/fix/Hands-on%20lab/local/status200.png?raw=true "Status 200")
+    ![main_partsunlimited-web-20(staging).yml is open in edit mode. dotnet-version is set to 2.2.207. dotnet build command is changed to include PartsUnlimited.sln as a parameter. dotnet publish command is changed to include src/PartsUnlimitedWebsite/PartsUnlimitedWebsite.csproj as a parameter.](media/github-yaml-commit.png "GitHub YAML Editing")
 
+    Here is the final YAML file that you can use if needed.
 
-13. Click on **Next** button.
+    ```yaml
+    
+    # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+    # More GitHub Actions for Azure: https://github.com/Azure/actions
+    
+    name: Build and deploy ASP.Net Core app to Azure Web App - partsunlimited-web-20(staging)
+    
+    on:
+    push:
+        branches:
+        - main
+    workflow_dispatch:
+    
+    jobs:
+    build-and-deploy:
+        runs-on: windows-latest
+    
+        steps:
+        - uses: actions/checkout@master
+    
+        - name: Set up .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+            dotnet-version: '2.2.207'
+    
+        - name: Build with dotnet
+        run: dotnet build PartsUnlimited.sln --configuration Release
+    
+        - name: dotnet publish
+        run: dotnet publish src/PartsUnlimitedWebsite/PartsUnlimitedWebsite.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+    
+        - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+            app-name: 'partsunlimited-web-20'
+            slot-name: 'staging'
+            publish-profile: ${{ secrets.AzureAppService_PublishProfile_a00d49c7adc84a028ccc74ff431024d5 }}
+            package: ${{env.DOTNET_ROOT}}/myapp
+    ```
+
+14. Once all changes are complete select **Start commit (4)**. Type a commit message **(5)**. Select **Commit changes (6)** to submit your changes to the repository.
+
+15. Select **Actions (1)** to switch to the workflows page. Notice the latest successful run **(2)** of our workflow.
+
+    ![Actions on the GitHub Repository is selected. The latest successful run of the workflow is highlighted.](media/github-actions-success.png "GitHub Actions success")
+
+16. Go back to your lab resource group on the Azure Portal, navigate to your `staging (partsunlimited-web-{uniquesuffix}/staging)` **(2)** App Service resource. You can search for `staging` **(1)** to find your App Service (Slot) for staging.
+
+    ![The search box for resources is filled in with staging. The staging (partsunlimited-web-{uniquesuffix}/staging) Azure App Service Deployment Slot is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/select-staging-app-service.png "Staging Resource")
+
+17. Notice the dedicated web link for your staging slot. Select to navigate to the web site to see the result of your successful deployment through the CI/CD pipeline.
+
+    ![Staging slot for partsunlimited app service is open. URL endpont for the deployment slot is highlighted.](media/staging-slot-link.png "Staging public endpoint")
+
+### Task 4: Pushing code changes to staging and production
+
+1. Connect to your WebVM VM with RDP.
+
+   ![The WebVM virtual machine is highlighted in the list of resources.](media/webvm-selection.png "WebVM Resource Selection")
+
+2. Select the Start menu and search for **Visual Studio Code**. Select **Visual Studio Code** to run it.
+
+    ![Start Menu is open. Visual Studio Code is typed in the search box. Visual Studio Code is highlighted from the list of search results.](media/vscode-start-menu.png "Visual Studio Code")
+
+3. Open the **File (1)** menu and select **Open Folder... (2)**.
+
+    ![File menu is open in Visual Studio Code. Open Folder... command is highlighted.](media/vscode-open-folder.png "Open Folder")
+
+4. Navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src` and select **Select Folder (1)**.
+
+    ![Visual Studio Code Open Folder dialog is open. Folder path is set to C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src and Select Folder button is highlighted.](media/vscode-select-folder.png "Select Folder")
+
+5. We are going to introduce a brand new change to Parts Unlimited's web site. In the Explorer window navigate to **src > PartsUnlimitedWebSite > Views > Home** and select **Index.cshtml (4)** for editing. Change the Title of the page **(5)** and save the file by using going to the File menu and selecting **Save**. Notice the underlying git repository detecting a change (6) in the codebase.
+
+    ![Index.cshtml from src > PartsUnlimitedWebSite > Views > Home folder is open. Page Title is changed to New Home Page. One pending change in the source control is highlighted.](media/vscode-changing-source-code.png "Code editing in VSCode")
+
+6. Select **Source Control (1)** tab in Visual Studio Code. Since we worked on the codebase in our repo in the virtual machine, the codebase in the repo on GitHub has changed. Open the **Views and more actions... (2)** menu and select **Pull (3)** to get the latest from the remote repository.
+
+    ![Views and more actions... menu is open. Pull command is highlighted.](media/vscode-pull.png "GitHub Pull")
+
+7. Select **Stage Changes (1)**. Type in a commit message **(2)** for the changes. Select **Commit (3)**.
+
+    ![Stage changes button for index.cshtml is highlighted. Commit message is set to New Home Page Title. Commut button is highlighted.](media/vscode-stage-commit.png "GitHub Commit")
+
+8. Open the **Views and more actions... (1)** menu and select **Push (2)** to push the changes to GitHub.
+
+    ![Views and more actions... menu is open. Push command is highlighted.](media/vscode-push.png "GitHub Push")
+
+9. Open the GitHub repository and observe the Actions page for the latest execution of the CI/CD Pipeline.
+
+    ![PartsUnlimited repo is open. Actions page is shown. Successful CI/CD run for the new home page title is highlighted.](media/github-actions-success-commit.png "New commit build")
+
+10. Navigate to the staging environment endpoint in your browser and observe the Title change.
+
+    ![Parts Unlimited staging environment is open in a browser. New Home Page title is highlighted.](media/staging-code-changes.png "Parts Unlimited Staging Web Site")
+
+Now that Parts Unlimited has a separate staging environment for their e-commerce site, they can push new source code and functionality to the repo that will automatically be built and deployed to their staging for testing.
+
+### Task 5: Swap deployment slots to move changes in staging to production
+
+Once Parts Unlimited is happy with the changes tested in their staging environment, they can swap the two environments and have changes go to production. Environment Swap happens very fast and can help Parts Unlimited pull back changes by switching back if needed.
+
+1. Go back to your lab resource group, navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your app service.
+
+   ![The search box for resources is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
+
+2. Switch to the **Deployment slots (1)** tab and select **Swap (2)**.
+
+    ![App Service Deployment Slots tab is open. Swap button highlighted.](media/app-service-slot-swap.png "Deployment Slot Swap")
+
+3. Select the **Swap** button to swap the staging slot with the production slow.
+
+    ![Deployment Slot Swap dialog is open. Swap button is highlighted.](media/app-service-slot-swap-panel.png "Deployment Slot Swap")
+
+4. Once you receive the success message, close the swap panel.
+
+5. Visit both production and staging slot endpoints and observe how the Title change is moved to production.
+
+    > Once you move your staging slot to production, your production slot is moved to staging as well. This means that your current staging slot does not have the latest changes you have pushed to the repo. You can trigger a manual CI/CD workflow execution to push the latest changes to staging.
+    >
+    > To run a CI/CD workflow manually, go to GitHub actions page **(1)** in your repository. Select the workflow **(2)** to run. Open the **Run workflow (3)** menu and select **Run workflow (4)**.
+    >
+    > ![GitHub Actions page is shown. Build and deploy ASP.Net Core app to Azure Web App - partsunlimited-web-20(staging) workflow is selected. Run workflow menu is open. Run workflow button is highlighted.](media/github-actions-manual-run.png "Manual workflow run")
 
