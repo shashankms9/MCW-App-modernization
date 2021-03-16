@@ -1,8 +1,8 @@
 [ {
-  "Name": "App modernization",
+  "Name": ".Net App modernization",
   "Language": "English",
   "Files": [
-        {
+    {
       "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MCW/MCW-App-modernization/fix/Hands-on%20lab/GettingStarted.md",
       "Order": 1
     },
@@ -33,6 +33,7 @@
     {
       "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MCW/MCW-App-modernization/fix/Hands-on%20lab/lab-completed.md",
       "Order": 8
-    }   
+    }
   ]
-} ]
+}
+]
