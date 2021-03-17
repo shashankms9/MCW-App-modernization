@@ -41,7 +41,7 @@ Parts Unlimited would like an assessment to see what potential issues they might
     - **Server name (1)**: Enter **SQLSERVER2008**.
     - **Authentication type (2)**: Select **SQL Server Authentication**.
     - **Username (3)**: Enter **PUWebSite**
-    - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
+    - **Password (4)**: Enter `Password.1!!`
     - **Encrypt connection**: Check this box if not checked.
     - **Trust server certificate (5)**: Check this box.
 
@@ -124,7 +124,7 @@ After you have reviewed the assessment results and you have ensured the database
    - **Server name (1)**: Enter **SQLSERVER2008**.
    - **Authentication type (2)**: Select **SQL Server Authentication**.
    - **Username (3)**: Enter **PUWebSite**
-   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
+   - **Password (4)**: Enter **Password.1!!**
    - **Encrypt connection**: Check this box.
    - **Trust server certificate (5)**: Check this box.
    - Select **Connect (6)**, and then ensure the `PartsUnlimited` database is selected **(7)** from the list of databases.
@@ -138,7 +138,7 @@ After you have reviewed the assessment results and you have ensured the database
    - **Server name (1)**: Paste the server name of your Azure SQL Database you copied into a text editor in the previous task.
    - **Authentication type (2)**: Select SQL Server Authentication.
    - **Username (3)**: Enter **demouser**
-   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
+   - **Password (4)**: Enter **Password.1!!**
    - **Encrypt connection**: Check this box.
    - **Trust server certificate (5)**: Check this box.
    - Select **Connect (6)**, and then ensure the `parts` database is selected **(7)** from the list of databases.
@@ -170,7 +170,7 @@ After you have reviewed the assessment results and you have ensured the database
     - **Server name (1)**: Paste the server name of your Azure SQL Database you copied above.
     - **Authentication type (2)**: Select SQL Server Authentication.
     - **Username (3)**: Enter **demouser**
-    - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
+    - **Password (4)**: Enter **Password.1!!**
     - **Remember password (5)**: Check this box.
 
     ![The SSMS Connect to Server dialog is displayed, with the Azure SQL Database name specified, SQL Server Authentication selected, and the demouser credentials entered.](media/ssms-connect-azure-sql-database.png "Connect to Server")
@@ -211,7 +211,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
    - **Source SQL Server instance name (1)**: Enter the DNS address of your Sql Server. This can be retrieved from environment details section of your guide. For example, `sqlserver2008-{suffixid}.eastus2.cloudapp.azure.com`.
    - **Authentication type (2)**: Select SQL Authentication.
    - **Username (3)**: Enter **PUWebSite**
-   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
+   - **Password (4)**: Enter **Password.1!!**
    - **Connection properties (5)**: Check both Encrypt connection and Trust server certificate.
 
    ![The Migration Wizard Select source blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-source.png "Migration Wizard Select source")
@@ -227,7 +227,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
    - **Target server name (1)**: Enter the `fullyQualifiedDomainName` value of your Azure SQL Database (e.g., parts-xwn4o7fy6bcbg.database.windows.net), which you copied in the previous task.
    - **Authentication type (2)**: Select SQL Authentication.
    - **Username (3)**: Enter **demouser**
-   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
+   - **Password (4)**: Enter **Password.1!!**
    - **Connection properties**: Check Encrypt connection.
 
    ![The Migration Wizard Select target blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-target.png "Migration Wizard Select target")
