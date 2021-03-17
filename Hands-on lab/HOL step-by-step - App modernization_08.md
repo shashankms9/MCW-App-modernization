@@ -53,10 +53,13 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
     git add .
     ```
 
-1. Before we commit our changes, we have to identify our git user name and e-mail. In the following command, replace `John Doe` with your name and `johndoe@example.com` with your e-mail address. Once ready, run the command in your PowerShell terminal.
+1. Before we commit our changes, we have to identify our git user name and e-mail. In the following command, replace `John Doe` with your name and `johndoe@example.com` with your e-mail address. Once ready, run the below commands in your PowerShell terminal.
 
     ```powershell
     git config --global user.name "John Doe"
+    ```
+
+    ```powershell
     git config --global user.email johndoe@example.com
     ```
 
@@ -129,6 +132,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
     ![Authorize AzureAppService button is highlighted.](media/app-service-cicd-settings-save.png "Deployment Center Settings")
 
     Once you select **Save**, the portal will add your App Service publishing profile as a secret to your GitHub repository. This will allow GitHub Actions to publish the Parts Unlimited web site to the staging deployment slot. Additionally, the portal will create a YAML file that describes the steps required to build and publish the code in the partsunlimited repository.
+    >Note: If you get an error `Failed to set up deployment: Cannot find User with name xxxxyyy`. this is expected. ignore to continue with the next steps below.
 
 1. Visit your GitHub repository on GitHub.com to look for changes. Navigate to `.github/workflows` **(1)** to see the **YAML file (2)** and the commit **(3)** made to the repository on your behalf.
 
@@ -162,7 +166,8 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ![main_partsunlimited-web-20(staging).yml is open in edit mode. dotnet-version is set to 2.2.207. dotnet build command is changed to include PartsUnlimited.sln as a parameter. dotnet publish command is changed to include src/PartsUnlimitedWebsite/PartsUnlimitedWebsite.csproj as a parameter.](media/github-yaml-commit.png "GitHub YAML Editing")
 
-    Here is the final YAML file that you can use if needed.
+    Below is the final YAML file for illustration.
+    >Note: Do not copy the below code to the file. The secret file reference will not work.
 
     ```yaml
     
@@ -232,17 +237,17 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ![Visual Studio Code Open Folder dialog is open. Folder path is set to C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src and Select Folder button is highlighted.](media/vscode-select-folder.png "Select Folder")
 
-1. We are going to introduce a brand new change to Parts Unlimited's web site. In the Explorer window navigate to **src > PartsUnlimitedWebSite > Views > Home** and select **Index.cshtml (4)** for editing. Change the Title of the page **(5)** and save the file by using going to the File menu and selecting **Save**. Notice the underlying git repository detecting a change (6) in the codebase.
-
-    ![Index.cshtml from src > PartsUnlimitedWebSite > Views > Home folder is open. Page Title is changed to New Home Page. One pending change in the source control is highlighted.](media/vscode-changing-source-code.png "Code editing in VSCode")
-
 1. Select **Source Control (1)** tab in Visual Studio Code. Since we worked on the codebase in our repo in the virtual machine, the codebase in the repo on GitHub has changed. Open the **Views and more actions... (2)** menu and select **Pull (3)** to get the latest from the remote repository.
 
     ![Views and more actions... menu is open. Pull command is highlighted.](media/vscode-pull.png "GitHub Pull")
 
+1. Now that our codebase has been updated, we are going to introduce a brand new change to Parts Unlimited's web site. In the Explorer window navigate to **src > PartsUnlimitedWebSite > Views > Home** and select **Index.cshtml (4)** for editing. Change the Title of the page **(5)** and save the file by using going to the File menu and selecting **Save**. Notice the underlying git repository detecting a change (6) in the codebase.
+
+    ![Index.cshtml from src > PartsUnlimitedWebSite > Views > Home folder is open. Page Title is changed to New Home Page. One pending change in the source control is highlighted.](media/vscode-changing-source-code.png "Code editing in VSCode")
+
 1. Select **Stage Changes (1)**. Type in a commit message **(2)** for the changes. Select **Commit (3)**.
 
-    ![Stage changes button for index.cshtml is highlighted. Commit message is set to New Home Page Title. Commut button is highlighted.](media/vscode-stage-commit.png "GitHub Commit")
+    ![Stage changes button for index.cshtml is highlighted. Commit message is set to New Home Page Title. Commit button is highlighted.](media/vscode-stage-commit.png "GitHub Commit")
 
 1. Open the **Views and more actions... (1)** menu and select **Push (2)** to push the changes to GitHub.
 
