@@ -55,7 +55,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/legal/intellec
 
 # Trainer information
 
-Thank you for taking time to support the whiteboard design sessions as a trainer!
+Thank you for taking the time to support the whiteboard design sessions as a trainer!
 
 ## Role of the trainer
 
@@ -91,11 +91,11 @@ Each whiteboard design session uses the following flow:
 
 Analyze your customer's needs.
 
-- Customer's background, situation, needs and technical requirements
+- Customer's background, situation, needs, and technical requirements
 
 - Current customer infrastructure and architecture
 
-- Potential issues, objectives and blockers
+- Potential issues, objectives, and blockers
 
 **Step 2: Design a proof of concept solution (60 minutes)**
 
@@ -137,7 +137,7 @@ Before conducting your first whiteboard design session:
 
 - Plan the point you want to stress, which questions you want to drive, transitions, and be ready to answer questions.
 
-- Prior to the whiteboard design session, discuss the case study to pick up more ideas.
+- Before the whiteboard design session, discuss the case study to pick up more ideas.
 
 - Make notes for later.
 
@@ -159,9 +159,9 @@ When participants are doing activities, you can **look ahead to refresh your mem
 
 **Involve your participants.** Talk and share your knowledge but always involve your participants, even while you are the one speaking.
 
-**Ask questions** and get them to share to fully involve your group in the learning process.
+**Ask questions** and get them to share to involve your group in the learning process fully.
 
-**Ask first**, whenever possible. Before launching into a topic, learn your audience's opinions about it and experiences with it. Asking first enables you to assess their level of knowledge and experience, and leaves them more open to what you are presenting.
+**Ask first**, whenever possible. Before launching into a topic, learn your audience's opinions about it and experiences with it. Asking first enables you to assess their level of knowledge and experience and leaves them more open to what you are presenting.
 
 **Wait for responses**. If you ask a question such as, "What's your experience with (fill in the blank)?" then wait. Do not be afraid of a little silence. If you leap into the silence, your participants will feel you are not serious about involving them and will become passive. Give participants a chance to think, and if no one answers, patiently ask again. You will usually get a response.
 
@@ -197,14 +197,14 @@ In its first year, Parts Unlimited opened fourteen stores in three states: Washi
 
 Parts Unlimited has a hosted web application on its internal infrastructure and using a Windows Server, Internet Information Services (IIS), and Microsoft SQL Server to host the solution. All servers are located in an onsite server room in their distribution center. The office for their IT staff is just across the server room. Their IT staff includes a hardware technician, a system/network administrator, two software engineers. Their technical support is outsourced to a third-party service provider in Indonesia.
 
-The web server that hosts the e-commerce website is recently updated to Windows Server 2019 Datacenter. The e-commerce application is tailor-made by a software development company that is now out of business. The application is built on .NET Core 2.2.207 that hit the end of life on December 23, 2019. Their team tried to change the version number in a configuration file to a recent version, but it crashed the website. They rolled back and left it as it is. They understand that they have to migrate to a newer version of .NET Core, but they do not have the resources internally to make it happen. "We have to fix our scaling problems first. Then we can think of updating to something new." says Casey Jensen, Parts Unlimited's CEO. The source code left from the vendor has many solution files and codes that the team does not know if they are used.  They open the primary solution file named PartsUnlimited.sln and deploy from Visual Studio into a folder on the server.  
+The web server that hosts the e-commerce website is recently updated to Windows Server 2019 Datacenter. The e-commerce application is tailor-made by a software development company that is now out of business. The application is built on .NET Core 2.2.207 that hit the end of life on December 23, 2019. Their team tried to change the version number in a configuration file to a recent version, but it crashed the website. They rolled back and left it as it is. They understand that they have to migrate to a more recent version of .NET Core, but they do not have the resources internally to make it happen. "We have to fix our scaling problems first. Then we can think of updating to something new," says Casey Jensen, Parts Unlimited's CEO. The source code left from the vendor has many solution files and codes that the team does not know if they are used.  They open the primary solution file named PartsUnlimited.sln and deploy from Visual Studio into a folder on the server.  
 
 The team at Parts Unlimited is terrified to touch anything on the servers as long as it works. When they have to introduce new functionality or a bug fix, they schedule overnight deployments at 2 AM. This strategy has worked well so far, but it is not ideal. When a fix is ready, the team has to schedule deployment for 2 AM and wait. The scheduling of overnight shifts puts too much stress on the team and increases turnover in IT staff.
 
 The SQL database used by Parts Unlimited e-commerce site is deployed on a separate server that has been there since the company was founded. It is a SQL Server 2008 R2 SP3 deployed on a Windows Server 2008 R2 SP1.
 The e-commerce application incurs ongoing maintenance costs in hardware, operating system updates, and licensing fees. These maintenance costs make Microsoft Azure App Service an attractive alternative. Their team is looking to migrate Microsoft ASP.NET applications and any SQL Server database to Azure App Service and Azure SQL Database. However, they are worried that their application might not be supported because of its .NET Core version being at the end of life. They wonder if they can move to the cloud now and migrate their application later or if the old version will be a show stopper.
 
-Parts Unlimited has plans to increase its marketing investment, currently on hold because of scaling issues. The company is stuck and cannot grow without increasing its infrastructure footprint. Casey wants to finalize their cloud vs. on-premises decision based on the current migration effort's success. CFO Jára Cimrman says "We have to drive and scale our e-Commerce presence forward while controlling costs."
+Parts Unlimited has plans to increase its marketing investment, currently on hold because of scaling issues. The company is stuck and cannot grow without increasing its infrastructure footprint. Casey wants to finalize their cloud vs. on-premises decision based on the current migration effort's success. CFO Jára Cimrman says, "We have to drive and scale our e-Commerce presence forward while controlling costs."
 
 The engineering team is worried about their order processing subsystem. Currently, they have a strongly coupled order processing system that runs synchronously during checkout. When moved to the cloud, they do not want to be worried about their order processing system's scalability. They are looking for a modern approach with the least migration effort possible. They want to keep the changes and their investment into the current code base at a minimum.
 
@@ -226,7 +226,7 @@ Finally, Parts Unlimited is looking to invest in DevOps practices to decrease hu
 
 ### Customer objections
 
-1. Our developers were not able to migrate our .NET Core 2.2 application to a newer version. Should we expect a steep upgrade path with every new version?
+1. Our developers were not able to migrate our .NET Core 2.2 application to a more recent version. Should we expect a steep upgrade path with every new version?
 
 2. When a .NET Core version is EoL (End-of-Life), does that mean we cannot host our solution in Azure?
 
@@ -246,7 +246,7 @@ Timeframe: 60 minutes
 
 Directions: With all participants at your table, answer the following questions and list the answers on a flip chart:
 
-1. Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
+1. Who should you present this solution to? Who is your target customer audience? Who are the decision-makers?
 
 2. What customer business needs do you need to address with your solution?
 
@@ -312,7 +312,7 @@ Directions:
 
 1. Pair with another table.
 
-2. One table is the Microsoft team and the other table is the customer.
+2. One table is the Microsoft team, and the other table is the customer.
 
 3. The Microsoft team presents their proposed solution to the customer.
 
@@ -347,7 +347,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 ## Step 1: Review the customer case study
 
-- Check in with your table participants to introduce yourself as the trainer.
+- Check-in with your table participants to introduce yourself as the trainer.
 
 - Ask, "What questions do you have about the customer case study?"
 
@@ -357,7 +357,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 ## Step 2: Design a proof of concept solution
 
-- Check in with your tables to ensure that they are transitioning from step to step on time.
+- Check-in with your tables to ensure that they are transitioning from step to step on time.
 
 - Provide some feedback on their responses to the business needs and design.
 
@@ -401,7 +401,7 @@ _High-level architecture_
 
    ![Architecture diagram of the preferred solution. Azure Functions is implemented to handle order processing. Azure Storage Queue is used to hold the jobs between the web front end and Azure Functions. GitHub is used to host source code, and GitHub Actions is used to run the CI/CD.](media/architecture-diagram.png "Preferred solution architecture")
 
-The solution begins with assessing Parts Unlimited's E-Commerce application with App Service Migration Assistant. Once the assessment succeeds, Parts Unlimited can migrate their e-commerce site to App Service with the App Service Migration Assistant's help. In the case of Parts Unlimited, despite their fears of using an EoL (End-of-Life) .NET Core version, the assessment does not show any blockers. After using the App Service Migration Assistant to provision an App Service plan and migrate their application, Parts Unlimited is happy having the front-end moved to the cloud.
+The solution begins with assessing Parts Unlimited's E-Commerce application with App Service Migration Assistant. Once the assessment succeeds, Parts Unlimited can migrate their e-commerce site to App Service with the App Service Migration Assistant's help. In the case of Parts Unlimited, despite their fears of using an EoL (End-of-Life) .NET Core version, the assessment does not show any blockers. After using the App Service Migration Assistant to provision an App Service plan and migrate their application, Parts Unlimited is happy to have the front-end moved to the cloud.
 
 The next step is to migrate Parts Unlimited's SQL Server 2008 R2 database to Azure SQL Database using the Azure Database Migration Service (DMS). Using the Data Migration Assistant (DMA) assessment, Parts Unlimited determines that they can migrate into a fully-managed SQL Database service in Azure. The assessment revealed no compatibility issues or unsupported features that would prevent them from using Azure SQL Database.
 
@@ -514,7 +514,7 @@ _DevOps_
 
 1. Our developers were not able to migrate our .NET Core 2.2 application to a more recent version. Should we expect a steep upgrade path with every new version?
 
-   We have [The .NET Portability Analyzer](https://docs.microsoft.com/en-us/dotnet/standard/analyzers/portability-analyzer) that can be used to assess how much work is required for a migration. We know projects that can migrate with a single configuration change and others who had to do some work based on the application's complexity and code dependencies. The .NET Portability Analyzer can give you a good idea of how much effort is required to migrate to a newer version including an assessment of all your code dependencies.
+   We have [The .NET Portability Analyzer](https://docs.microsoft.com/en-us/dotnet/standard/analyzers/portability-analyzer) that can be used to assess how much work is required for a migration. We know projects that can migrate with a single configuration change and others who had to do some work based on the application's complexity and code dependencies. The .NET Portability Analyzer can give you a good idea of how much effort is required to migrate to a more recent version, including an assessment of all your code dependencies.
 
 2. When a .NET Core version is EoL (End-of-Life), does that mean we cannot host our solution in Azure?
 

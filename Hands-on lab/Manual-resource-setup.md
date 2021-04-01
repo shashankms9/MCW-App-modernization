@@ -30,7 +30,7 @@ In this task, you provision an Azure Storage account, which is used by the Azure
 
 2. Enter "storage account **(1)**" into the Search the Marketplace box, and select **Storage account** from the results, and then select **Create (2)**.
 
-   !["Storage account" is entered into the Search the Marketplace box. Storage account is selected in the results.](media/create-resource-storage-account.png "Create Storage account")
+   !["Storage account" is entered into the Search the Marketplace box. A storage account is selected in the results.](media/create-resource-storage-account.png "Create Storage account")
 
 3. On the Create storage account **Basics** tab, enter the following:
 
@@ -66,7 +66,7 @@ In this task, you provision a virtual machine (VM) in Azure. The VM is used to h
 
    !["Windows Server" is entered into the Search the Marketplace box. Windows Server is selected in the results.](media/create-resource-visual-studio-vm.png "Visual Studio 2019 Latest")
 
-3. On the Create a virtual machine **Basics** tab set the following configuration:
+3. On the Create a virtual machine **Basics** tab, set the following configuration:
 
    - Project Details:
 
@@ -120,7 +120,7 @@ In this task, you provision another Azure virtual machine (VM) to host your "on-
 
    ![The SQL Server 2008 R2 SP3 on Windows Server 2008 R2 blade is displayed with the standard edition selected for the software plan, and the Create button highlighted.](media/create-resource-sql-server-2008-r2.png "Create SQL Server 2008 R2 Resource")
 
-4. On the Create a virtual machine Basics tab set the following configuration:
+4. On the Create a virtual machine Basics tab, set the following configuration:
 
    - Project Details:
 
@@ -340,9 +340,9 @@ In this task, you create an RDP connection to your Web virtual machine (VM), and
 
    ![The credentials specified above are entered into the Enter your credentials dialog.](media/rdp-credentials-webvm.png "Enter your credentials")
 
-6. Select **Yes** to connect, if prompted that the identity of the remote computer cannot be verified.
+6. Select **Yes** to connect if prompted that the remote computer's identity cannot be verified.
 
-   ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/remote-desktop-connection-identity-verification-webvm.png "Remote Desktop Connection dialog")
+   ![In the Remote Desktop Connection dialog box, a warning states that the remote computer's identity cannot be verified and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/remote-desktop-connection-identity-verification-webvm.png "Remote Desktop Connection dialog")
 
 7. Once logged in, launch the **Server Manager**. This should start automatically, but you can access it via the Start menu if it does not.
 
@@ -381,17 +381,17 @@ In this task, you configure the WebVM with the required software and downloads.
 
    ![Terminal menu is open. Edit > Paste command is highlighted.](media/paste-terminal.png "Pasta to terminal")
 
-4. Run the code below to copy Parts Unlimited web site files to the wwwroot folder targeted by the local web server.
+4. Run the code below to copy Parts Unlimited website files to the wwwroot folder targeted by the local webserver.
 
    ```PS
    Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\web-site-publish.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
    ```
 
-5. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008-ip** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008-ip** Public IP address from the list of resources.
+5. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008-ip** resource by selecting **Resource groups** from the Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008-ip** Public IP address from the list of resources.
 
     ![The SqlServer2008-ip IP address is highlighted in the list of resources.](media/sqlip-selection.png "SqlServer2008 Public IP resource")
 
-6. In the **Overview** blade select **Copy** to copy the public IP address and paste the value into a text editor, such as Notepad.exe, for later reference.
+6. In the **Overview** blade, select **Copy** to copy the public IP address and paste the value into a text editor, such as Notepad.exe, for later reference.
 
     ![SqlServer2008-ip resource is open. Public IP Address copy button is highlighted.](media/sqlip-copy-public-ip.png "SqlServer2008 Public IP")
 
@@ -418,7 +418,7 @@ In this task, you configure the WebVM with the required software and downloads.
 
 In this task, you open an RDP connection to the SqlServer2008 VM, disable Internet Explorer Enhanced Security Configuration, and add a firewall rule to open port 1433 to inbound TCP traffic.
 
-> **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2, which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
+> **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2, which may affect some users. This issue presents itself as very small, hard-to-read text on the screen. The workaround for this is to use a second monitor for the RDP display, allowing you to scale up the resolution to make the text larger.
 
 1. As you did for the LabVM, connect to the SqlServer2008 VM with a Remote Desktop Connection. Enter the following credentials when prompted:
 
@@ -429,7 +429,7 @@ In this task, you open an RDP connection to the SqlServer2008 VM, disable Intern
 
 3. On the **Server Manager** view, select **Configure IE ESC (1)** under Security Information. In the Internet Explorer Enhanced Security Configuration dialog, select **Off (2) (3)** under both Administrators and Users, and then select **OK (4)**.
 
-   ![Screenshot of the Server Manager. In the left pane, Local Server is selected. In the right, Properties (For SQLSERVER2008) pane, the IE Enhanced Security Configuration, which is set to On, is highlighted. Internet Explorer Enhanced Security Configuration dialog box, with Administrators and Users is set to Off.](media/windows-server-2008-manager-ie-enhanced-security-configuration.png "Server Manager")
+   ![Screenshot of the Server Manager. In the left pane, Local Server is selected. In the right, Properties (For SQLSERVER2008) pane, the IE Enhanced Security Configuration, which is set to On, is highlighted. Internet Explorer Enhanced Security Configuration dialog box, with Administrators and Users, is set to Off.](media/windows-server-2008-manager-ie-enhanced-security-configuration.png "Server Manager")
 
 ## Task 10: Setting Up the SqlServer2008 VM
 
@@ -443,11 +443,11 @@ In this task, you install the Microsoft Data Migration Assistant (DMA) on the Sq
 
 3. Select **Connect** to continue.
 
-   ![SQL Server Authentication dialog is open. SQLSERVER2008 is set as Server Name. Windows Authentication is set as Authentication method. Connect button is highlighted.](media/sqlserver2008-connect.png "Sql Server Login")
+   ![SQL Server Authentication dialog is open. SQLSERVER2008 is set as Server Name. Windows Authentication is set as the Authentication method. Connect button is highlighted.](media/sqlserver2008-connect.png "Sql Server Login")
 
 4. Select **New Query (1)** from the toolbar to lunch a new query window. Copy and paste the code **(2)** below and select **Execute (3)** to run it.
 
-   ![Sql Server Management Studio is open. New Query button is clicked. A new query window is presented. T-SQL Commands are pasted in and Execute command is highlighted.](media/sqlserver2008-setup-script.png "Sql Script")
+   ![Sql Server Management Studio is open. The New Query button is clicked. A new query window is presented. T-SQL Commands are pasted in, and Execute command is highlighted.](media/sqlserver2008-setup-script.png "Sql Script")
 
    ```sql
    USE [master];

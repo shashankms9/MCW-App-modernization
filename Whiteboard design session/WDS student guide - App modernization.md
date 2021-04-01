@@ -71,14 +71,14 @@ In its first year, Parts Unlimited opened fourteen stores in three states: Washi
 
 Parts Unlimited has a hosted web application on its internal infrastructure and using a Windows Server, Internet Information Services (IIS), and Microsoft SQL Server to host the solution. All servers are located in an onsite server room in their distribution center. The office for their IT staff is just across the server room. Their IT staff includes a hardware technician, a system/network administrator, two software engineers. Their technical support is outsourced to a third-party service provider in Indonesia.
 
-The web server that hosts the e-commerce website is recently updated to Windows Server 2019 Datacenter. The e-commerce application is tailor-made by a software development company that is now out of business. The application is built on .NET Core 2.2.207 that hit the end of life on December 23, 2019. Their team tried to change the version number in a configuration file to a recent version, but it crashed the website. They rolled back and left it as it is. They understand that they have to migrate to a newer version of .NET Core, but they do not have the resources internally to make it happen. "We have to fix our scaling problems first. Then we can think of updating to something new." says Casey Jensen, Parts Unlimited's CEO. The source code left from the vendor has many solution files and codes that the team does not know if they are used.  They open the primary solution file named PartsUnlimited.sln and deploy from Visual Studio into a folder on the server.  
+The web server that hosts the e-commerce website is recently updated to Windows Server 2019 Datacenter. The e-commerce application is tailor-made by a software development company that is now out of business. The application is built on .NET Core 2.2.207 that hit the end of life on December 23, 2019. Their team tried to change the version number in a configuration file to a recent version, but it crashed the website. They rolled back and left it as it is. They understand that they have to migrate to a more recent version of .NET Core, but they do not have the resources internally to make it happen. "We have to fix our scaling problems first. Then we can think of updating to something new," says Casey Jensen, Parts Unlimited's CEO. The source code left from the vendor has many solution files and codes that the team does not know if they are used.  They open the primary solution file named PartsUnlimited.sln and deploy from Visual Studio into a folder on the server.  
 
 The team at Parts Unlimited is terrified to touch anything on the servers as long as it works. When they have to introduce new functionality or a bug fix, they schedule overnight deployments at 2 AM. This strategy has worked well so far, but it is not ideal. When a fix is ready, the team has to schedule deployment for 2 AM and wait. The scheduling of overnight shifts puts too much stress on the team and increases turnover in IT staff.
 
 The SQL database used by Parts Unlimited e-commerce site is deployed on a separate server that has been there since the company was founded. It is a SQL Server 2008 R2 SP3 deployed on a Windows Server 2008 R2 SP1.
 The e-commerce application incurs ongoing maintenance costs in hardware, operating system updates, and licensing fees. These maintenance costs make Microsoft Azure App Service an attractive alternative. Their team is looking to migrate Microsoft ASP.NET applications and any SQL Server database to Azure App Service and Azure SQL Database. However, they are worried that their application might not be supported because of its .NET Core version being at the end of life. They wonder if they can move to the cloud now and migrate their application later or if the old version will be a show stopper.
 
-Parts Unlimited has plans to increase its marketing investment, currently on hold because of scaling issues. The company is stuck and cannot grow without increasing its infrastructure footprint. Allegra wants to finalize their cloud vs. on-premises decision based on the current migration effort's success. CFO Jára Cimrman says "We have to drive and scale our e-Commerce presence forward while controlling costs."
+Parts Unlimited has plans to increase its marketing investment, currently on hold because of scaling issues. The company is stuck and cannot grow without increasing its infrastructure footprint. Allegra wants to finalize their cloud vs. on-premises decision based on the current migration effort's success. CFO Jára Cimrman says, "We have to drive and scale our e-Commerce presence forward while controlling costs."
 
 The engineering team is worried about their order processing subsystem. Currently, they have a strongly coupled order processing system that runs synchronously during checkout. When moved to the cloud, they do not want to be worried about their order processing system's scalability. They are looking for a modern approach with the least migration effort possible. They want to keep the changes and their investment into the current code base at a minimum.
 
@@ -100,7 +100,7 @@ Finally, Parts Unlimited is looking to invest in DevOps practices to decrease hu
 
 ### Customer objections
 
-1. Our developers were not able to migrate our .NET Core 2.2 application to a newer version. Should we expect a steep upgrade path with every new version?
+1. Our developers were not able to migrate our .NET Core 2.2 application to a more recent version. Should we expect a steep upgrade path with every new version?
 
 2. When a .NET Core version is EoL (End-of-life), does that mean we cannot host our solution in Azure?
 
@@ -120,7 +120,7 @@ Timeframe: 60 minutes
 
 Directions: With all participants at your table, answer the following questions and list the answers on a flip chart:
 
-1. Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
+1. Who should you present this solution to? Who is your target customer audience? Who are the decision-makers?
 
 2. What customer business needs do you need to address with your solution?
 
@@ -186,7 +186,7 @@ Directions:
 
 1. Pair with another table.
 
-2. One table is the Microsoft team and the other table is the customer.
+2. One table is the Microsoft team, and the other table is the customer.
 
 3. The Microsoft team presents their proposed solution to the customer.
 

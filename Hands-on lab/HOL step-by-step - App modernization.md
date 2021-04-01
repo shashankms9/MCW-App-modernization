@@ -69,9 +69,9 @@ At the end of this hands-on lab, your ability to build solutions for modernizing
 
 ## Overview
 
-Parts Unlimited is an online auto parts store. Founded in Spokane, WA, in 2008, they are providing both genuine OEM and aftermarket parts for cars, sport utility vehicles, vans, and trucks, including new and remanufactured complex parts, maintenance items, and accessories. Their mission is to make buying vehicle replacement parts easy for consumers and professionals. Parts Unlimited has 185 stores in the US, with plans to scale to Mexico and Brazil.
+Parts Unlimited is an online auto parts store. Founded in Spokane, WA, in 2008, they are providing both genuine OEM and aftermarket parts for cars, sport utility vehicles, vans, and trucks, including new and remanufactured complex parts, maintenance items, and accessories. Its mission is to make buying vehicle replacement parts easy for consumers and professionals. Parts Unlimited has 185 stores in the US, with plans to scale to Mexico and Brazil.
 
-Parts Unlimited has a hosted web application on its internal infrastructure and using a Windows Server, Internet Information Services (IIS), and Microsoft SQL Server to host the solution. Beyond the initial effort and costs, these applications incur ongoing maintenance costs in hardware, operating system updates, and licensing fees. These maintenance costs make Microsoft Azure App Service an attractive alternative. Their team is looking to migrate Microsoft ASP.NET applications and any SQL Server database to Azure App Service and Azure SQL Database. However, they are worried that their application might not be supported. Their web site is built on a .NET Core version that hit the end of life on December 23, 2019. They wonder if they can move to the cloud now and migrate their application later or if the old version will be a show stopper.
+Parts Unlimited has a hosted web application on its internal infrastructure and using a Windows Server, Internet Information Services (IIS), and Microsoft SQL Server to host the solution. Beyond the initial effort and costs, these applications incur ongoing maintenance costs in hardware, operating system updates, and licensing fees. These maintenance costs make Microsoft Azure App Service an attractive alternative. Their team is looking to migrate Microsoft ASP.NET applications and any SQL Server database to Azure App Service and Azure SQL Database. However, they are worried that their application might not be supported. Their website is built on a .NET Core version that hit the end of life on December 23, 2019. They wonder if they can move to the cloud now and migrate their application later or if the old version will be a show stopper.
 
 Additionally, Parts Unlimited has plans to increase its marketing investment, currently on hold because of scaling issues. The company is stuck and can't grow without increasing its infrastructure footprint. Their CEO wants to finalize their cloud vs. on-premises decision based on the current migration effort's success. The engineering team is worried about their order processing subsystem. Currently, they have a strongly coupled order processing system that runs synchronously during checkout. When moved to the cloud, they don't want to be worried about their order processing system's scalability. They are looking for a modern approach with the least migration effort possible.
 
@@ -79,13 +79,13 @@ Finally, Parts Unlimited is looking to invest in DevOps practices to decrease hu
 
 ## Solution architecture
 
-Below is a high-level architecture diagram of the solution you implement in this hands-on lab. Please review this carefully, so you understand the whole of the solution as you are working on the various components.
+Below is a high-level architecture diagram of the solution you implement in this hands-on lab. Please review this carefully to understand the whole of the solution as you are working on the various components.
 
 ![This solution diagram includes a high-level overview of the architecture implemented within this hands-on lab.](media/architecture-diagram.png "Solution architecture diagram")
 
 > **Note:** The solution provided is only one of many possible, viable approaches.
 
-The solution begins with setting up Azure Migrate as the central assessment and migration hub for Parts Unlimited's E-Commerce web site. Using the App Service Migration Assistant tool from Azure Migrate, Parts Unlimited found that their web site is fully compatible with Azure App Service. As a next step, they use App Service Migration Assistant to provision an Azure App Service environment and deploy their application to Azure. Following the success in moving the web application, Parts Unlimited uses the Data Migration Assistant (DMA) assessment to determine that they can migrate into a fully-managed SQL Database service in Azure. The assessment reveals no compatibility issues or unsupported features that would prevent them from using Azure SQL Database.
+The solution begins with setting up Azure Migrate as the central assessment and migration hub for Parts Unlimited's E-Commerce website. Using the App Service Migration Assistant tool from Azure Migrate, Parts Unlimited found that their website is fully compatible with Azure App Service. As a next step, they use App Service Migration Assistant to provision an Azure App Service environment and deploy their application to Azure. Following the success in moving the web application, Parts Unlimited uses the Data Migration Assistant (DMA) assessment to determine that they can migrate into a fully-managed SQL Database service in Azure. The assessment reveals no compatibility issues or unsupported features that would prevent them from using Azure SQL Database.
 
 Next, Parts Unlimited sets up a private GitHub repository and pushes their codebase to GitHub. They set up deployment slots to have a staging environment to test functionality before releasing to production. As a CI/CD solution, they decide to use GitHub Actions and Workflows.
 
@@ -102,7 +102,7 @@ Finally, Parts Unlimited decides to decouple its order processing system and mov
 
 Duration: 10 minutes
 
-Azure Migrate provides a centralized hub to assess and migrate on-premises servers, infrastructure, applications, and data to Azure . It provides a single portal to start, run, and track your migration to Azure. Azure Migrate comes with a range of tools for assessment and migration that we will use during our lab. We will use Azure Migrate as the central location for our assessment and migration efforts.
+Azure Migrate provides a centralized hub to assess and migrate on-premises servers, infrastructure, applications, and data to Azure. It provides a single portal to start, run, and track your migration to Azure. Azure Migrate comes with a range of assessment tools and migration that we will use during our lab. We will use Azure Migrate as the central location for our assessment and migration efforts.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your lab resource group. Select **Add** to add a new resource.
 
@@ -110,7 +110,7 @@ Azure Migrate provides a centralized hub to assess and migrate on-premises serve
 
 2. Type **Azure Migrate** into the search box and hit **Enter** to start the search.
 
-    ![Azure Portal new resource page is open. Search box is filled with Azure Migrate.](media/azure-migrate-search.png "Marketplace Search for Azure Migrate")
+    ![Azure Portal new resource page is open. The search box is filled with Azure Migrate.](media/azure-migrate-search.png "Marketplace Search for Azure Migrate")
 
 3. Select **Create** to continue.
 
@@ -126,15 +126,15 @@ Azure Migrate provides a centralized hub to assess and migrate on-premises serve
 
 6. Type **partsunlimitedweb** as your project name. Select **Create** to continue.
 
-    ![Azure Migrate project settings page is shown. Project name is set to partsunlimitedweb. Create button is highlighted.](media/azure-migrate-create-project-settings.png "Azure Migrate Project Creation")
+    ![Azure Migrate project settings page is shown. The project name is set to partsunlimitedweb. Create button is highlighted.](media/azure-migrate-create-project-settings.png "Azure Migrate Project Creation")
 
-7. Once your project is created **Azure Migrate** will show you default **Web App Assessment (1)** and **Web App Migration (2)** tools (You might need to refresh your browser). For Parts Unlimited web site, **App Service Migration Assistant** is the one we have to use. Download links are presented in Azure Migrate's Web Apps page. In our case, our lab environment comes with App Service Migration Assistant pre-installed on Parts Unlimited's web server.
+7. Once your project is created **Azure Migrate** will show you default **Web App Assessment (1)** and **Web App Migration (2)** tools (You might need to refresh your browser). For the Parts Unlimited web site, **App Service Migration Assistant** is the one we have to use. Download links are presented on Azure Migrate's Web Apps page. In our case, our lab environment comes with App Service Migration Assistant pre-installed on Parts Unlimited's web server.
 
     ![Azure Migrate Web App assessment and migration tools are presented.](media/azure-migrate-web-app-migration.png "Azure Migrate Web Apps Capabilities")
 
-8. Another aspect of our migration project will be the database for Parts Unlimited's web site. We will have to assess the database's compatibility and migrate to Azure SQL Database. Let's switch to the **Databases (1)** section in Azure Migrate. Select **Click here (2)** hyperlink for Assessment tools.
+8. Another aspect of our migration project will be the database for Parts Unlimited's website. We will have to assess the database's compatibility and migrate to Azure SQL Database. Let's switch to the **Databases (1)** section in Azure Migrate. Select **Click here (2)** hyperlink for Assessment tools.
 
-    ![Azure Migrate is open. Databases section is selected. Click here link for assessment tools is highlighted.](media/azure-migrate-database-assessment.png "Azure Migrate Databases")
+    ![Azure Migrate is open. The databases section is selected. Click here link for assessment tools is highlighted.](media/azure-migrate-database-assessment.png "Azure Migrate Databases")
 
 9. We will use **Azure Migrate: Database Assessment** to assess Parts Unlimited's database hosted on a SQL Server 2008 R2 server. Pick **Azure Migrate: Database Assessment (1)** and select **Add tool (2)**.
 
@@ -148,7 +148,7 @@ Azure Migrate provides a centralized hub to assess and migrate on-premises serve
 
     ![Azure Migrate Database Migration option is selected for Azure Migrate tools. Add tool button is highlighted.](media/azure-migrate-database-migration-tool.png "Azure Migrate Database Migration Tool")
 
-12. Now we have all the assessment and migration tools/services we need for Parts Unlimited ready to go under the Azure Migrate umbrella.
+12. Now, we have all the assessment and migration tools/services we need for Parts Unlimited ready to go under the Azure Migrate umbrella.
 
     ![Azure Migrate databases section is open. Azure Migrate Database Assessment and Database Migration tools are presented.](media/azure-migrate-database-migration-ready.png "Azure Migrate Database Migration and Assessment Tools")
 
@@ -156,7 +156,7 @@ Azure Migrate provides a centralized hub to assess and migrate on-premises serve
 
 Duration: 20 minutes
 
-The first step for Parts Unlimited is to assess whether their apps have dependencies on unsupported features on Azure App Service. In this exercise, you use an **Azure Migrate** tool called the [App Service migration assistant](https://appmigration.microsoft.com/) to evaluate Parts Unlimited's web site for a migration to Azure App Service. The assessment runs readiness checks and provides potential remediation steps for common issues. Once the assessment succeeds, we will proceed with the migration as well. You will use a simulated on-premises environment hosted in virtual machines running on Azure.
+The first step for Parts Unlimited is to assess whether their apps have dependencies on unsupported features on Azure App Service. In this exercise, you use an **Azure Migrate** tool called the [App Service migration assistant](https://appmigration.microsoft.com/) to evaluate Parts Unlimited's website for a migration to Azure App Service. The assessment runs readiness checks and provides potential remediation steps for common issues. Once the assessment succeeds, we will proceed with the migration as well. You will use a simulated on-premises environment hosted in virtual machines running on Azure.
 
 ### Task 1: Perform assessment for migration to Azure App Service
 
@@ -174,7 +174,7 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
     ![The WebVM VM blade is displayed, Public IP Address copy button is highlighted.](media/parts-umlimited-web-site.png "Parts Unlimited Web Site")
 
-    > For testing purposes, you might want to create yourself an account on Parts Unlimited web site and purchase some products. Use the coupon code **FREE** to buy everything for free.
+    > For testing purposes, you might want to create yourself an account on the Parts Unlimited website and purchase some products. Use the coupon code **FREE** to buy everything for free.
 
 4. Go back to the Azure Portal. On the WebVM Virtual Machine's **Overview** blade, select **Connect (1)** and **RDP (2)** on the top menu.
 
@@ -199,15 +199,15 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
 8. Select **Yes** to connect, if prompted that the identity of the remote computer cannot be verified.
 
-    ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/remote-desktop-connection-identity-verification-webvm.png "Remote Desktop Connection dialog")
+    ![In the Remote Desktop Connection dialog box, a warning states that the remote computer's identity cannot be verified and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/remote-desktop-connection-identity-verification-webvm.png "Remote Desktop Connection dialog")
 
-9. Once logged into the WebVM VM, open **AppServiceMigrationAssistant** that is located on the Desktop.
+9. Once logged into the WebVM VM, open **AppServiceMigrationAssistant** that is located on the desktop.
 
     ![AppServiceMigrationAssistant is highlighted on the desktop.](media/appservicemigrationassistant-desktop.png "App Service Migration Assistant")
 
-10. Once App Service Migration Assistant discovers the web sites available on the server choose **Default Web Site (1)** for migration and select **Next (2)** to start assessment.
+10. Once App Service Migration Assistant discovers the websites available on the server, choose **Default Web Site (1)** for migration and select **Next (2)** to start the assessment.
 
-    ![AppServiceMigrationAssistant is open. Default Web Site is selected. Next button is highlighted.](media/appservicemigration-choose-site.png "App Service Migration Assistant Web Site selection")
+    ![AppServiceMigrationAssistant is open. Default Web Site is selected. The next button is highlighted.](media/appservicemigration-choose-site.png "App Service Migration Assistant Web Site selection")
 
 11. Observe the result of the assessment report. In our case, our application has successfully passed 13 tests **(1)** with no additional actions needed. Now that our assessment is complete, select **Next (2)** to proceed to the migration.
 
@@ -219,7 +219,7 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
 After reviewing the assessment results, you have ensured the web application is a good candidate for migration to Azure App Service. Now, we will continue the process with the migration of the application.
 
-1. In order to continue with the migration of our web site Azure App Service Migration Assistant needs access to our Azure Subscription. Select **Copy Code & Open Browser** button to be redirected to the Azure Portal.
+1. In order to continue with the migration of our website Azure App Service Migration Assistant needs access to our Azure Subscription. Select **Copy Code & Open Browser** button to be redirected to the Azure Portal.
 
    ![Azure App Service Migration Assistant's Azure Login dialog is open. A device code is presented. Copy Code & Open Browser button is highlighted.](media/appservicemigration-azure-login.png "Azure Login")
 
@@ -229,25 +229,25 @@ After reviewing the assessment results, you have ensured the web application is 
 
 3. Right-click the text box and select **Paste (1)** to paste your login code. Select **Next** to give subscription access to App Service Migration Assistant.
 
-    ![Azure Code Login web site is open. Context menu for the code textbox is shown. Paste command from the context menu is highlighted. The next button is highlighted as a second step. ](media/appservicemigration-azure-login-code.png "Enter Authentication Code")
+    ![Azure Code Login website is open. Context menu for the code textbox is shown. Paste command from the context menu is highlighted. The next button is highlighted as a second step. ](media/appservicemigration-azure-login-code.png "Enter Authentication Code")
 
 4. Continue the login process with your Azure Subscription credentials. When you see the message that says **You have signed in to the Azure App Service Migration Assistant application on your device** close the browser window and return to the App Service Migration Assistant.
 
     ![Azure Login process is complete. A message dialog is shown that indicates the login process is a success.](media/appservicemigration-azure-login-complete.png "App Service Migration Assistant authentication approval")
 
-5. Select the Azure Migrate project we created **(1)** in the previous exercise to submit the results of our migration. Select **Next** to continue.
+5. Select the Azure Migrate project we created **(1)** in the previous exercise to submit our migration results. Select **Next** to continue.
 
     ![Azure Migrate Project is set to partsunlimitedweb. The next button is highlighted.](media/appservicemigration-azure-migrate.png "Azure Migrate Hub integration")
 
-6. In order to migrate Parts Unlimited web site, we have to create an App Service Plan. The Azure App Service Migration Assistant will take care of all the requirements needed. Select **Use existing (1)** and select the lab resource group as your deployment target. App Service requires a globally unique Site Name, we suggest using a pattern that matches `partsunlimited-web-{uniquesuffix}` **(2)**. Select **Migrate** to start the migration process.
+6. In order to migrate Parts Unlimited website, we have to create an App Service Plan. The Azure App Service Migration Assistant will take care of all the requirements needed. Select **Use existing (1)** and select the lab resource group as your deployment target. App Service requires a globally unique Site Name. We suggest using a pattern that matches `partsunlimited-web-{uniquesuffix}` **(2)**. Select **Migrate** to start the migration process.
 
-    ![Deployment options are presented. Existing lab resource group is selected as destination. Destination site name is set to partsunlimited-web-20X21. Migrate button is highlighted.](media/appservicemigration-migrate.png "Azure App Service Migration Assistant Options")
+    ![Deployment options are presented. The existing lab resource group is selected as the destination. The destination site name is set to partsunlimited-web-20X21. Migrate button is highlighted.](media/appservicemigration-migrate.png "Azure App Service Migration Assistant Options")
 
     > **WARNING:** If your migration fails with a **WindowsWorkersNotAllowedInLinuxResourceGroup (1)** try the migration process again, but this time selecting a different Resource Group for your deployment. If that is not possible, select a different Region.  
     >
     > ![Migration failed error screen is shown. WindowsWorkersNotAllowedInLinuxResourceGroup message is highlighted.](media/app-migration-windowsworkersnotallowed.png "Migration failed")
 
-7. We have just completed the migration of Parts Unlimited web site from IIS on a Virtual Machine to Azure App Service. Congratulations. Let's go back to the Azure Portal and look into Azure Migrate. Search for `migrate` **(1)** on the Azure Portal and select **Azure Migrate (2)**.
+7. We have just completed the Parts Unlimited website's migration from IIS on a Virtual Machine to Azure App Service. Congratulations. Let's go back to the Azure Portal and look into Azure Migrate. Search for `migrate` **(1)** on the Azure Portal and select **Azure Migrate (2)**.
 
     ![Azure Portal is open. The search box is filled with the migrate keyword. Azure Migrate is highlighted from the result list.](media/find-azure-migrate.png "Azure Migrate on Azure Portal Search")
 
@@ -271,9 +271,9 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
    ![The SQLServer2008 virtual machine is highlighted in the list of resources.](media/find-sqlserver2008-resource.png "SqlServer2008 Selection")
 
-2. Launch DMA from the Windows Start menu by typing "data migration" into the search bar, and then selecting **Microsoft Data Migration Assistant** in the search results.
+2. Launch DMA from the Windows Start menu by typing "data migration" into the search bar and then selecting **Microsoft Data Migration Assistant** in the search results.
 
-    > **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2, which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
+    > **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2, which may affect some users. This issue presents itself as very small, hard-to-read text on the screen. The workaround for this is to use a second monitor for the RDP display, allowing you to scale up the resolution to make the text larger.
 
    ![In the Windows Start menu, "data migration" is entered into the search bar, and Microsoft Data Migration Assistant is highlighted in the Windows start menu search results.](media/windows-start-menu-dma.png "Data Migration Assistant")
 
@@ -318,7 +318,7 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
     ![Start assessment](media/dma-start-assessment-to-azure-sql-db.png "Start assessment")
 
-11. Take a moment to review the assessment for migrating to Azure SQL DB. The SQL Server feature parity report **(1)** shows that Analysis Services and SQL Server Reporting Services are unsupported **(2)**, but these do not affect any objects in the `PartsUnlimited` database, so won't block a migration.
+11. Take a moment to review the assessment for migrating to Azure SQL DB. The SQL Server feature parity report **(1)** shows that Analysis Services and SQL Server Reporting Services are unsupported **(2)**, but these do not affect any objects in the `PartsUnlimited` database, so they won't block a migration.
 
     ![The feature parity report is displayed, and the two unsupported features are highlighted.](media/dma-feature-parity-report.png "Feature parity")
 
@@ -340,11 +340,11 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
     ![Upload to Azure Migrate page is open. Lab subscription and partsunlimited Azure Migrate Project are selected. Upload button is highlighted.](media/dma-azure-migrate-upload-2.png "Azure Migrate upload settings")
 
-    > **Note**: If you encounter **Failed to fetch subscription list from Azure, Strong Authentication required (1)** you might not see some of your subscription because of MFA limitations. You should still be able to see your lab subscription.
+    > **Note**: If you encounter **Failed to fetch subscription list from Azure, Strong Authentication required (1)** you might not see some of your subscriptions because of MFA limitations. You should still be able to see your lab subscription.
 
 16. Once the upload is complete select **OK** and navigate to the Azure Migrate page on the Azure Portal.
 
-    ![Assessment Uplaoded dialog shown.](media/dma-upload-complete.png "Assessment Uploaded")
+    ![Assessment Uploaded dialog shown.](media/dma-upload-complete.png "Assessment Uploaded")
 
 17. Select the **Databases (1)** page on Azure Migrate. Observe the number of assessed database instances **(2)** and the number of databases ready for Azure SQL DB **(2)**. Keep in mind that you might need to wait for 5 to 10 minutes for results to show up. You can use the **Refresh** button on the page to see the latest status.
 
@@ -354,11 +354,11 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
 In this task, you will retrieve the IP address of the SqlServer2008 VM and the Fully Qualified Domain Name for the Azure SQL Database. This information is needed to connect to your SqlServer2008 VM and Azure SQL Database from Azure Data Migration Service and Azure Data Migration Assistant.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008-ip** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008-ip** Public IP address from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008-ip** resource by selecting **Resource groups** from the Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008-ip** Public IP address from the list of resources.
 
     ![The SqlServer2008-ip IP address is highlighted in the list of resources.](media/sqlip-selection.png "SqlServer2008 public IP resource")
 
-2. In the **Overview** blade select **Copy** to copy the public IP address and paste the value into a text editor, such as Notepad.exe, for later reference.
+2. In the **Overview** blade, select **Copy** to copy the public IP address and paste the value into a text editor, such as Notepad.exe, for later reference.
 
     ![SqlServer2008-ip resource is open. Public IP Address copy button is highlighted.](media/sqlip-copy-public-ip.png "SqlServer2008 public IP")
 
@@ -372,9 +372,9 @@ In this task, you will retrieve the IP address of the SqlServer2008 VM and the F
 
 ### Task 3: Migrate the database schema using the Data Migration Assistant
 
-After you have reviewed the assessment results and you have ensured the database is a candidate for migration to Azure SQL Database, use the Data Migration Assistant to migrate the schema to Azure SQL Database.
+After reviewing the assessment results and ensuring the database is a candidate for migration to Azure SQL Database, use the Data Migration Assistant to migrate the schema to Azure SQL Database.
 
-1. On the SqlServer2008 VM, return to the Data Migration Assistant, and select the New **(+)** icon in the left-hand menu.
+1. On the SqlServer2008 VM, return to the Data Migration Assistant and select the New **(+)** icon in the left-hand menu.
 
 2. In the New project dialog, enter the following:
 
@@ -384,7 +384,7 @@ After you have reviewed the assessment results and you have ensured the database
    - **Target server type**: Select Azure SQL Database.
    - **Migration scope (3)**: Select Schema only.
 
-   ![The above information is entered in the New project dialog box.](media/data-migration-assistant-new-project-migration.png "New Project dialog")
+   ![The above information is entered in the New Project dialog box.](media/data-migration-assistant-new-project-migration.png "New Project dialog")
 
 3. Select **Create (4)**.
 
@@ -420,7 +420,7 @@ After you have reviewed the assessment results and you have ensured the database
 
     ![The Select objects tab of the Data Migration Assistant is displayed, with all the objects checked.](media/data-migration-assistant-migration-select-objects.png "Data Migration Assistant Select target")
 
-9. On the **Script & deploy schema** tab, review the script. Notice the view also provides a note that there are not blocking issues **(1)**.
+9. On the **Script & deploy schema** tab, review the script. Notice the view also provides a note that there are no blocking issues **(1)**.
 
     ![The Script & deploy schema tab of the Data Migration Assistant is displayed, with the generated script shown.](media/data-migration-assistant-migration-script-and-deploy-schema.png "Data Migration Assistant Script & deploy schema")
 
@@ -430,11 +430,11 @@ After you have reviewed the assessment results and you have ensured the database
 
     ![The schema deployment results are displayed, with 23 commands executed and 0 errors highlighted.](media/data-migration-assistant-migration-deployment-results.png "Schema deployment results")
 
-12. Launch SQL Server Management Studio (SSMS) on the SqlServer2008 VM from the Windows Start menu by typing "sql server management" **(1)** into the search bar, and then selecting **SQL Server Management Studio 17 (2)** in the search results.
+12. Launch SQL Server Management Studio (SSMS) on the SqlServer2008 VM from the Windows Start menu by typing "sql server management" **(1)** into the search bar and then selecting **SQL Server Management Studio 17 (2)** in the search results.
 
     ![In the Windows Start menu, "sql server management" is entered into the search bar, and SQL Server Management Studio 17 is highlighted in the Windows start menu search results.](media/smss-windows-search.png "SQL Server Management Studio 17")
 
-13. Connect to your Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
+13. Connect to your Azure SQL Database by selecting **Connect->Database Engine** in the Object Explorer and then entering the following into the Connect to server dialog:
 
     - **Server name (1)**: Paste the server name of your Azure SQL Database you copied above.
     - **Authentication type (2)**: Select SQL Server Authentication.
@@ -452,11 +452,11 @@ After you have reviewed the assessment results and you have ensured the database
 
 ### Task 4: Migrate the database using the Azure Database Migration Service
 
-At this point, you have migrated the database schema using DMA. In this task, you migrate the data from the `PartsUnlimited` database into the new Azure SQL Database using the Azure Database Migration Service.
+At this point, you have migrated the database schema using DMA. In this task, you migrate the data from the `PartsUnlimited` database into the latest Azure SQL Database using the Azure Database Migration Service.
 
-> The [Azure Database Migration Service](https://docs.microsoft.com/azure/dms/dms-overview) integrates some of the functionality of Microsoft existing tools and services to provide customers with a comprehensive, highly available database migration solution. The service uses the Data Migration Assistant to generate assessment reports that provide recommendations to guide you through the changes required prior to performing a migration. When you're ready to begin the migration process, Azure Database Migration Service performs all of the required steps.
+> The [Azure Database Migration Service](https://docs.microsoft.com/azure/dms/dms-overview) integrates some of the functionality of Microsoft's existing tools and services to provide customers with a comprehensive, highly available database migration solution. The service uses the Data Migration Assistant to generate assessment reports that provide recommendations to guide you through the changes required before performing a migration. When you're ready to begin the migration process, Azure Database Migration Service conducts all necessary steps.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your Azure Database Migration Service by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-dms-UniqueId** Azure Database Migration Service in the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your Azure Database Migration Service by selecting **Resource groups** from the Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-dms-UniqueId** Azure Database Migration Service in the list of resources.
 
    ![The contoso-dms Azure Database Migration Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-dms-resource.png "Resources")
 
@@ -487,9 +487,9 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 6. Select **Next: Select databases >> (6)**.
 
-7. PartsUnlimited databases comes preselected. Select **Next: Select target >>** to continue.
+7. PartsUnlimited database comes preselected. Select **Next: Select target >>** to continue.
 
-    ![The Migration Wizard Select database blade is displayed. PartsUnlimited databases is selected. Next: Select target >> button is highlighted.](media/dms-migration-wizard-select-database.png "Migration Wizard Select databases")
+    ![The Migration Wizard Select database blade is displayed. PartsUnlimited database is selected. Next: Select target >> button is highlighted.](media/dms-migration-wizard-select-database.png "Migration Wizard Select databases")
 
 8. On the Migration Wizard **Select target** blade, enter the following:
 
@@ -543,7 +543,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
     ![The Download report button is highlighted on the DMS Migration toolbar.](media/dms-toolbar-download-report.png "Download report")
 
-    > **Note**: The **Download report** button will be disabled if the migration completed without warnings or errors.
+    > **Note**: The **Download report** button will be disabled if the migration is completed without warnings or errors.
 
 20. The reason for the warning can be found in the Validation Summary section. In the report below, you can see that a storage object schema difference triggered a warning. However, the report also reveals that everything was migrated successfully.
 
@@ -561,7 +561,7 @@ Now that we have both our application and database migrated to Azure. It is time
 
    ![Connection string panel if SQL Database is open. Copy button for ADO.NET connection string is highlighted.](media/sql-connection-string-copy.png "Database connection string")
 
-3. Paste the value into a text editor, such as Notepad.exe, to replace the Password placeholder. Replace the `{your_password}` section with your admin password. Copy the full connection string with the replaced password for later use.
+3. Paste the value into a text editor, such as Notepad.exe, to replace the Password placeholder. Replace the `{your_password}` section with your admin password. Copy the entire connection string with the replaced password for later use.
 
     ![Notepad is open. SQL Connection string is pasted in. {your_password} placeholder is highlighted.](media/sql-connection-string-password-replace.png "Database connection string")
 
@@ -580,7 +580,7 @@ Now that we have both our application and database migrated to Azure. It is time
    - **Type (3)**: Select **SQLAzure**
    - **Deployment slot setting (4)**: Check this option to make sure connection strings stick to a deployment slot. This will be helpful when we add additional deployment slots during the next exercises.
 
-    ![Add/Edit Connection string panel is open. Name field is set to DefaultConnectionString. Value field is set to the connection string copied in a previous step. Type is set to SQL Azure. Deployment slot setting checkbox is checked. OK button is highlighted. ](media/app-service-connection-string.png "Adding connection string")
+    ![Add/Edit Connection string panel is open. The name field is set to DefaultConnectionString. The value field is set to the connection string copied in a previous step. Type is set to SQL Azure. The deployment slot setting checkbox is checked. OK button is highlighted. ](media/app-service-connection-string.png "Adding connection string")
 
 7. Select **OK (5)**.
 
@@ -588,9 +588,9 @@ Now that we have both our application and database migrated to Azure. It is time
 
     ![App Service Configuration page is open. Save button is highlighted.](media/app-service-settings-save.png "App Service Configuration")
 
-9. Switch to the **Overview (1)** blade, and select **URL (2)** to navigate to the Parts Unlimited web site hosted in our Azure App Service using Azure SQL Database.
+9. Switch to the **Overview (1)** blade, and select **URL (2)** to navigate to the Parts Unlimited website hosted in our Azure App Service using Azure SQL Database.
 
-    ![Overview panel for the App Service is on screen. URL for the app service if highlighted.](media/app-service-navigate-to-app-url.png "App Service public URL")
+    ![Overview panel for the App Service is on screen. URL for the app service is highlighted.](media/app-service-navigate-to-app-url.png "App Service public URL")
 
 ## Exercise 4: Setup CI/CD pipeline with GitHub Actions for the web app
 
@@ -600,7 +600,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
 ### Task 1: Moving the codebase to a GitHub repo
 
-1. Login to [GitHub](https://github.com) with your account. Select the New button positioned on top of the repositories list. As an alternative you can [navigate to the new repository site here](https://github.com/new).
+1. Log in to [GitHub](https://github.com) with your account. Select the New button positioned on top of the repositories list. As an alternative, you can [navigate to the new repository site here](https://github.com/new).
 
     ![GitHub.com Landing page is shown. New button to create a new repository is highlighted.](media/github-new-repo.png "GitHub new repo")
 
@@ -612,7 +612,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ![GitHub repository page is shown. Endpoint copy to clipboard button is highlighted.](media/github-endpoint-copy.png "Repository endpoint")
 
-    So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-Premises IIS server. Now that we are done with the migration of Parts Unlimited's web site. We will use the VM to execute some development tasks.
+    So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-Premises IIS server. Now that we are done with the migration of Parts Unlimited's website. We will use the VM to execute some development tasks.
 
 4. Connect to your WebVM VM with RDP.
 
@@ -644,7 +644,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ![PowerShell terminal is shown. Git remote add origin is highlighted and executed. ](media/git-remote-add.png "Git remote add")
 
-9. Run the following commands to rename current branch to **Main** and add stage all the files for a git commit.
+9. Run the following commands to rename the current branch to **Main** and stage all the files for a git commit.
 
     ```powershell
     git branch -M main
@@ -655,7 +655,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ```powershell
     git config --global user.name "John Doe"
-    git config --global user.email johndoe@example.com
+    git config --global user. e-mail johndoe@example.com
     ```
 
 11. We are ready to commit the source code to our local Git repository. Run the following command to continue.
@@ -676,15 +676,15 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
 14. Fill-in your GitHub account credentials on the browser window to Sign-In.
 
-15. On the **Authorize Git Credential Manager** screen select **Authorize GotCredentialManager**. This will give your local environment permission to push the code to GitHub.
+15. On the **Authorize Git Credential Manager** screen, select **Authorize GotCredentialManager**. This will give your local environment permission to push the code to GitHub.
 
-    ![Authorize Git Credential Manager is open. Authorize GotCredentialManager buttin is highligted.](media/github-access.png "Authoriez Git Credential Manager")
+    ![Authorize Git Credential Manager is open. Authorize GotCredentialManager buttin is highligted.](media/github-access.png "Authorize Git Credential Manager")
 
 16. Close the browser.
 
 17. Go back to GitHub and observe the repository with the source code uploaded.
 
-    ![GitHub shown with the partsunlimited repository populated with source code.](media/github-partsunlimited-repo-loaded.png "GitHub repository page")
+    ![GitHub is shown with the partsunlimited repository populated with source code.](media/github-partsunlimited-repo-loaded.png "GitHub repository page")
 
 ### Task 2: Creating a staging deployment slot
 
@@ -696,9 +696,9 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ![App Service Deployment Slots tab is open. Add slot button highlighted.](media/app-service-add-deployment-slot.png "Deployment slots")
 
-3. Type in **staging** as the name **(1)** of the new slot. Select your app service name from the **Clone settings from (2)** dropdown list. This will ensure our web site configurations for the production environment are copied over to the staging environment as a starting point. Select **Add (3)** to add the new slot.
+3. Type in **staging** as the name **(1)** of the new slot. Select your app service name from the **Clone settings from (2)** dropdown list. This will ensure our website configurations for the production environment are copied over to the staging environment as a starting point. Select **Add (3)** to add the new slot.
 
-    ![Add a slot panel is open. Name is set staging. Partsunlimited-web-20 is selected for the clone settings from dropdown list. Add button is highlighted.](media/app-service-staging-slot.png "Adding deployment slot")
+    ![Add a slot panel is open. The name is set staging. Partsunlimited-web-20 is selected for the clone settings from the dropdown list. Add button is highlighted.](media/app-service-staging-slot.png "Adding deployment slot")
 
 4. Once you receive the success message, close **(1)** the panel. Observe **(2)** the two environments we have for the App Service in the deployment slots list.
 
@@ -716,17 +716,17 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
 3. Select **GitHub (1)** as your source; **.NET Core (2)** as the runtime stack and **.NET Core 2.1 (LTS) (3)** for version. Select **Authorize** to create the connection between the App Service deployment slot and the GitHub repository we previously prepared.
 
-    ![Deployment Settings page is open. Source is set to GitHub. Runtime stack is set to .NET Core. Version is set to .NET Core 2.1 (LTS). Authorize button for GitHub is highlighted. ](media/app-service-deployment-settings.png "Deployment Center Settings")
+    ![Deployment Settings page is open. The source is set to GitHub. Runtime stack is set to .NET Core. Version is set to .NET Core 2.1 (LTS). Authorize button for GitHub is highlighted. ](media/app-service-deployment-settings.png "Deployment Center Settings")
 
 4. Login with your GitHub credentials and provide authorization to App Service to access the repository by selecting **Authorize AzureAppService**.
 
     ![Authorize AzureAppService button is highlighted.](media/app-service-github-repo-access.png "Authorize Azure App Service")
 
-5. Once GitHub authorization is complete go back to the browser with the Azure Portal. Select the GitHub **Organization (1)** where you created the GitHub repository. This might be your personal account name if that is where you created the repository. Select the repository **partsunlimited (2)** and the branch **main (3)** as the source for the CI/CD pipeline. Select **Save (4)** to create CI/CD pipeline.
+5. Once GitHub authorization is complete, go back to the browser with the Azure Portal. Select the GitHub **Organization (1)** where you created the GitHub repository. This might be your personal account name if that is where you created the repository. Select the repository **partsunlimited (2)** and the branch **main (3)** as the source for the CI/CD pipeline. Select **Save (4)** to create CI/CD pipeline.
 
     ![Authorize AzureAppService button is highlighted.](media/app-service-cicd-settings-save.png "Deployment Center Settings")
 
-    Once you select **Save**, the portal will add your App Service publishing profile as a secret to your GitHub repository. This will allow GitHub Actions to publish the Parts Unlimited web site to the staging deployment slot. Additionally, the portal will create a YAML file that describes the steps required to build and publish the code in the partsunlimited repository.
+    Once you select **Save**, the portal will add your App Service publishing profile as a secret to your GitHub repository. This will allow GitHub Actions to publish the Parts Unlimited website to the staging deployment slot. Additionally, the portal will create a YAML file that describes the steps required to build and publish the code in the partsunlimited repository.
 
 6. Visit your GitHub repository on GitHub.com to look for changes. Navigate to `.github/workflows` **(1)** to see the **YAML file (2)** and the commit **(3)** made to the repository on your behalf.
 
@@ -738,7 +738,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
 8. Select the failed job to dig deeper.
 
-    ![Details for the GitHub workflow run is shown. A failed job named build-and-deploy is highlighted.](media/github-actions-failed-net-core-version.png "GitHub Actions failed build")
+    ![Details for the GitHub workflow run are shown. A failed job named build-and-deploy is highlighted.](media/github-actions-failed-net-core-version.png "GitHub Actions failed build")
 
 9. In the error message, we can see a mismatch between the .NET Core version the build job is using and the one the project is built against. When we set up our CI/CD pipeline, the Azure Portal listed .NET Core LTS (Long Term Support) versions only. Unfortunately, Parts Unlimited uses a .NET Core version that hit the end of life on December 23, 2019. We will have to change our pipeline setup manually to accommodate project requirements.
 
@@ -756,7 +756,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ![The main_partsunlimited-web-20(staging).yml file is on screen. Edit this file button is highlighted.](media/github-yaml-edit.png "Workflow YAML Editing")
 
-13. We have to change the **dotnet-version (1)** number to `2.2.207`. Additionally, we have to add the solution file name **(2)** and the project file name **(3)** to dotnet build and publish commands. The reason behind this change is the fact that Parts Unlimited has multiple solutions and projects in their codebase.
+13. We have to change the **dotnet-version (1)** number to `2.2.207`. Additionally, we have to add the solution file name **(2)** and the project file name **(3)** to dotnet build and publish commands. The reason behind this change is the fact that Parts Unlimited has multiple solutions and projects in its codebase.
 
     ![main_partsunlimited-web-20(staging).yml is open in edit mode. dotnet-version is set to 2.2.207. dotnet build command is changed to include PartsUnlimited.sln as a parameter. dotnet publish command is changed to include src/PartsUnlimitedWebsite/PartsUnlimitedWebsite.csproj as a parameter.](media/github-yaml-commit.png "GitHub YAML Editing")
 
@@ -802,7 +802,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
             package: ${{env.DOTNET_ROOT}}/myapp
     ```
 
-14. Once all changes are complete select **Start commit (4)**. Type a commit message **(5)**. Select **Commit changes (6)** to submit your changes to the repository.
+14. Once all changes are complete, select **Start commit (4)**. Type a commit message **(5)**. Select **Commit changes (6)** to submit your changes to the repository.
 
 15. Select **Actions (1)** to switch to the workflows page. Notice the latest successful run **(2)** of our workflow.
 
@@ -812,9 +812,9 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ![The search box for resources is filled in with staging. The staging (partsunlimited-web-{uniquesuffix}/staging) Azure App Service Deployment Slot is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/select-staging-app-service.png "Staging Resource")
 
-17. Notice the dedicated web link for your staging slot. Select to navigate to the web site to see the result of your successful deployment through the CI/CD pipeline.
+17. Notice the dedicated web link for your staging slot. Select to navigate to the website to see the result of your successful deployment through the CI/CD pipeline.
 
-    ![Staging slot for partsunlimited app service is open. URL endpont for the deployment slot is highlighted.](media/staging-slot-link.png "Staging public endpoint")
+    ![Staging slot for partsunlimited app service is open. URL endpoint for the deployment slot is highlighted.](media/staging-slot-link.png "Staging public endpoint")
 
 ### Task 4: Pushing code changes to staging and production
 
@@ -832,9 +832,9 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
 4. Navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src` and select **Select Folder (1)**.
 
-    ![Visual Studio Code Open Folder dialog is open. Folder path is set to C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src and Select Folder button is highlighted.](media/vscode-select-folder.png "Select Folder")
+    ![Visual Studio Code Open Folder dialog is open. The folder path is set to C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src, and the Select Folder button is highlighted.](media/vscode-select-folder.png "Select Folder")
 
-5. We are going to introduce a brand new change to Parts Unlimited's web site. In the Explorer window navigate to **src > PartsUnlimitedWebSite > Views > Home** and select **Index.cshtml (4)** for editing. Change the Title of the page **(5)** and save the file by using going to the File menu and selecting **Save**. Notice the underlying git repository detecting a change (6) in the codebase.
+5. We are going to introduce a brand new change to Parts Unlimited's website. In the Explorer window navigate to **src > PartsUnlimitedWebSite > Views > Home** and select **Index.cshtml (4)** for editing. Change the Title of the page **(5)** and save the file by using going to the File menu and selecting **Save**. Notice the underlying git repository detecting a change (6) in the codebase.
 
     ![Index.cshtml from src > PartsUnlimitedWebSite > Views > Home folder is open. Page Title is changed to New Home Page. One pending change in the source control is highlighted.](media/vscode-changing-source-code.png "Code editing in VSCode")
 
@@ -924,11 +924,11 @@ You suggest a serverless approach that can handle order processing and the creat
 
 8. Enter your Azure credentials and Sign In.
 
-9. Close the browser window once your sign in is complete.
+9. Close the browser window once your sign-in is complete.
 
-10. Drill down **(1)** the resource in your subscription. Right click on your Azure Function named **parts-func-{uniquesuffix} (2)** and select **Deploy to Azure Function App... (3)**.
+10. Drill down **(1)** the resource in your subscription. Right-click on your Azure Function named **parts-func-{uniquesuffix} (2)** and select **Deploy to Azure Function App... (3)**.
 
-    ![Azure subscription is shown. The function app **parts-func-{uniquesuffix} (2)** is selected. On the context menu Deploy to Function App is highlighted.](media/vscode-deploy-function-app.png "Deploy to Function App")
+    ![Azure subscription is shown. The function app **parts-func-{uniquesuffix} (2)** is selected. On the context menu, Deploy to Function App is highlighted.](media/vscode-deploy-function-app.png "Deploy to Function App")
 
 11. Select **Deploy**.
 
@@ -996,26 +996,26 @@ In this task, we will submit a new order on the Parts Unlimited website and obse
 
    ![The search box for the resource is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
 
-2. Select **URL** and navigate to the Parts Unlimited web site hosted in Azure App Service.
+2. Select **URL** and navigate to the Parts Unlimited website hosted in Azure App Service.
 
     ![Parts Unlimited App Service is on screen. URL is highlighted.](media/navigate-to-parts-unlimited-app-service.png "App Service Public Endpoint")
 
 3. Select **Login (1)** and select **Register as a new user? (2)**.
 
-    ![Parts Unlimited web site login screen is presented. Log in and Register as a new user buttons are highlighted.](media/register-parts-unlimited.png "Parts Unlimited Login")
+    ![Parts Unlimited website login screen is presented. Log in and Register as a new user buttons are highlighted.](media/register-parts-unlimited.png "Parts Unlimited Login")
 
 4. Type in `test@test.com` for the email **(1)** and `Password.1!!` **(2)** for the password. Select **Register (3)**.
 
-    ![Parts Unlimited web site user registration screen is presented. Email box is filled with test@test.com. Password boxes are filled in with Password.1!!. The register button is highlighted.](media/register-parts-unlimited-new-user.png "Register")
+    ![Parts Unlimited website user registration screen is presented. E-mail box is filled with test@test.com. Password boxes are filled in with Password.1!!. The register button is highlighted.](media/register-parts-unlimited-new-user.png "Register")
 
-5. On the next screen, select **Click here to confirm your email** to confirm your e-mail.
+5. On the next screen, select **Click here to confirm your e-mail** to confirm your e-mail.
 
 6. Select **Login (1)** and type the credentials listed below.
 
     - **Email (2):** test@test.com
     - **Password (3):** Password.1!!
 
-    ![Parts Unlimited web site login screen is presented. Email box is filled with test@test.com. Password boxes are filled in with Password.1!!. Login button is highlighted. ](media/parts-umlimited-login.png "Login")
+    ![Parts Unlimited website login screen is presented. The E-mail box is filled with test@test.com. Password boxes are filled in with Password.1!!. The login button is highlighted. ](media/parts-umlimited-login.png "Login")
 
 7. Select **Login (4)**.
 
@@ -1035,7 +1035,7 @@ In this task, we will submit a new order on the Parts Unlimited website and obse
 
 12. Observe the invoice field. Right now, your order is flagged as in processing. An order job is submitted to the Azure Storage Queue to be processed by Azure Functions. Refresh the page every 15 seconds to see if anything changes about your order.
 
-    ![Order details page is open. Invoice field is highlighted.](media/parts-unlimited-invoice-processing.png "Invoice processing")
+    ![Order details page is open. The invoice field is highlighted.](media/parts-unlimited-invoice-processing.png "Invoice processing")
 
 13. Once your order has been processed, an invoice will be created, and a download link will appear. Select the download link to download the PDF invoice created for your order by Azure Functions.
 
@@ -1047,7 +1047,7 @@ In this task, we will submit a new order on the Parts Unlimited website and obse
 
 ### Task 4: Enable Application Insights on the Function App
 
-In this task, you add Application Insights to your Function App in the Azure Portal, to be able to collect insights related to Function executions.
+In this task, you add Application Insights to your Function App in the Azure Portal to be able to collect insights related to Function executions.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **parts-func-{uniquesuffix}** App service from the list of resources.
 
@@ -1069,17 +1069,17 @@ In this task, you add Application Insights to your Function App in the Azure Por
 
    ![Live Metrics Stream is highlighted in the left-hand menu on the Application Insights blade.](media/app-insights-live-metrics-stream.png "Application Insights")
 
-   > While having Live Metric up, try submitting a new order on the Parts Unlimited web site. You will see access to blob storage in the telemetry to upload the PDF **(2)** and execution count on the graph **(3)**.
+   > While having Live Metric up, try submitting a new order on the Parts Unlimited website. You will see access to blob storage in the telemetry to upload the PDF **(2)** and execution count on the graph **(3)**.
 
 ## After the hands-on lab
 
 Duration: 15 minutes
 
-In this exercise, you will de-provision all Azure resources that were created in support of this hands-on lab.
+In this exercise, you will de-provision all Azure resources created in support of this hands-on lab.
 
 ### Task 1: Delete Azure resource groups
 
-1. In the Azure portal, select **Resource groups** from the Azure services list, and locate and delete the **hands-on-lab-SUFFIX** resource group.
+1. In the Azure portal, select **Resource groups** from the Azure services list and locate and delete the **hands-on-lab-SUFFIX** resource group.
 
 ### Task 2: Delete GitHub repository
 
@@ -1099,7 +1099,7 @@ In this exercise, you will de-provision all Azure resources that were created in
 
     ![Repository name is highlighted and typed in into the confirmation textbox. "I understand the consequences, delete this repository" button is highlighted.](media/github-repo-delete-approval.png "Deletion Approval")
 
-    > You might be asked for your GitHub password for a second round of approval.
+    > You might be asked for your GitHub password for the second round of approval.
 
 ### Task 3: Remove GitHub Authorized Apps
 
