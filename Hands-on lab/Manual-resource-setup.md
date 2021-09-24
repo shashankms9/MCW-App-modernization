@@ -4,7 +4,7 @@ This guide provides step-by-step instructions to manually provision and configur
 
 > **IMPORTANT**: Many Azure resources require globally unique names. Throughout these steps, the word "SUFFIX" appears as part of resource names. You should replace this with your Microsoft alias, initials, or another value to ensure resources are uniquely named.
 
-February 2021
+April 2021
 
 **Contents**:
 
@@ -369,10 +369,11 @@ In this task, you configure the WebVM with the required software and downloads.
 3. Run the code below to download the lab files and extract the content into `C:\MCW` folder.
 
    ```PS
+   $branchName = "main";
    New-Item -ItemType directory -Path C:\MCW
    while((Get-ChildItem -Directory C:\MCW | Measure-Object).Count -eq 0 )
    {
-      (New-Object System.Net.WebClient).DownloadFile("https://github.com/microsoft/MCW-App-modernization/archive/master.zip", 'C:\MCW.zip')
+      (New-Object System.Net.WebClient).DownloadFile("https://github.com/microsoft/MCW-App-modernization/zipball/$branchName", 'C:\MCW.zip')
       Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
    }
    ```
@@ -384,7 +385,7 @@ In this task, you configure the WebVM with the required software and downloads.
 4. Run the code below to copy Parts Unlimited website files to the wwwroot folder targeted by the local webserver.
 
    ```PS
-   Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\web-site-publish.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
+   Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\web-site-publish.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
    ```
 
 5. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008-ip** resource by selecting **Resource groups** from the Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008-ip** Public IP address from the list of resources.

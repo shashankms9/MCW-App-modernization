@@ -28,7 +28,7 @@
         }
     },
     "variables": {
-		"githubBranchName": "master",
+		"githubBranchName": "main",
         "location": "[resourceGroup().location]",
         "databaseName": "parts",
         "uniqueSqlServerName": "[concat(parameters('sqlServerName'), '-', uniqueString(resourceGroup().id))]",

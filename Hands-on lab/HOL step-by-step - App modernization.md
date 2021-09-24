@@ -1,4 +1,4 @@
-![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
+![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/main/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
 App modernization
@@ -9,7 +9,7 @@ Hands-on lab step-by-step guide
 </div>
 
 <div class="MCWHeader3">
-February 2021
+April 2021
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -128,11 +128,11 @@ Azure Migrate provides a centralized hub to assess and migrate on-premises serve
 
     ![Azure Migrate project settings page is shown. The project name is set to partsunlimitedweb. Create button is highlighted.](media/azure-migrate-create-project-settings.png "Azure Migrate Project Creation")
 
-7. Once your project is created **Azure Migrate** will show you default **Web App Assessment (1)** and **Web App Migration (2)** tools (You might need to refresh your browser). For the Parts Unlimited web site, **App Service Migration Assistant** is the one we have to use. Download links are presented on Azure Migrate's Web Apps page. In our case, our lab environment comes with App Service Migration Assistant pre-installed on Parts Unlimited's web server.
+7. Once your project is created **Azure Migrate** will show you default **Web App Assessment** and **Web App Migration** tools (You might need to refresh your browser). For the Parts Unlimited web site, **App Service Migration Assistant** is the one we have to use. Download links are presented on Azure Migrate's Web Apps page. In our case, our lab environment comes with App Service Migration Assistant pre-installed on Parts Unlimited's web server.
 
     ![Azure Migrate Web App assessment and migration tools are presented.](media/azure-migrate-web-app-migration.png "Azure Migrate Web Apps Capabilities")
 
-8. Another aspect of our migration project will be the database for Parts Unlimited's website. We will have to assess the database's compatibility and migrate to Azure SQL Database. Let's switch to the **Databases (1)** section in Azure Migrate. Select **Click here (2)** hyperlink for Assessment tools.
+8. Another aspect of our migration project will be the database for Parts Unlimited's website. We will have to assess the database's compatibility and migrate to Azure SQL Database. Let's switch to the **SQL Server (only)** section in Azure Migrate. Select **Click here** hyperlink for Assessment tools.
 
     ![Azure Migrate is open. The databases section is selected. Click here link for assessment tools is highlighted.](media/azure-migrate-database-assessment.png "Azure Migrate Databases")
 
@@ -194,6 +194,8 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
    - **Username**: demouser
    - **Password**: {YOUR-ADMIN-PASSWORD}
+  
+    > **Note**: default password is `Password.1!!`
 
     ![The credentials specified above are entered into the Enter your credentials dialog.](media/rdp-credentials-webvm.png "Enter your credentials")
 
@@ -201,15 +203,16 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
     ![In the Remote Desktop Connection dialog box, a warning states that the remote computer's identity cannot be verified and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/remote-desktop-connection-identity-verification-webvm.png "Remote Desktop Connection dialog")
 
-9. Once logged into the WebVM VM, open **AppServiceMigrationAssistant** that is located on the desktop.
+9. Once logged into the WebVM VM, a script will execute to install the various items needed for the remaining lab steps.
+10. Once the script completes, open **AppServiceMigrationAssistant** that is located on the desktop.
 
     ![AppServiceMigrationAssistant is highlighted on the desktop.](media/appservicemigrationassistant-desktop.png "App Service Migration Assistant")
 
-10. Once App Service Migration Assistant discovers the websites available on the server, choose **Default Web Site (1)** for migration and select **Next (2)** to start the assessment.
+11. Once App Service Migration Assistant discovers the websites available on the server, choose **Default Web Site (1)** for migration and select **Next (2)** to start the assessment.
 
     ![AppServiceMigrationAssistant is open. Default Web Site is selected. The next button is highlighted.](media/appservicemigration-choose-site.png "App Service Migration Assistant Web Site selection")
 
-11. Observe the result of the assessment report. In our case, our application has successfully passed 13 tests **(1)** with no additional actions needed. Now that our assessment is complete, select **Next (2)** to proceed to the migration.
+12. Observe the result of the assessment report. In our case, our application has successfully passed 13 tests **(1)** with no additional actions needed. Now that our assessment is complete, select **Next (2)** to proceed to the migration.
 
    ![Assessment report result is shown. There are 13 success metrics presented. The next button is highlighted.](media/appservicemigration-report.png "Assessment Report")
 
@@ -267,11 +270,13 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
 > **Note**: The Database Migration Assistant is already installed on your SqlServer2008 VM. It can be downloaded through Azure Migrate or from the [Microsoft Download Center](https://go.microsoft.com/fwlink/?linkid=2090807) as well.
 
-1. Connect to your SqlServer2008 VM with RDP. Your credentials are the same as the WebVM.
+1. Connect to your SqlServer2008 VM with RDP. Your credentials are the same as the WebVM , `demouser` with `Password.1!!` password.
 
    ![The SQLServer2008 virtual machine is highlighted in the list of resources.](media/find-sqlserver2008-resource.png "SqlServer2008 Selection")
 
 2. Launch DMA from the Windows Start menu by typing "data migration" into the search bar and then selecting **Microsoft Data Migration Assistant** in the search results.
+
+    > **Note**: If you do not see the migration assistant, install it from the `c:\DataMigrationAssistant.msi` file.
 
     > **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2, which may affect some users. This issue presents itself as very small, hard-to-read text on the screen. The workaround for this is to use a second monitor for the RDP display, allowing you to scale up the resolution to make the text larger.
 
@@ -297,56 +302,58 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
    ![Check database compatibility and check feature parity are checked on the Options screen.](media/dma-options.png "DMA options")
 
-7. On the **Sources** screen, enter the following into the **Connect to a server** dialog that appears on the right-hand side:
+7. On the **Sources** screen, select **Add sources**.
+8. 
+9. Enter the following into the **Connect to a server** dialog that appears on the right-hand side:
 
     - **Server name (1)**: Enter **SQLSERVER2008**.
     - **Authentication type (2)**: Select **SQL Server Authentication**.
     - **Username (3)**: Enter **PUWebSite**
-    - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
+    - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}** `Password.1!!`
     - **Encrypt connection**: Check this box if not checked.
     - **Trust server certificate (5)**: Check this box.
 
     ![In the Connect to a server dialog, the values specified above are entered into the appropriate fields.](media/dma-connect-to-a-server.png "Connect to a server")
 
-8. Select **Connect (6)**.
+9. Select **Connect (6)**.
 
-9. On the **Add sources** dialog that appears next, check the box for `PartsUnlimited` **(1)** and select **Add (2)**.
+10. On the **Add sources** dialog that appears next, check the box for `PartsUnlimited` **(1)** and select **Add (2)**.
 
     ![The PartsUnlimited box is checked on the Add sources dialog.](media/dma-add-sources.png "Add sources")
 
-10. Select **Start Assessment**.
+11. Select **Start Assessment**.
 
     ![Start assessment](media/dma-start-assessment-to-azure-sql-db.png "Start assessment")
 
-11. Take a moment to review the assessment for migrating to Azure SQL DB. The SQL Server feature parity report **(1)** shows that Analysis Services and SQL Server Reporting Services are unsupported **(2)**, but these do not affect any objects in the `PartsUnlimited` database, so they won't block a migration.
+12. Take a moment to review the assessment for migrating to Azure SQL DB. The SQL Server feature parity report **(1)** shows that Analysis Services and SQL Server Reporting Services are unsupported **(2)**, but these do not affect any objects in the `PartsUnlimited` database, so they won't block a migration.
 
     ![The feature parity report is displayed, and the two unsupported features are highlighted.](media/dma-feature-parity-report.png "Feature parity")
 
-12. Now, select **Compatibility issues (1)** so you can review that report as well.
+13. Now, select **Compatibility issues (1)** so you can review that report as well.
 
     ![The Compatibility issues option is selected and highlighted.](media/dma-compatibility-issues.png "Compatibility issues")
 
     The DMA assessment for migrating the `PartsUnlimited` database to a target platform of Azure SQL DB reveals that no issues or features are preventing Parts Unlimited from migrating their database to Azure SQL DB.
 
-13. Select **Upload to Azure Migrate** to upload assessment results to Azure.
+14. Select **Upload to Azure Migrate** to upload assessment results to Azure.
 
     ![Upload to Azure Migrate button is highlighted.](media/dma-upload-azure-migrate.png "Azure Migrate Upload")
 
-14. Select the right Azure environment **(1)** your subscription lives. Select **Connect (2)** to proceed to the Azure login screen.
+15. Select the right Azure environment **(1)** your subscription lives. Select **Connect (2)** to proceed to the Azure login screen.
 
     ![Azure is selected as the Azure Environment on the connect to Azure screen. Connect button is highlighted.](media/dma-azure-migrate-upload.png "Azure Environment Selection")
 
-15. Select your subscription **(2)** and the `partsunlimited` Azure Migrate project **(3)**. Select **Upload (4)** to start the upload to Azure.
+16. Select your subscription **(2)** and the `partsunlimited` Azure Migrate project **(3)**. Select **Upload (4)** to start the upload to Azure.
 
     ![Upload to Azure Migrate page is open. Lab subscription and partsunlimited Azure Migrate Project are selected. Upload button is highlighted.](media/dma-azure-migrate-upload-2.png "Azure Migrate upload settings")
 
     > **Note**: If you encounter **Failed to fetch subscription list from Azure, Strong Authentication required (1)** you might not see some of your subscriptions because of MFA limitations. You should still be able to see your lab subscription.
 
-16. Once the upload is complete select **OK** and navigate to the Azure Migrate page on the Azure Portal.
+17. Once the upload is complete select **OK** and navigate to the Azure Migrate page on the Azure Portal.
 
     ![Assessment Uploaded dialog shown.](media/dma-upload-complete.png "Assessment Uploaded")
 
-17. Select the **Databases (1)** page on Azure Migrate. Observe the number of assessed database instances **(2)** and the number of databases ready for Azure SQL DB **(2)**. Keep in mind that you might need to wait for 5 to 10 minutes for results to show up. You can use the **Refresh** button on the page to see the latest status.
+18. Select the **Databases (1)** page on Azure Migrate. Observe the number of assessed database instances **(2)** and the number of databases ready for Azure SQL DB **(2)**. Keep in mind that you might need to wait for 5 to 10 minutes for results to show up. You can use the **Refresh** button on the page to see the latest status.
 
     ![Azure Migrate Databases page is open. The number of assessed database instances and the number of databases ready for Azure SQL DB shows one.](media/dma-azure-migrate-web.png "Azure Migrate Database Assessment")
 
@@ -363,6 +370,8 @@ In this task, you will retrieve the IP address of the SqlServer2008 VM and the F
     ![SqlServer2008-ip resource is open. Public IP Address copy button is highlighted.](media/sqlip-copy-public-ip.png "SqlServer2008 public IP")
 
 3. Go back to the resource list and navigate to your **SQL database** resource by selecting the **parts** SQL database resource from the resources list.
+
+    > **Note**: If you do not see the database resource, navigate to the SQL Server resource, then select **SQL Databases** and then the **parts** database.
 
    ![The parts SQL database resource is highlighted in the list of resources.](media/resources-azure-sql-database.png "SQL database")
 
@@ -393,7 +402,7 @@ After reviewing the assessment results and ensuring the database is a candidate 
    - **Server name (1)**: Enter **SQLSERVER2008**.
    - **Authentication type (2)**: Select **SQL Server Authentication**.
    - **Username (3)**: Enter **PUWebSite**
-   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
+   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}** `Password.1!!`
    - **Encrypt connection**: Check this box.
    - **Trust server certificate (5)**: Check this box.
    - Select **Connect (6)**, and then ensure the `PartsUnlimited` database is selected **(7)** from the list of databases.
@@ -407,7 +416,7 @@ After reviewing the assessment results and ensuring the database is a candidate 
    - **Server name (1)**: Paste the server name of your Azure SQL Database you copied into a text editor in the previous task.
    - **Authentication type (2)**: Select SQL Server Authentication.
    - **Username (3)**: Enter **demouser**
-   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
+   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}** `Password.1!!`
    - **Encrypt connection**: Check this box.
    - **Trust server certificate (5)**: Check this box.
    - Select **Connect (6)**, and then ensure the `parts` database is selected **(7)** from the list of databases.
@@ -439,7 +448,7 @@ After reviewing the assessment results and ensuring the database is a candidate 
     - **Server name (1)**: Paste the server name of your Azure SQL Database you copied above.
     - **Authentication type (2)**: Select SQL Server Authentication.
     - **Username (3)**: Enter **demouser**
-    - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
+    - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}** `Password.1!!`
     - **Remember password (5)**: Check this box.
 
     ![The SSMS Connect to Server dialog is displayed, with the Azure SQL Database name specified, SQL Server Authentication selected, and the demouser credentials entered.](media/ssms-connect-azure-sql-database.png "Connect to Server")
@@ -480,7 +489,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
    - **Source SQL Server instance name (1)**: Enter the IP address of your SqlServer2008 VM that you copied into a text editor in the previous task. For example, `51.143.12.114`.
    - **Authentication type (2)**: Select SQL Authentication.
    - **Username (3)**: Enter **PUWebSite**
-   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
+   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}** `Password.1!!`
    - **Connection properties (5)**: Check both Encrypt connection and Trust server certificate.
 
    ![The Migration Wizard Select source blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-source.png "Migration Wizard Select source")
@@ -496,7 +505,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
    - **Target server name (1)**: Enter the `fullyQualifiedDomainName` value of your Azure SQL Database (e.g., parts-xwn4o7fy6bcbg.database.windows.net), which you copied in the previous task.
    - **Authentication type (2)**: Select SQL Authentication.
    - **Username (3)**: Enter **demouser**
-   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
+   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}** `Password.1!!`
    - **Connection properties**: Check Encrypt connection.
 
    ![The Migration Wizard Select target blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-target.png "Migration Wizard Select target")
@@ -625,7 +634,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 6. The Parts Unlimited website's source code is already copied into the VM as part of the **Before the hands-on lab exercises**. Run the command below to navigate to the source code folder.
 
     ```powershell
-    cd "C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src"
+    cd "C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\src"
     ```
 
 7. Run the following command to initialize a local Git repository.
@@ -655,7 +664,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ```powershell
     git config --global user.name "John Doe"
-    git config --global user. e-mail johndoe@example.com
+    git config --global user.email johndoe@example.com
     ```
 
 11. We are ready to commit the source code to our local Git repository. Run the following command to continue.
@@ -780,7 +789,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
         runs-on: windows-latest
     
         steps:
-        - uses: actions/checkout@master
+        - uses: actions/checkout@main
     
         - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
@@ -830,9 +839,9 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ![File menu is open in Visual Studio Code. Open Folder... command is highlighted.](media/vscode-open-folder.png "Open Folder")
 
-4. Navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src` and select **Select Folder (1)**.
+4. Navigate to `C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\src` and select **Select Folder (1)**.
 
-    ![Visual Studio Code Open Folder dialog is open. The folder path is set to C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src, and the Select Folder button is highlighted.](media/vscode-select-folder.png "Select Folder")
+    ![Visual Studio Code Open Folder dialog is open. The folder path is set to C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\src, and the Select Folder button is highlighted.](media/vscode-select-folder.png "Select Folder")
 
 5. We are going to introduce a brand new change to Parts Unlimited's website. In the Explorer window navigate to **src > PartsUnlimitedWebSite > Views > Home** and select **Index.cshtml (4)** for editing. Change the Title of the page **(5)** and save the file by using going to the File menu and selecting **Save**. Notice the underlying git repository detecting a change (6) in the codebase.
 
@@ -908,7 +917,7 @@ You suggest a serverless approach that can handle order processing and the creat
 
     ![File menu is open in Visual Studio Code. Open Folder... command is highlighted.](media/vscode-open-folder.png "Open Folder")
 
-4. Navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src-invoicing-functions\FunctionApp` and select **Select Folder**.
+4. Navigate to `C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\src-invoicing-functions\FunctionApp` and select **Select Folder**.
 
 5. Select **Install** to install extensions required for your Azure Functions project. This will install C# for Visual Studio Code and Azure Functions Extension for Visual Studio Code.
 

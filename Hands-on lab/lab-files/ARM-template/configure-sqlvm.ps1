@@ -39,6 +39,12 @@ function Add-SqlFirewallRule {
 
 Add-SqlFirewallRule
 
+#download .net 4.8
+Start-BitsTransfer -Source 'https://go.microsoft.com/fwlink/?linkid=2088631'  -Destination "$Env:Temp\Net4.8.exe"; 
+
+#install .net 4.8
+start-process "$Env:Temp\Net4.8.exe" -args "/q /norestart" -wait
+
 # Download and install Data Mirgation Assistant
 (New-Object System.Net.WebClient).DownloadFile('https://download.microsoft.com/download/C/6/3/C63D8695-CEF2-43C3-AF0A-4989507E429B/DataMigrationAssistant.msi', 'C:\DataMigrationAssistant.msi')
 Start-Process -file 'C:\DataMigrationAssistant.msi' -arg '/qn /l*v C:\dma_install.txt' -passthru | wait-process
