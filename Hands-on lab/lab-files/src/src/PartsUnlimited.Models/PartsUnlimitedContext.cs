@@ -15,6 +15,10 @@ namespace PartsUnlimited.Models
             _connectionString = connectionString;
         }
 
+        public PartsUnlimitedContext(DbContextOptions<PartsUnlimitedContext> options) : base(options)
+        {
+
+        }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -36,6 +40,8 @@ namespace PartsUnlimited.Models
             base.OnModelCreating(builder);
         }
 
+        /*
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
@@ -48,5 +54,6 @@ namespace PartsUnlimited.Models
                 optionsBuilder.UseInMemoryDatabase("Test");
             }
         }
+        */
     }
 }

@@ -36,6 +36,7 @@
     }
   },
   "ConnectionStrings": {
-    "DefaultConnectionString": ""
+    "DefaultConnectionString": "",
+    "StorageConnectionString":  "UseDevelopmentStorage=true"
   }
 }

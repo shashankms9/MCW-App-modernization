@@ -13,9 +13,9 @@ namespace PartsUnlimited.api.Controllers
     [Route("api/[controller]")]
     public class ProductsController : Controller
     {
-        private readonly IPartsUnlimitedContext _context;
+        private readonly PartsUnlimitedContext _context;
 
-        public ProductsController(IPartsUnlimitedContext context)
+        public ProductsController(PartsUnlimitedContext context)
         {
             _context = context;
         }

@@ -11,9 +11,9 @@ namespace PartsUnlimited.Components
     [ViewComponent(Name = "CartSummary")]
     public class CartSummaryComponent : ViewComponent
     {
-        private readonly IPartsUnlimitedContext _db;
+        private readonly PartsUnlimitedContext _db;
 
-        public CartSummaryComponent(IPartsUnlimitedContext context)
+        public CartSummaryComponent(PartsUnlimitedContext context)
         {
             _db = context;
         }

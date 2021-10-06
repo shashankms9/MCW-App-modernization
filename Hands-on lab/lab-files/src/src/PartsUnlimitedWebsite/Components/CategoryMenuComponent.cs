@@ -15,10 +15,10 @@ namespace PartsUnlimited.Components
     [ViewComponent(Name = "CategoryMenu")]
     public class CategoryMenuComponent : ViewComponent
     {
-        private readonly IPartsUnlimitedContext _db;
+        private readonly PartsUnlimitedContext _db;
         private readonly IMemoryCache _cache;
 
-        public CategoryMenuComponent(IPartsUnlimitedContext context, IMemoryCache memoryCache)
+        public CategoryMenuComponent(PartsUnlimitedContext context, IMemoryCache memoryCache)
         {
             _db = context;
             _cache = memoryCache;

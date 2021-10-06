@@ -19,7 +19,7 @@ function Wait-Install {
         Start-Sleep -Seconds 1
     }
 }
-
+$branchName = "main"
 # Install App Service Migration Assistant
 Wait-Install
 Write-Host "Installing App Service Migration Assistant..."
@@ -33,7 +33,15 @@ Start-Process -file 'C:\MicrosoftEdgeEnterpriseX64.msi' -arg '/qn /l*v C:\edge_i
 # Install .NET Core 3.1 SDK
 Wait-Install
 Write-Host "Installing .NET Core 3.1 SDK..."
-$pathArgs = {C:\dotnet-sdk-3.1.406-win-x64.exe /Install /Quiet /Norestart /Logs logCore31SDK.txt}
+$pathArgs = {C:\dotnet-sdk-3.1.413-win-x64.exe /Install /Quiet /Norestart /Logs logCore31SDK.txt}
 Invoke-Command -ScriptBlock $pathArgs
 
+# Copy Web Site Files
+Wait-Install
+Write-Host "Copying default website files..."
+Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\web-deploy-files.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
+
 Unregister-ScheduledTask -TaskName "Install Lab Requirements" -Confirm:$false
+
+Write-Host "Restarting IIS"
+iisreset.exe /restart

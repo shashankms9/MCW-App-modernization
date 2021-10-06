@@ -9,7 +9,7 @@ Before the hands-on lab setup guide
 </div>
 
 <div class="MCWHeader3">
-April 2021
+October 2021
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -41,7 +41,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 - Microsoft Azure subscription must be pay-as-you-go or MSDN.
   - Trial subscriptions will _not_ work.
-  - **IMPORTANT:** To complete this lab, you must have sufficient rights within your Azure AD tenant to register resource providers in your Azure Subscription.
+  - **Important:** To complete this lab, you must have sufficient rights within your Azure AD tenant to register resource providers in your Azure Subscription.
 - An active GitHub Account.
 
 ## Before the hands-on lab
@@ -50,7 +50,7 @@ Duration: 45 minutes
 
 In this exercise, you set up an environment for use in the rest of the hands-on lab. You should follow all steps provided _before_ attending the Hands-on lab.
 
-> **IMPORTANT**: Many Azure resources require globally unique names. Throughout these steps, the word "SUFFIX" appears as part of resource names. You should replace this with your Microsoft alias, initials, or another value to ensure resources are uniquely named.
+> **Important**: Many Azure resources require globally unique names. Throughout these steps, the word "SUFFIX" appears as part of resource names. You should replace this with your Microsoft alias, initials, or another value to ensure resources are uniquely named.
 
 ### Task 1: Provision a resource group
 
@@ -134,7 +134,7 @@ In this task, you run an Azure Resource Manager (ARM) template to deploy and con
     > **Note**: The actual name must be globally unique, so a unique string is generated from your Resource Group Id and appended to the name during provisioning.
 
     - **Admin Username**: Accept the default value, **demouser**.
-    - **Admin Password (3)**: Type in your custom password you will be using for the rest of the lab. The default password is `Password.1!!`
+    - **Admin Password (3)**: Type in your custom password you will be using for the rest of the lab. The default password is `Password.1!!`.
 
     ![The Custom deployment blade displays and the information above is entered on the Custom deployment blade.](media/azure-custom-deployment.png "Custom deployment blade")
 

@@ -11,9 +11,9 @@ namespace PartsUnlimited.Areas.Admin.Controllers
 {
     public class CustomerController : AdminController
     {
-        private readonly IPartsUnlimitedContext _context;
+        private readonly PartsUnlimitedContext _context;
 
-        public CustomerController(IPartsUnlimitedContext context)
+        public CustomerController(PartsUnlimitedContext context)
         {
             _context = context;
         }

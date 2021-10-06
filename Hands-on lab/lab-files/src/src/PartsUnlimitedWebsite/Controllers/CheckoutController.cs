@@ -19,11 +19,11 @@ namespace PartsUnlimited.Controllers
     [Authorize]
     public class CheckoutController : Controller
     {
-        private readonly IPartsUnlimitedContext _db;
+        private readonly PartsUnlimitedContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
         public IConfiguration Configuration { get; }
 
-        public CheckoutController(IPartsUnlimitedContext context, UserManager<ApplicationUser> userManager, IConfiguration configuration)
+        public CheckoutController(PartsUnlimitedContext context, UserManager<ApplicationUser> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _db = context;

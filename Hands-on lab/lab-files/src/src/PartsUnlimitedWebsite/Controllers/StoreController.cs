@@ -11,10 +11,10 @@ namespace PartsUnlimited.Controllers
 {
     public class StoreController : Controller
     {
-        private readonly IPartsUnlimitedContext _db;
+        private readonly PartsUnlimitedContext _db;
         private readonly IMemoryCache _cache;
 
-        public StoreController(IPartsUnlimitedContext context, IMemoryCache memoryCache)
+        public StoreController(PartsUnlimitedContext context, IMemoryCache memoryCache)
         {
             _db = context;
             _cache = memoryCache;

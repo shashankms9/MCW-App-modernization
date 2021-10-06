@@ -10,9 +10,9 @@ namespace PartsUnlimited.Search
 {
     public class StringContainsProductSearch : IProductSearch
     {
-        private readonly IPartsUnlimitedContext _context;
+        private readonly PartsUnlimitedContext _context;
 
-        public StringContainsProductSearch(IPartsUnlimitedContext context)
+        public StringContainsProductSearch(PartsUnlimitedContext context)
         {
             _context = context;
         }
@@ -24,7 +24,7 @@ namespace PartsUnlimited.Search
             var q = _context.Products
                 .Where(p => p.Title.ToLower().Contains(lowercase_query));
 
-            return await q.ToAsyncEnumerable().ToList();
+            return q.ToList();
         }
     }
 }

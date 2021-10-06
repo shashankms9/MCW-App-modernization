@@ -14,11 +14,11 @@ namespace PartsUnlimited.Controllers
 {
     public class RecommendationsController : Controller
     {
-        private readonly IPartsUnlimitedContext _db;
+        private readonly PartsUnlimitedContext _db;
         private readonly IRecommendationEngine _recommendation;
         private readonly IWebsiteOptions _option;
 
-        public RecommendationsController(IPartsUnlimitedContext context, IRecommendationEngine recommendationEngine, IWebsiteOptions websiteOptions)
+        public RecommendationsController(PartsUnlimitedContext context, IRecommendationEngine recommendationEngine, IWebsiteOptions websiteOptions)
         {
             _db = context;
             _recommendation = recommendationEngine;

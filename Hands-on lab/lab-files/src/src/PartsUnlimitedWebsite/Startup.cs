@@ -3,6 +3,7 @@
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,9 +43,17 @@ namespace PartsUnlimited
             }
 
             // Add EF services to the services container
-            services.AddDbContext<PartsUnlimitedContext>();
-
-
+            services.AddDbContext<PartsUnlimitedContext>(options => {
+                if (!string.IsNullOrWhiteSpace(sqlConnectionString))
+                {
+                    options.UseSqlServer("sqlConnectionString");
+                }
+                else
+                {
+                    options.UseInMemoryDatabase("Test");
+                }
+            });
+          
             // Add Identity services to the services container
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<PartsUnlimitedContext>()
@@ -84,20 +93,15 @@ namespace PartsUnlimited
             });
 
             services.AddApplicationInsightsTelemetry(Configuration);
-
-            // Associate IPartsUnlimitedContext and PartsUnlimitedContext with context
-            services.AddTransient<IPartsUnlimitedContext>(x => new PartsUnlimitedContext(sqlConnectionString));
-            services.AddTransient(x => new PartsUnlimitedContext(sqlConnectionString));
-
+            
             // We need access to these settings in a static extension method, so DI does not help us :(
             ContentDeliveryNetworkExtensions.Configuration = new ContentDeliveryNetworkConfiguration(Configuration.GetSection("CDN"));
+                       
+            services.AddControllersWithViews();
 
-            // Add MVC services to the services container
-            services.AddMvc();
+            services.AddMemoryCache();
 
-            //Add InMemoryCache
-            services.AddSingleton<IMemoryCache, MemoryCache>();
-
+            services.AddDistributedMemoryCache();
             // Add session related services.
             //services.AddCaching();
             services.AddSession();
@@ -158,28 +162,19 @@ namespace PartsUnlimited
 
             // Add cookie-based authentication to the request pipeline
             app.UseAuthentication();
-
+           
             AppBuilderLoginProviderExtensions.AddLoginProviders(service, new ConfigurationLoginProviders(Configuration.GetSection("Authentication")));
             // Add login providers (Microsoft/AzureAD/Google/etc).  This must be done after `app.UseIdentity()`
             //app.AddLoginProviders( new ConfigurationLoginProviders(Configuration.GetSection("Authentication")));
 
-            // Add MVC to the request pipeline
-            app.UseMvc(routes =>
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "areaRoute",
-                    template: "{area:exists}/{controller}/{action}",
-                    defaults: new { action = "Index" });
-
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Home", action = "Index" });
-
-                routes.MapRoute(
-                    name: "api",
-                    template: "{controller}/{id?}");
-            });
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller}/{action}", new { action = "Index" });
+                endpoints.MapControllerRoute("api", "api/{controller}/{id?}");                              
+            });           
         }
     }
 }

@@ -9,7 +9,7 @@ Hands-on lab step-by-step guide
 </div>
 
 <div class="MCWHeader3">
-April 2021
+October 2021
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -71,7 +71,7 @@ At the end of this hands-on lab, your ability to build solutions for modernizing
 
 Parts Unlimited is an online auto parts store. Founded in Spokane, WA, in 2008, they are providing both genuine OEM and aftermarket parts for cars, sport utility vehicles, vans, and trucks, including new and remanufactured complex parts, maintenance items, and accessories. Its mission is to make buying vehicle replacement parts easy for consumers and professionals. Parts Unlimited has 185 stores in the US, with plans to scale to Mexico and Brazil.
 
-Parts Unlimited has a hosted web application on its internal infrastructure and using a Windows Server, Internet Information Services (IIS), and Microsoft SQL Server to host the solution. Beyond the initial effort and costs, these applications incur ongoing maintenance costs in hardware, operating system updates, and licensing fees. These maintenance costs make Microsoft Azure App Service an attractive alternative. Their team is looking to migrate Microsoft ASP.NET applications and any SQL Server database to Azure App Service and Azure SQL Database. However, they are worried that their application might not be supported. Their website is built on a .NET Core version that hit the end of life on December 23, 2019. They wonder if they can move to the cloud now and migrate their application later or if the old version will be a show stopper.
+Parts Unlimited has a hosted web application on its internal infrastructure and using a Windows Server, Internet Information Services (IIS), and Microsoft SQL Server to host the solution. Beyond the initial effort and costs, these applications incur ongoing maintenance costs in hardware, operating system updates, and licensing fees. These maintenance costs make Microsoft Azure App Service an attractive alternative. Their team is looking to migrate Microsoft ASP.NET/ Core applications and any SQL Server databases to Azure App Service and Azure SQL Database. However, they are worried that their application might not be supported. They want to know ahead of time the amount of work required to migrate to Azure. They have a project they want to start with to understand the migration process. They wonder if they can move to the cloud now and migrate their application later. What are the options?
 
 Additionally, Parts Unlimited has plans to increase its marketing investment, currently on hold because of scaling issues. The company is stuck and can't grow without increasing its infrastructure footprint. Their CEO wants to finalize their cloud vs. on-premises decision based on the current migration effort's success. The engineering team is worried about their order processing subsystem. Currently, they have a strongly coupled order processing system that runs synchronously during checkout. When moved to the cloud, they don't want to be worried about their order processing system's scalability. They are looking for a modern approach with the least migration effort possible.
 
@@ -95,7 +95,7 @@ Finally, Parts Unlimited decides to decouple its order processing system and mov
 
 - Microsoft Azure subscription must be pay-as-you-go or MSDN.
   - Trial subscriptions will _not_ work.
-  - **IMPORTANT:** To complete this lab, you must have sufficient rights within your Azure AD tenant to register resource providers in your Azure Subscription.
+  - **Important:** To complete this lab, you must have sufficient rights within your Azure AD tenant to register resource providers in your Azure Subscription.
 - An active GitHub Account.
   
 ## Exercise 1: Setting up Azure Migrate
@@ -104,13 +104,13 @@ Duration: 10 minutes
 
 Azure Migrate provides a centralized hub to assess and migrate on-premises servers, infrastructure, applications, and data to Azure. It provides a single portal to start, run, and track your migration to Azure. Azure Migrate comes with a range of assessment tools and migration that we will use during our lab. We will use Azure Migrate as the central location for our assessment and migration efforts.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your lab resource group. Select **Add** to add a new resource.
+1. In the [Azure portal](https://portal.azure.com), navigate to your lab resource group. Select **Create** to add a new resource.
 
-    ![Lab resource group is open. Resource Add button is highlighted.](media/portal-add-resource.png "Lab Resource Group")
+    ![The lab resource group is open with the Create button highlighted in the toolbar.](media/portal-add-resource.png "Lab Resource Group")
 
-2. Type **Azure Migrate** into the search box and hit **Enter** to start the search.
+2. On the Create a resource screen, search for **Azure Migrate** and select it from the list of suggestions.
 
-    ![Azure Portal new resource page is open. The search box is filled with Azure Migrate.](media/azure-migrate-search.png "Marketplace Search for Azure Migrate")
+    ![Azure Portal new resource page is open. The search box is filled with Azure Migrate. Azure Migrate is selected in the search results suggestions list.](media/azure-migrate-search.png "Marketplace Search for Azure Migrate")
 
 3. Select **Create** to continue.
 
@@ -140,7 +140,7 @@ Azure Migrate provides a centralized hub to assess and migrate on-premises serve
 
     ![Azure Migrate Database Assessment option is selected for Azure Migrate tools. Add tool button is highlighted.](media/azure-migrate-database-assessment-tool.png "Azure Migrate Database Assessment Tools")
 
-10. Now, we can see a download link for the **Data Migration Assessment (1)** tool under assessment tools in Azure Migrate. In our case, our lab environment comes with the Data Migration Assessment pre-installed on Parts Unlimited's database server. Select **Click here (2)** under the **Migration Tools** section to continue.
+10. **This step is for informational purposes only.**  Now, we can see a download link for the **Data Migration Assessment (1)** tool under assessment tools in Azure Migrate. In our case, our lab environment comes with the Data Migration Assessment pre-installed on Parts Unlimited's database server. Select **Click here (2)** under the **Migration Tools** section to continue.
 
     ![Data Migration Assessment tool's download link is shown. Click here link for migration tools is highlighted.](media/azure-migrate-database-migration.png "Azure Migrate DMA Download")
 
@@ -166,31 +166,21 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
     ![The WebVM virtual machine is highlighted in the list of resources.](media/webvm-selection.png "WebVM Selection")
 
-2. On the WebVM Virtual Machine's **Overview (1)** blade, copy the **Public IP address (2)**.
-
-    ![The WebVM VM blade is displayed, Public IP Address copy button is highlighted.](media/web-vm-ip.png "WebVM Overview and Public IP")
-
-3. Open a new browser window and navigate to the IP Address you copied.
-
-    ![The WebVM VM blade is displayed, Public IP Address copy button is highlighted.](media/parts-umlimited-web-site.png "Parts Unlimited Web Site")
-
-    > For testing purposes, you might want to create yourself an account on the Parts Unlimited website and purchase some products. Use the coupon code **FREE** to buy everything for free.
-
-4. Go back to the Azure Portal. On the WebVM Virtual Machine's **Overview** blade, select **Connect (1)** and **RDP (2)** on the top menu.
+2. Go back to the Azure Portal. On the WebVM Virtual Machine's **Overview** blade, select **Connect (1)** and **RDP (2)** on the top menu.
 
    ![The WebVM VM blade is displayed, with the Connect button highlighted in the top menu.](media/connect-rdp-webvm.png "WebVM RDP Connect")
 
-5. Select **Download RDP File** on the next page, and open the downloaded file.
+3. Select **Download RDP File** on the next page, and open the downloaded file.
 
     > **Note**: The first time you connect to the WebVM Virtual Machine, you will see a blue pop-up terminal dialog taking you through a couple of software installs. Don't be alarmed, and wait until the installs are complete.
 
     ![RDP Window is open. Download RDP File button is highlighted.](media/rdp-download.png "WebVM RDP File Download")
 
-6. Select **Connect** on the Remote Desktop Connection dialog.
+4. Select **Connect** on the Remote Desktop Connection dialog.
 
     ![In the Remote Desktop Connection Dialog Box, the Connect button is highlighted.](media/remote-desktop-connection-webvm.png "Remote Desktop Connection dialog")
 
-7. Enter the following credentials with your password when prompted, and then select **OK**:
+5. Enter the following credentials with your password when prompted, and then select **OK**:
 
    - **Username**: demouser
    - **Password**: {YOUR-ADMIN-PASSWORD}
@@ -199,11 +189,27 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
     ![The credentials specified above are entered into the Enter your credentials dialog.](media/rdp-credentials-webvm.png "Enter your credentials")
 
-8. Select **Yes** to connect, if prompted that the identity of the remote computer cannot be verified.
+6. Select **Yes** to connect, if prompted that the identity of the remote computer cannot be verified.
 
     ![In the Remote Desktop Connection dialog box, a warning states that the remote computer's identity cannot be verified and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/remote-desktop-connection-identity-verification-webvm.png "Remote Desktop Connection dialog")
 
-9. Once logged into the WebVM VM, a script will execute to install the various items needed for the remaining lab steps.
+7. Once logged into the WebVM VM, a script will execute to install the various items needed for the remaining lab steps.
+    >**Warning:** You must wait for all of the scripts to finish installing and configuring the software when you first log in. DO NOT shutdown the PowerShell script.
+
+    ![The image shows the Windows PowerShell opening screen.](media/windows-powershell.png "PowerShell Opening Screen")
+
+8. Once the PowerSell script has completed, the web server should be configured now. Return to the Azure Portal, on the WebVM Virtual Machine's **Overview (1)** blade, copy the **Public IP address (2)**.
+
+    ![The WebVM VM blade is displayed, Public IP Address copy button is highlighted.](media/web-vm-ip.png "WebVM Overview and Public IP")
+
+9. Open a new browser window and navigate to the IP Address you copied.
+
+    >**Note:** If you cannot see the web page properly display, then your web server configuration may be incorrect.
+
+    ![The WebVM VM blade is displayed, Public IP Address copy button is highlighted.](media/parts-umlimited-web-site.png "Parts Unlimited Web Site")
+
+    > For testing purposes, you might want to create yourself an account on the Parts Unlimited website and purchase some products. Use the coupon code **FREE** to buy everything for free.
+
 10. Once the script completes, open **AppServiceMigrationAssistant** that is located on the desktop.
 
     ![AppServiceMigrationAssistant is highlighted on the desktop.](media/appservicemigrationassistant-desktop.png "App Service Migration Assistant")
@@ -239,6 +245,7 @@ After reviewing the assessment results, you have ensured the web application is 
     ![Azure Login process is complete. A message dialog is shown that indicates the login process is a success.](media/appservicemigration-azure-login-complete.png "App Service Migration Assistant authentication approval")
 
 5. Select the Azure Migrate project we created **(1)** in the previous exercise to submit our migration results. Select **Next** to continue.
+    >**Note:** If you do not see your Azure Migrate Project, you may have switch user directory (subscriptions) to the directory where the project was created.
 
     ![Azure Migrate Project is set to partsunlimitedweb. The next button is highlighted.](media/appservicemigration-azure-migrate.png "Azure Migrate Hub integration")
 
@@ -246,15 +253,24 @@ After reviewing the assessment results, you have ensured the web application is 
 
     ![Deployment options are presented. The existing lab resource group is selected as the destination. The destination site name is set to partsunlimited-web-20X21. Migrate button is highlighted.](media/appservicemigration-migrate.png "Azure App Service Migration Assistant Options")
 
-    > **WARNING:** If your migration fails with a **WindowsWorkersNotAllowedInLinuxResourceGroup (1)** try the migration process again, but this time selecting a different Resource Group for your deployment. If that is not possible, select a different Region.  
+    ![The image shows the migration steps progress.](media/app-service-migration-progress.png "App migration progress")
+
+7. Verify your migration. Select **Go to your website**.
+
+    ![The image shows a successful migration results message. The Go to your website button is highlighted.](media/azure-migrate-verify-app-svc-migration.png "Successful Migration Results")
+
+    > **Warning:** If your migration fails with a **WindowsWorkersNotAllowedInLinuxResourceGroup (1)** try the migration process again, but this time selecting a different Resource Group for your deployment. If that is not possible, select a different Region.  
     >
     > ![Migration failed error screen is shown. WindowsWorkersNotAllowedInLinuxResourceGroup message is highlighted.](media/app-migration-windowsworkersnotallowed.png "Migration failed")
 
-7. We have just completed the Parts Unlimited website's migration from IIS on a Virtual Machine to Azure App Service. Congratulations. Let's go back to the Azure Portal and look into Azure Migrate. Search for `migrate` **(1)** on the Azure Portal and select **Azure Migrate (2)**.
+8. We have just completed the Parts Unlimited website's migration from IIS on a Virtual Machine to Azure App Service. Congratulations. Let's go back to the Azure Portal and look into Azure Migrate. Search for `migrate` **(1)** on the Azure Portal and select **Azure Migrate (2)**.
 
     ![Azure Portal is open. The search box is filled with the migrate keyword. Azure Migrate is highlighted from the result list.](media/find-azure-migrate.png "Azure Migrate on Azure Portal Search")
 
-8. Switch to the **Web Apps (1)** section. See the number of discovered web servers, assessed websites **(2)** and migrated websites change **(3)**. Keep in mind that you might need to wait for 5 to 10 minutes for results to show up. You can use the **Refresh** button on the page to see the latest status.
+9. Verify your migrations.
+    - Select the **Web Apps** section. View the number of discovered web servers, assessed websites.
+    - Select the **Refresh** button.
+    - View the assessed and migrated websites. Keep in mind that you might need to wait for 5 to 10 minutes for results to show up.
 
     ![Azure Migrate shows web app assessment and migration reports.](media/azure-migrate-web-app-migration-done.png "Azure Migrate Web Apps Tools")
 
@@ -687,7 +703,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
 15. On the **Authorize Git Credential Manager** screen, select **Authorize GotCredentialManager**. This will give your local environment permission to push the code to GitHub.
 
-    ![Authorize Git Credential Manager is open. Authorize GotCredentialManager buttin is highligted.](media/github-access.png "Authorize Git Credential Manager")
+    ![Authorize Git Credential Manager is open. Authorize GotCredentialManager button is highlighted.](media/github-access.png "Authorize Git Credential Manager")
 
 16. Close the browser.
 
@@ -719,109 +735,74 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ![Deployment slots are listed. Staging slot named partsunlimited-web-20-staging is highlighted.](media/app-service-staging-select.png "Staging deployment slot")
 
-2. Switch to the **Deployment Center (1)** tab. Select **Go to Settings (2)**.
+2. From the toolbar menu, select **Get publish profile**. The publish profile is used to authenticate between GitHub and Azure.
 
-    ![Deployment Center tab is selected. Go to Settings button is highlighted.](media/app-service-goto-deployment-settings.png "Deployment Center")
+    ![The staging app service slot screen displays with the Get publish profile button highlighted on the toolbar.](media/retrieve_staging_publish_profile.png "Staging Publish Profile")
 
-3. Select **GitHub (1)** as your source; **.NET Core (2)** as the runtime stack and **.NET Core 2.1 (LTS) (3)** for version. Select **Authorize** to create the connection between the App Service deployment slot and the GitHub repository we previously prepared.
+3. Open the downloaded file in a text editor. Keep this editor open.
 
-    ![Deployment Settings page is open. The source is set to GitHub. Runtime stack is set to .NET Core. Version is set to .NET Core 2.1 (LTS). Authorize button for GitHub is highlighted. ](media/app-service-deployment-settings.png "Deployment Center Settings")
+4. In a web browser, return to the GitHub repository for this lab, and select the **Settings** tab.
 
-4. Login with your GitHub credentials and provide authorization to App Service to access the repository by selecting **Authorize AzureAppService**.
+    ![The GitHub repository web page displays with Settings highlighted in the toolbar.](media/github_settings_tab.png "GitHub Repository Settings Menu")
 
-    ![Authorize AzureAppService button is highlighted.](media/app-service-github-repo-access.png "Authorize Azure App Service")
+5. From the left menu, select **Secrets**. Then, select **New repository secret**.
 
-5. Once GitHub authorization is complete, go back to the browser with the Azure Portal. Select the GitHub **Organization (1)** where you created the GitHub repository. This might be your personal account name if that is where you created the repository. Select the repository **partsunlimited (2)** and the branch **main (3)** as the source for the CI/CD pipeline. Select **Save (4)** to create CI/CD pipeline.
+    ![The Secrets item is selected in the left menu and the New repository secret button is highlighted.](media/github_repository_add_secret.png "New repository secret")
 
-    ![Authorize AzureAppService button is highlighted.](media/app-service-cicd-settings-save.png "Deployment Center Settings")
+6. Enter the following values in the **New secret** form, then select **Add secret**.
 
-    Once you select **Save**, the portal will add your App Service publishing profile as a secret to your GitHub repository. This will allow GitHub Actions to publish the Parts Unlimited website to the staging deployment slot. Additionally, the portal will create a YAML file that describes the steps required to build and publish the code in the partsunlimited repository.
+    | Field | Value |
+    |-------|-------|
+    | Name  | AZURE_WEBAPP_PUBLISH_PROFILE |
+    | Value | Copy and paste the contents of the downloaded publish profile open in the text editor. |
 
-6. Visit your GitHub repository on GitHub.com to look for changes. Navigate to `.github/workflows` **(1)** to see the **YAML file (2)** and the commit **(3)** made to the repository on your behalf.
+    ![The New secret form displays populated with the previous values. The Add secret button is highlighted.](media/github_publish_profile_secret.png "Add Publish Profile Secret")
 
-    ![Partsunlimited repository is open on GitHub.com. .github/workflows folder is shown. A new commit that includes a main_partsunlimited-web-20(staging).yml file is highlighted.](media/github-inital-yaml-commit.png "GitHub Actions worklfow")
+7. Select the **Actions** tab.
 
-7. Select **Actions (1)** to navigate to the Actions page where you can see the list of workflow runs on the repository. Noticed that the latest run has failed **(2)**. Select the failed run (2) to investigate the issue.
+    ![The GitHub repository page displays with the Actions menu item highlighted.](media/github_actions_menu.png "Actions Menu")
 
-    ![GitHub Actions for the repository is open](media/github-actions-failed.png "Github Actions")
+8. On the **Get started with GitHub Actions** screen, select the **set up a workflow yourself** link.
 
-8. Select the failed job to dig deeper.
+    ![The Get started with GitHub Actions screen displays with the set up a workflow yourself link highlighted.](media/github_setupworkflowyourself.png "Set up a workflow yourself")
 
-    ![Details for the GitHub workflow run are shown. A failed job named build-and-deploy is highlighted.](media/github-actions-failed-net-core-version.png "GitHub Actions failed build")
+9. On the workflow editor screen, provide the file name **stagingdeploy.yml**. Commit your changes by selecting the Start Commit button.
 
-9. In the error message, we can see a mismatch between the .NET Core version the build job is using and the one the project is built against. When we set up our CI/CD pipeline, the Azure Portal listed .NET Core LTS (Long Term Support) versions only. Unfortunately, Parts Unlimited uses a .NET Core version that hit the end of life on December 23, 2019. We will have to change our pipeline setup manually to accommodate project requirements.
+    ![The workflow editor screen displays with the file name set to stagingdeploy.yml](media/github_workflownaming.png "Workflow naming")
 
-    ![Build-and-deploy job error message is shown. SDK version requirement 2.2.207 is highlighted.](media/github-actions-version-error.png "Build Error")
+10. Return the Web VM. Open a Command window. Execute the following code to pull your newly created GitHub stagingdeploy.yml file locally. You are going to update the file content with the template stagingdeploy.yml.
 
-10. Select **Code (1)** to switch back to the repository code view. Select **.github/workflows (2)** to navigate to the location where the workflow YAML code is stored.
-
-    ![Partsunlimited GitHub repository root folder is shown. .github/workflows folders are highlighted. ](media/github-navigate-to-yaml.png "GitHub Actions Workflow")
-
-11. Select the YAML file name `main_partsunlimited-web-20(staging).yml`.
-
-    ![The main_partsunlimited-web-20(staging).yml file is highlighted in the GitHub / workflows folder.](media/github-select-yaml-file.png "Workflow YAML")
-
-12. Select the **Edit this file (1)** button to modify the YAML file.
-
-    ![The main_partsunlimited-web-20(staging).yml file is on screen. Edit this file button is highlighted.](media/github-yaml-edit.png "Workflow YAML Editing")
-
-13. We have to change the **dotnet-version (1)** number to `2.2.207`. Additionally, we have to add the solution file name **(2)** and the project file name **(3)** to dotnet build and publish commands. The reason behind this change is the fact that Parts Unlimited has multiple solutions and projects in its codebase.
-
-    ![main_partsunlimited-web-20(staging).yml is open in edit mode. dotnet-version is set to 2.2.207. dotnet build command is changed to include PartsUnlimited.sln as a parameter. dotnet publish command is changed to include src/PartsUnlimitedWebsite/PartsUnlimitedWebsite.csproj as a parameter.](media/github-yaml-commit.png "GitHub YAML Editing")
-
-    Here is the final YAML file that you can use if needed.
-
-    ```yaml
-    
-    # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-    # More GitHub Actions for Azure: https://github.com/Azure/actions
-    
-    name: Build and deploy ASP.Net Core app to Azure Web App - partsunlimited-web-20(staging)
-    
-    on:
-    push:
-        branches:
-        - main
-    workflow_dispatch:
-    
-    jobs:
-    build-and-deploy:
-        runs-on: windows-latest
-    
-        steps:
-        - uses: actions/checkout@main
-    
-        - name: Set up .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-            dotnet-version: '2.2.207'
-    
-        - name: Build with dotnet
-        run: dotnet build PartsUnlimited.sln --configuration Release
-    
-        - name: dotnet publish
-        run: dotnet publish src/PartsUnlimitedWebsite/PartsUnlimitedWebsite.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
-    
-        - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2
-        with:
-            app-name: 'partsunlimited-web-20'
-            slot-name: 'staging'
-            publish-profile: ${{ secrets.AzureAppService_PublishProfile_a00d49c7adc84a028ccc74ff431024d5 }}
-            package: ${{env.DOTNET_ROOT}}/myapp
+    ```cmd
+        cd C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\src
+        git pull
     ```
 
-14. Once all changes are complete, select **Start commit (4)**. Type a commit message **(5)**. Select **Commit changes (6)** to submit your changes to the repository.
+    ![The image shows successfully pulling down the new GitHub workflow.](media/git-pull-workflow-file-locally.png "Pull Git Workflow")
 
-15. Select **Actions (1)** to switch to the workflows page. Notice the latest successful run **(2)** of our workflow.
+11. Open Windows Explorer. Copy the solution template yml file `C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\workflow\stagingdeploy.yml` to `C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\src\.github\workflows\stagingdeploy.yml`.  You are going to replace the default GitHub workflow yml content.
 
-    ![Actions on the GitHub Repository is selected. The latest successful run of the workflow is highlighted.](media/github-actions-success.png "GitHub Actions success")
+12. Open the `stagingdeploy.yml` in Visual Studio Code. Replace the suffix value on lines 7 and 11 to match your lab.
 
-16. Go back to your lab resource group on the Azure Portal, navigate to your `staging (partsunlimited-web-{uniquesuffix}/staging)` **(2)** App Service resource. You can search for `staging` **(1)** to find your App Service (Slot) for staging.
+    ![YML file is displayed with the suffix values highlighted.](media/ymlreplacesuffix.png "YML file")
+
+13. You have just updated the `partsunlimited` GitHub project. It is time to save and push your changes. Execute these commands in a Web VM Command window.
+
+    ```cmd
+        cd C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\src
+        git add .
+        git commit -am "Updated the stagingdeploy.yml with my changes"
+        git push 
+    ```
+
+14. In GitHub, select **Actions**. The workflow will display as in progress.
+
+    ![The GitHub action workflow displays as being in progress.](media/github_action_in_progress.png "Workflow in progress")
+
+15. Go back to your lab resource group on the Azure Portal, navigate to your `staging (partsunlimited-web-{uniquesuffix}/staging)` **(2)** App Service resource. You can search for `staging` **(1)** to find your App Service (Slot) for staging.
 
     ![The search box for resources is filled in with staging. The staging (partsunlimited-web-{uniquesuffix}/staging) Azure App Service Deployment Slot is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/select-staging-app-service.png "Staging Resource")
 
-17. Notice the dedicated web link for your staging slot. Select to navigate to the website to see the result of your successful deployment through the CI/CD pipeline.
+16. Notice the dedicated web link for your staging slot. Select to navigate to the website to see the result of your successful deployment through the CI/CD pipeline.
 
     ![Staging slot for partsunlimited app service is open. URL endpoint for the deployment slot is highlighted.](media/staging-slot-link.png "Staging public endpoint")
 
@@ -1118,7 +1099,7 @@ In this exercise, you will de-provision all Azure resources created in support o
 
 3. From the list of authorized app **Revoke (1)** access to applications listed below.
 
-    > **WARNING:** Revoking the permissions listed above will disconnect these applications from your GitHub Account. If you have been using these applications before this lab, you might want to keep the permissions. Otherwise, other environments that you control and have access to your GitHub account might lose access as well.
+    > **Warning:** Revoking the permissions listed above will disconnect these applications from your GitHub Account. If you have been using these applications before this lab, you might want to keep the permissions. Otherwise, other environments that you control and have access to your GitHub account might lose access as well.
 
     - Azure App Service
     - GitHub for VSCode

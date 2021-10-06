@@ -19,10 +19,10 @@ namespace PartsUnlimited.Areas.Admin.Controllers
 
     public class StoreManagerController : AdminController
     {
-        private readonly IPartsUnlimitedContext _db;
+        private readonly PartsUnlimitedContext _db;
          private readonly IMemoryCache _cache;
 
-        public StoreManagerController(IPartsUnlimitedContext context, IMemoryCache memoryCache)
+        public StoreManagerController(PartsUnlimitedContext context, IMemoryCache memoryCache)
         {
             _db = context;
             _cache = memoryCache;

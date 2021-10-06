@@ -13,9 +13,9 @@ namespace PartsUnlimited.Queries
 {
     public class OrdersQuery : IOrdersQuery
     {
-        private readonly IPartsUnlimitedContext _db;
+        private readonly PartsUnlimitedContext _db;
 
-        public OrdersQuery(IPartsUnlimitedContext context)
+        public OrdersQuery(PartsUnlimitedContext context)
         {
             _db = context;
         }

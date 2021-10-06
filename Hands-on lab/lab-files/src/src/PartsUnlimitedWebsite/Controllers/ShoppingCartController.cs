@@ -17,11 +17,11 @@ namespace PartsUnlimited.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        private readonly IPartsUnlimitedContext _db;
+        private readonly PartsUnlimitedContext _db;
         private readonly ITelemetryProvider _telemetry;
         private readonly IAntiforgery _antiforgery;
 
-        public ShoppingCartController(IPartsUnlimitedContext context, ITelemetryProvider telemetryProvider, IAntiforgery antiforgery)
+        public ShoppingCartController(PartsUnlimitedContext context, ITelemetryProvider telemetryProvider, IAntiforgery antiforgery)
         {
             _db = context;
             _telemetry = telemetryProvider;

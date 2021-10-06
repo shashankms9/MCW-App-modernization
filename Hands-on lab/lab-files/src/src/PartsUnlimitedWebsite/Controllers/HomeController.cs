@@ -13,11 +13,11 @@ namespace PartsUnlimited.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IPartsUnlimitedContext _db;
+        private readonly PartsUnlimitedContext _db;
         private readonly IMemoryCache _cache;
         public int roco_count = 1000;
 
-        public HomeController(IPartsUnlimitedContext context, IMemoryCache memoryCache)
+        public HomeController(PartsUnlimitedContext context, IMemoryCache memoryCache)
         {
             _db = context;
             _cache = memoryCache;
