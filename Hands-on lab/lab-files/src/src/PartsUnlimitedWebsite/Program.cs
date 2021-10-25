@@ -20,6 +20,8 @@ namespace PartsUnlimited
 
                 try
                 {
+                    PartsUnlimitedContext context = services.GetRequiredService<PartsUnlimitedContext>();
+                    context.Database.EnsureCreated();
                     //Populates the PartsUnlimited sample data
                     SampleData.InitializePartsUnlimitedDatabaseAsync(services).Wait();
                 }
@@ -33,10 +35,13 @@ namespace PartsUnlimited
             host.Run();
         }
 
+
         public static IHostBuilder BuildWebHost(string[] args) =>
             Host.CreateDefaultBuilder(args).ConfigureAppConfiguration((hostContext, config) =>
                 {
-                    config.AddJsonFile("config.json", optional: true);
+                    // This is the only configuration file used, development and production.
+                    // ENHANCEMENT: Conditionally check the environment variable and load the config based on the environment.
+                    config.AddJsonFile("config.json", optional: true, reloadOnChange: true);
                     config.AddEnvironmentVariables();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>

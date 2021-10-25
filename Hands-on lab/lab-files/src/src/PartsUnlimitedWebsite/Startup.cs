@@ -46,7 +46,7 @@ namespace PartsUnlimited
             services.AddDbContext<PartsUnlimitedContext>(options => {
                 if (!string.IsNullOrWhiteSpace(sqlConnectionString))
                 {
-                    options.UseSqlServer("sqlConnectionString");
+                    options.UseSqlServer(sqlConnectionString);
                 }
                 else
                 {

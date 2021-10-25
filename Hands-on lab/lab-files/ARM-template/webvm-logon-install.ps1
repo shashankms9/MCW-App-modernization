@@ -41,7 +41,12 @@ Wait-Install
 Write-Host "Copying default website files..."
 Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\web-deploy-files.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
 
+# Copy the database connection string to the web app.
+Write-Host "Updating config.json with the SQL IP Address and connection string information."
+Copy-Item "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.json" -Destination 'C:\inetpub\wwwroot' -Force
+
 Unregister-ScheduledTask -TaskName "Install Lab Requirements" -Confirm:$false
 
+# Restart the app for the startup to pick up the database connection string.
 Write-Host "Restarting IIS"
 iisreset.exe /restart

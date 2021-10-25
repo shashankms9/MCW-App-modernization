@@ -194,7 +194,7 @@ Parts Unlimited would like an assessment to see what potential issues they might
     ![In the Remote Desktop Connection dialog box, a warning states that the remote computer's identity cannot be verified and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/remote-desktop-connection-identity-verification-webvm.png "Remote Desktop Connection dialog")
 
 7. Once logged into the WebVM VM, a script will execute to install the various items needed for the remaining lab steps.
-    >**Warning:** You must wait for all of the scripts to finish installing and configuring the software when you first log in. DO NOT shutdown the PowerShell script.
+    >**Warning:** You must wait for all of the scripts to finish installing and configuring the software when you first log in. DO NOT shutdown the PowerShell script.  The PowerShell script creates the database and seeds the tables with data. Failing to wait for the script to complete will prevent you from finishing the rest of the lab.
 
     ![The image shows the Windows PowerShell opening screen.](media/windows-powershell.png "PowerShell Opening Screen")
 
@@ -284,7 +284,7 @@ The next step of Part Unlimited's migration project is the assessment and migrat
 
 Parts Unlimited would like an assessment to see what potential issues they might need to address in moving their database to Azure SQL Database. In this task, you will use the [Microsoft Data Migration Assistant](https://docs.microsoft.com/sql/dma/dma-overview?view=sql-server-2017) (DMA) to assess the `PartsUnlimited` database against Azure SQL Database (Azure SQL DB). Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. It recommends performance and reliability improvements for your target environment. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and the Azure SQL DB service.
 
-> **Note**: The Database Migration Assistant is already installed on your SqlServer2008 VM. It can be downloaded through Azure Migrate or from the [Microsoft Download Center](https://go.microsoft.com/fwlink/?linkid=2090807) as well.
+> **Note**: You should have completed step to log into the WebVM. The source database is now available. The Database Migration Assistant is already downloaded on your SqlServer2008 VM. It can be downloaded through Azure Migrate or from the [Microsoft Download Center](https://go.microsoft.com/fwlink/?linkid=2090807) as well.
 
 1. Connect to your SqlServer2008 VM with RDP. Your credentials are the same as the WebVM , `demouser` with `Password.1!!` password.
 
