@@ -208,8 +208,6 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
     ![The WebVM VM blade is displayed, Public IP Address copy button is highlighted.](media/parts-umlimited-web-site.png "Parts Unlimited Web Site")
 
-    > For testing purposes, you might want to create yourself an account on the Parts Unlimited website and purchase some products. Use the coupon code **FREE** to buy everything for free.
-
 10. Once the script completes, open **AppServiceMigrationAssistant** that is located on the desktop.
 
     ![AppServiceMigrationAssistant is highlighted on the desktop.](media/appservicemigrationassistant-desktop.png "App Service Migration Assistant")
