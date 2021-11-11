@@ -942,7 +942,7 @@ You suggest a serverless approach that can handle order processing and the creat
 
 2. Switch to the **Access keys (1)** blade, and select **Show keys (2)**. Select the copy button for the first connection string **(3)**. Paste the value into a text editor, such as Notepad.exe, for later reference.
 
-    ![Access keys blade is open. Show keys button is highlighted. The copy button for the first connection string is pointed.](../media/parts-stacc.png)
+    ![Access keys blade is open. Show keys button is highlighted. The copy button for the first connection string is pointed.](media/parts-stacc.png "Storage Access Keys")
 
 3. Go back to the resource list and navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your Web App and App Service Plan
 
