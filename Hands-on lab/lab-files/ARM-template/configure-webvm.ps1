@@ -66,7 +66,7 @@ Disable-InternetExplorerESC
 
 Install-WindowsFeature -name Web-Server -IncludeManagementTools
 
-$branchName = "stage-1"
+$branchName = "stage-2"
 
 # Download and extract the starter solution files
 # ZIP File sometimes gets corrupted
@@ -74,7 +74,7 @@ Write-Host "Downloading MCW-App-modernization from GitHub" -ForegroundColor Gree
 New-Item -ItemType directory -Path C:\MCW
 while((Get-ChildItem -Directory C:\MCW | Measure-Object).Count -eq 0 )
 {
-    (New-Object System.Net.WebClient).DownloadFile("https://github.com/CloudLabs-MCW/MCW-App-modernization/archive/refs/heads/$branchName.zip", 'C:\MCW.zip')
+    (New-Object System.Net.WebClient).DownloadFile("https://github.com/kalyani7744/MCW-App-modernization/archive/refs/heads/$branchName.zip", 'C:\MCW.zip')
      Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
 }
 
@@ -152,7 +152,7 @@ Start-Process -file 'C:\vscode.exe' -arg '/VERYSILENT /SUPPRESSMSGBOXES /LOG="C:
 
 #Replace Path
 
-(Get-Content C:\MCW\MCW-App-modernization-stage-1\'Hands-on lab'\lab-files\ARM-template\webvm-logon-install.ps1) -replace "replacepath","$Path" | Set-Content C:\MCW\MCW-App-modernization-stage-1\'Hands-on lab'\lab-files\ARM-template\webvm-logon-install.ps1 -Verbos
+(Get-Content C:\MCW\MCW-App-modernization-stage-2\'Hands-on lab'\lab-files\ARM-template\webvm-logon-install.ps1) -replace "replacepath","$Path" | Set-Content C:\MCW\MCW-App-modernization-stage-1\'Hands-on lab'\lab-files\ARM-template\webvm-logon-install.ps1 -Verbos
 
 
 #Autologin
