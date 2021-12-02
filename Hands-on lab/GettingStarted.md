@@ -1,7 +1,7 @@
 # Getting Started with Lab
 
 1. Switch to the page you have seen after launching the lab and click on **Access VM Over HTTPS** to launch the JumpVM.
-   > Please wait while the Virtual Machine will get ready, it will take 5 minutes to launched.
+   > Please wait while the Virtual Machine will get ready, it will take upto 5 minutes.
    
    ![](media/launch.png)
 
