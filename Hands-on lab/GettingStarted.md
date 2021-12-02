@@ -1,9 +1,11 @@
 # Getting Started with Lab
 
 1. Switch back to the page you have seen after launching the lab.
+   
    ![](media/launch.png)
 
-1. Click Go to **HybridHost001** to launch the VM, You will be redirecting to a new tab where you will see the a virtual machine (JumpVM) on left side and Integrated Lab guide on right side. Use this virtual machine throughout the workshop to perform the the lab. You can see the number on lab guide bottom area to switch on different exercises of lab guide.
+1. Click **Go to WebVM** to launch the VM, You will be redirecting to a new tab where you will see the a virtual machine (JumpVM) on left side and Integrated Lab guide on right side. Use this virtual machine throughout the workshop to perform the the lab. You can see the number on lab guide bottom area to switch on different exercises of lab guide.
+   
    ![](media/launch1.png "Lab Environment")
 
    ![](media/appmod-1.png "Lab Environment")
