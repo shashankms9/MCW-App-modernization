@@ -78,6 +78,26 @@ while((Get-ChildItem -Directory C:\MCW | Measure-Object).Count -eq 0 )
      Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
 }
 
+# Verify, download and extract the starter solution files
+$Path = "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\webvm-logon-install.ps1"
+$branchName = "stage-2"
+
+if(Test-Path -Path $Path -PathType Leaf)
+{
+ Write-Host "File exists!"
+}
+else
+{
+do
+{
+(New-Object System.Net.WebClient).DownloadFile("https://github.com/CloudLabs-MCW/MCW-App-modernization/archive/refs/heads/$branchName.zip", 'C:\MCW.zip')
+Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
+$data = "Test-Path -Path $Path -PathType Leaf"
+}Until($data)
+
+ Write-Host "Downloaded Files"
+
+}
 
 #rename the random branch name
 $item = get-item "C:\MCW\*"
