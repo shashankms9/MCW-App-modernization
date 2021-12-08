@@ -109,119 +109,82 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ![Successfully created slot staging message is shown. The close button is highlighted. The current list of slots is presented.](media/app-service-staging-slot-added.png "Deployment slots")
 
-## Task 3: Setting up CI/CD with GitHub Actions
+### Task 3: Setting up CI/CD with GitHub Actions
 
 1. Select your staging slot from the list of deployment slots.
 
-    ![Deployment slots are listed. Staging slot named partsunlimited-web-20-staging is highlighted.](media/app-service-staging-select.png "Staging deployment slot")
+    ![Deployment slots are listed. Staging slot named partsunlimited-web-20-staging is highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/app-service-staging-select.png)
 
-1. Switch to the **Deployment Center (1)** tab. Select **Go to Settings (2)**.
+2. From the toolbar menu, select **Get publish profile**. The publish profile is used to authenticate between GitHub and Azure.
 
-    ![Deployment Center tab is selected. Go to Settings button is highlighted.](media/app-service-goto-deployment-settings.png "Deployment Center")
+    ![The staging app service slot screen displays with the Get publish profile button highlighted on the toolbar.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/retrieve_staging_publish_profile.png "Staging Publish Profile")
 
-1. Select **GitHub (1)** as your source; **.NET Core (2)** as the runtime stack and **.NET Core 2.1 (LTS) (3)** for version. Select **Authorize** to create the connection between the App Service deployment slot and the GitHub repository we previously prepared.
+3. Open the downloaded file in a text editor. Keep this editor open.
 
-    ![Deployment Settings page is open. Source is set to GitHub. Runtime stack is set to .NET Core. Version is set to .NET Core 2.1 (LTS). Authorize button for GitHub is highlighted. ](media/app-service-deployment-settings.png "Deployment Center Settings")
+4. In a web browser, return to the GitHub repository for this lab, and select the **Settings** tab.
 
-1. Login with your GitHub credentials and provide authorization to App Service to access the repository by selecting **Authorize AzureAppService**.
+    ![The GitHub repository web page displays with Settings highlighted in the toolbar.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/github_settings_tab.png "GitHub Repository Settings Menu")
 
-    ![Authorize AzureAppService button is highlighted.](media/app-service-github-repo-access.png "Authorize Azure App Service")
+5. From the left menu, select **Secrets**. Then, select **New repository secret**.
 
-1. Once GitHub authorization is complete go back to the browser with the Azure Portal. Select the GitHub **Organization (1)** where you created the GitHub repository. This might be your personal account name if that is where you created the repository. Select the repository **partsunlimited (2)** and the branch **main (3)** as the source for the CI/CD pipeline. Select **Save (4)** to create CI/CD pipeline.
+    ![The Secrets item is selected in the left menu and the New repository secret button is highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/github_repository_add_secret.png "New repository secret")
 
-    ![Authorize AzureAppService button is highlighted.](media/app-service-cicd-settings-save.png "Deployment Center Settings")
+6. Enter the following values in the **New secret** form, then select **Add secret**.
 
-    Once you select **Save**, the portal will add your App Service publishing profile as a secret to your GitHub repository. This will allow GitHub Actions to publish the Parts Unlimited web site to the staging deployment slot. Additionally, the portal will create a YAML file that describes the steps required to build and publish the code in the partsunlimited repository.
-    >Note: If you get an error `Failed to set up deployment: Cannot find User with name xxxxyyy`. this is expected. ignore to continue with the next steps below.
+    | Field | Value |
+    |-------|-------|
+    | Name  | AZURE_WEBAPP_PUBLISH_PROFILE |
+    | Value | Copy and paste the contents of the downloaded publish profile open in the text editor. |
 
-1. Visit your GitHub repository on GitHub.com to look for changes. Navigate to `.github/workflows` **(1)** to see the **YAML file (2)** and the commit **(3)** made to the repository on your behalf.
+    ![The New secret form displays populated with the previous values. The Add secret button is highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/github_publish_profile_secret.png "Add Publish Profile Secret")
 
-    ![Partsunlimited repository is open on GitHub.com. .github/workflows folder is shown. A new commit that includes a main_partsunlimited-web-20(staging).yml file is highlighted.](media/github-inital-yaml-commit.png "GitHub Actions worklfow")
+7. Select the **Actions** tab.
 
-1. Select **Actions (1)** to navigate to the Actions page where you can see the list of workflow runs on the repository. Noticed that the latest run has failed **(2)**. Select the failed run (2) to investigate the issue.
+    ![The GitHub repository page displays with the Actions menu item highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/github_actions_menu.png "Actions Menu")
 
-    ![GitHub Actions for the repository is open](media/github-actions-failed.png "Github Actions")
+8. On the **Get started with GitHub Actions** screen, select the **set up a workflow yourself** link.
 
-1. Select the failed job to dig deeper.
+    ![The Get started with GitHub Actions screen displays with the set up a workflow yourself link highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/github_setupworkflowyourself.png "Set up a workflow yourself")
 
-    ![Details for the GitHub workflow run is shown. A failed job named build-and-deploy is highlighted.](media/github-actions-failed-net-core-version.png "GitHub Actions failed build")
+9. On the workflow editor screen, provide the file name **stagingdeploy.yml**. Commit your changes by selecting the Start Commit button.
 
-1. In the error message, we can see a mismatch between the .NET Core version the build job is using and the one the project is built against. When we set up our CI/CD pipeline, the Azure Portal listed .NET Core LTS (Long Term Support) versions only. Unfortunately, Parts Unlimited uses a .NET Core version that hit the end of life on December 23, 2019. We will have to change our pipeline setup manually to accommodate project requirements.
+    ![The workflow editor screen displays with the file name set to stagingdeploy.yml](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/github_workflownaming.png "Workflow naming")
 
-    ![Build-and-deploy job error message is shown. SDK version requirement 2.2.207 is highlighted.](media/github-actions-version-error.png "Build Error")
+10. Return the Web VM. Open a Command window. Execute the following code to pull your newly created GitHub stagingdeploy.yml file locally. You are going to update the file content with the template stagingdeploy.yml.
 
-1. Select **Code (1)** to switch back to the repository code view. Select **.github/workflows (2)** to navigate to the location where the workflow YAML code is stored.
-
-    ![Partsunlimited GitHub repository root folder is shown. .github/workflows folders are highlighted. ](media/github-navigate-to-yaml.png "GitHub Actions Workflow")
-
-1. Select the YAML file name `main_partsunlimited-web-20(staging).yml`.
-
-    ![The main_partsunlimited-web-20(staging).yml file is highlighted in the GitHub / workflows folder.](media/github-select-yaml-file.png "Workflow YAML")
-
-1. Select the **Edit this file (1)** button to modify the YAML file.
-
-    ![The main_partsunlimited-web-20(staging).yml file is on screen. Edit this file button is highlighted.](media/github-yaml-edit.png "Workflow YAML Editing")
-
-1. We have to change the **dotnet-version (1)** number to `2.2.207`. Additionally, we have to add the solution file name **(2)** and the project file name **(3)** to dotnet build and publish commands. The reason behind this change is the fact that Parts Unlimited has multiple solutions and projects in their codebase.
-
-    ![main_partsunlimited-web-20(staging).yml is open in edit mode. dotnet-version is set to 2.2.207. dotnet build command is changed to include PartsUnlimited.sln as a parameter. dotnet publish command is changed to include src/PartsUnlimitedWebsite/PartsUnlimitedWebsite.csproj as a parameter.](media/github-yaml-commit.png "GitHub YAML Editing")
-
-    Below is the final YAML file for illustration.
-    >Note: Do not copy the below code to the file. The secret file reference will not work.
-
-    ```yaml
-    
-    # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-    # More GitHub Actions for Azure: https://github.com/Azure/actions
-    
-    name: Build and deploy ASP.Net Core app to Azure Web App - partsunlimited-web-20(staging)
-    
-    on:
-    push:
-        branches:
-        - main
-    workflow_dispatch:
-    
-    jobs:
-    build-and-deploy:
-        runs-on: windows-latest
-    
-        steps:
-        - uses: actions/checkout@master
-    
-        - name: Set up .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-            dotnet-version: '2.2.207'
-    
-        - name: Build with dotnet
-        run: dotnet build PartsUnlimited.sln --configuration Release
-    
-        - name: dotnet publish
-        run: dotnet publish src/PartsUnlimitedWebsite/PartsUnlimitedWebsite.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
-    
-        - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2
-        with:
-            app-name: 'partsunlimited-web-20'
-            slot-name: 'staging'
-            publish-profile: ${{ secrets.AzureAppService_PublishProfile_a00d49c7adc84a028ccc74ff431024d5 }}
-            package: ${{env.DOTNET_ROOT}}/myapp
+    ```cmd
+        cd "C:\MCW\MCW-App-modernization-stage-2\Hands-on lab\lab-files\src"
+        git pull
     ```
 
-1. Once all changes are complete select **Start commit (4)**. Type a commit message **(5)**. Select **Commit changes (6)** to submit your changes to the repository.
+    ![The image shows successfully pulling down the new GitHub workflow.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/git-pull-workflow-file-locally.png "Pull Git Workflow")
 
-1. Select **Actions (1)** to switch to the workflows page. Notice the latest successful run **(2)** of our workflow.
+11. Open Windows Explorer. Copy the solution template yml file `C:\MCW\MCW-App-modernization-stage-2\Hands-on lab\lab-files\workflow\stagingdeploy.yml` to `C:\MCW\MCW-App-modernization-stage-2\Hands-on lab\lab-files\src\.github\workflows\stagingdeploy.yml`.  You are going to replace the default GitHub workflow yml content.
 
-    ![Actions on the GitHub Repository is selected. The latest successful run of the workflow is highlighted.](media/github-actions-success.png "GitHub Actions success")
+12. Open the `stagingdeploy.yml` in Visual Studio Code. Replace the suffix value on lines 7 and 11 to match your lab.
 
-1. Go back to your lab resource group on the Azure Portal, navigate to your `staging (partsunlimited-web-{uniquesuffix}/staging)` **(2)** App Service resource. You can search for `staging` **(1)** to find your App Service (Slot) for staging.
+    ![YML file is displayed with the suffix values highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/ymlreplacesuffix.png "YML file")
 
-    ![The search box for resources is filled in with staging. The staging (partsunlimited-web-{uniquesuffix}/staging) Azure App Service Deployment Slot is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/select-staging-app-service.png "Staging Resource")
+13. You have just updated the `partsunlimited` GitHub project. It is time to save and push your changes. Execute these commands in a Web VM Command window.
 
-1. Notice the dedicated web link for your staging slot. Select to navigate to the web site to see the result of your successful deployment through the CI/CD pipeline.
+    ```cmd
+        cd C:\MCW\MCW-App-modernization-main\stage-2\lab-files\src
+        git add .
+        git commit -am "Updated the stagingdeploy.yml with my changes"
+        git push 
+    ```
 
-    ![Staging slot for partsunlimited app service is open. URL endpont for the deployment slot is highlighted.](media/staging-slot-link.png "Staging public endpoint")
+14. In GitHub, select **Actions**. The workflow will display as in progress.
+
+    ![The GitHub action workflow displays as being in progress.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/github_action_in_progress.png "Workflow in progress")
+
+15. Go back to your lab resource group on the Azure Portal, navigate to your `staging (partsunlimited-web-/staging)` **(2)** App Service resource. You can search for `staging` **(1)** to find your App Service (Slot) for staging.
+
+    ![The search box for resources is filled in with staging. The staging (partsunlimited-web-{uniquesuffix}/staging) Azure App Service Deployment Slot is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/select-staging-app-service.png "Staging Resource")
+
+16. Notice the dedicated web link for your staging slot. Select to navigate to the website to see the result of your successful deployment through the CI/CD pipeline.
+
+    ![Staging slot for partsunlimited app service is open. URL endpoint for the deployment slot is highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/staging-slot-link.png "Staging public endpoint")
 
 ## Task 4: Pushing code changes to staging and production
 
