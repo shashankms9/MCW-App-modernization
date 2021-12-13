@@ -12,7 +12,7 @@ env:
   
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-2019
     steps:
 
       # Checkout the repo
