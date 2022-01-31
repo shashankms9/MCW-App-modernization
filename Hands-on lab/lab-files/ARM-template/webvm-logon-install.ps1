@@ -89,8 +89,10 @@ $HTTP_Response = $HTTP_Request.getResponse()
 
 # We then get the HTTP code as an integer.
 $HTTP_Status = [int]$HTTP_Response.StatusCode
+Write-Host "Checking the status of website"
 }
 Until ($HTTP_Status -eq 200)
+Write-Host "website is ready to access"
 
 If ($HTTP_Status -eq 200){
     $Validstatus="Succeeded"  ##Failed or Successful at the last step
