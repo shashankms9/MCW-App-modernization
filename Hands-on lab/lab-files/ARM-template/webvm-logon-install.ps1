@@ -74,6 +74,8 @@ $cred = new-object -typename System.Management.Automation.PSCredential -argument
 
 Connect-AzAccount -Credential $cred
 
+Do 
+{
 $vmipdetails=Get-AzPublicIpAddress -ResourceGroupName "hands-on-lab-$DeploymentID" -Name "WebVM-ip" 
 
 $vmip=$vmipdetails.IpAddress
@@ -87,6 +89,8 @@ $HTTP_Response = $HTTP_Request.getResponse()
 
 # We then get the HTTP code as an integer.
 $HTTP_Status = [int]$HTTP_Response.StatusCode
+}
+until ($HTTP_Status -eq 200)
 
 If ($HTTP_Status -eq 200){
     $Validstatus="Succeeded"  ##Failed or Successful at the last step
