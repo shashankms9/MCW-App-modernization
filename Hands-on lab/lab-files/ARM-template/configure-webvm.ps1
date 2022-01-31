@@ -74,7 +74,7 @@ Write-Host "Downloading MCW-App-modernization from GitHub" -ForegroundColor Gree
 New-Item -ItemType directory -Path C:\MCW
 while((Get-ChildItem -Directory C:\MCW | Measure-Object).Count -eq 0 )
 {
-    (New-Object System.Net.WebClient).DownloadFile("https://github.com/CloudLabs-MCW/MCW-App-modernization/archive/refs/heads/$branchName.zip", 'C:\MCW.zip')
+    (New-Object System.Net.WebClient).DownloadFile("https://github.com/Kalyani7744/MCW-App-modernization/archive/refs/heads/$branchName.zip", 'C:\MCW.zip')
      Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
 }
 
