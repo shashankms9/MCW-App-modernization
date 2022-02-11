@@ -75,7 +75,7 @@ $cred = new-object -typename System.Management.Automation.PSCredential -argument
 Connect-AzAccount -Credential $cred
 
 $k = 0 
-for ($i=1; ($i + $k) -le 5; $i++)
+for ($i=1; ($i + $k) -le 7; $i++)
 {
     $vmipdetails=Get-AzPublicIpAddress -ResourceGroupName "hands-on-lab-$DeploymentID" -Name "WebVM-ip" 
 
