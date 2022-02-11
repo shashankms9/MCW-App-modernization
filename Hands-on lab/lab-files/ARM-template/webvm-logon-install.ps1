@@ -74,35 +74,38 @@ $cred = new-object -typename System.Management.Automation.PSCredential -argument
 
 Connect-AzAccount -Credential $cred
 
-Do 
+$k = 0 
+for ($i=1; ($i + $k) -le 5; $i++)
 {
-$vmipdetails=Get-AzPublicIpAddress -ResourceGroupName "hands-on-lab-$DeploymentID" -Name "WebVM-ip" 
+    $vmipdetails=Get-AzPublicIpAddress -ResourceGroupName "hands-on-lab-$DeploymentID" -Name "WebVM-ip" 
 
-$vmip=$vmipdetails.IpAddress
+    $vmip=$vmipdetails.IpAddress
  
-$url="http://"+$vmip
+    $url="http://"+$vmip
 
-$HTTP_Request = [System.Net.WebRequest]::Create($url)
+    $HTTP_Request = [System.Net.WebRequest]::Create($url)
 
-# We then get a response from the site.
-$HTTP_Response = $HTTP_Request.getResponse()
+    $HTTP_Request.timeout = 120000; #2 Minutes
 
-# We then get the HTTP code as an integer.
-$HTTP_Status = [int]$HTTP_Response.StatusCode
-Write-Host "Checking the status of website"
-}
-Until ($HTTP_Status -eq 200)
-Write-Host "website is ready to access"
+    # We then get a response from the site.
+    $HTTP_Response = $HTTP_Request.getResponse()
 
-If ($HTTP_Status -eq 200){
-    $Validstatus="Succeeded"  ##Failed or Successful at the last step
-    $Validmessage="Post Deployment is successful"
-}
+    # We then get the HTTP code as an integer.
+    $HTTP_Status = [int]$HTTP_Response.StatusCode
+    Write-Host "Checking the status of website in the attempt $1"
+    
+if ($HTTP_Status -eq 200) {
+     $k = 8
+     $Validstatus="Succeeded"  ##Failed or Successful at the last step
+     $Validmessage="Post Deployment is successful"
+     Write-Host "Post Deployment is successful"
+    }
 else{
     Write-Warning "Validation Failed - see log output"
     $Validstatus="Failed"  ##Failed or Successful at the last step
     $Validmessage="Post Deployment Failed"
-
+     Write-Host "Post Deployment Failed"
+} 
 }
 
 CloudlabsManualAgent setStatus
