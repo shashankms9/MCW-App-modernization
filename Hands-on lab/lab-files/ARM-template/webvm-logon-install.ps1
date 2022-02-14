@@ -92,7 +92,7 @@ for ($i=1; ($i + $k) -le 7; $i++)
 
     # We then get the HTTP code as an integer.
     $HTTP_Status = [int]$HTTP_Response.StatusCode
-    Write-Host "Checking the status of website in the attempt $1"
+    Write-Host "Checking the status of website in the attempt $i"
     
 if ($HTTP_Status -eq 200) {
      $k = 8
