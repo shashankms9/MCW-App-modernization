@@ -26,6 +26,10 @@ param (
 
 Start-Transcript -Path C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension.txt -Append
 
+$vmAdminUsername="demouser"
+$trainerUserName="trainer"
+$trainerUserPassword="Password.!!1"
+
 function Disable-InternetExplorerESC {
     $AdminKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
     $UserKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}"
@@ -123,6 +127,9 @@ $path=$path.Path
 $commonscriptpath = "$path" + "\cloudlabs-common\cloudlabs-windows-functions.ps1"
 . $commonscriptpath
 
+
+# Enable Embedded shadow
+Enable-CloudLabsEmbeddedShadow $vmAdminUsername $trainerUserName $trainerUserPassword
 
 CloudLabsManualAgent Install
 
