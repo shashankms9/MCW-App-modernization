@@ -31,6 +31,26 @@ Wait-Install
 Write-Host "Installing App Service Migration Assistant..."
 Start-Process -file 'C:\AppServiceMigrationAssistant.msi ' -arg '/qn /l*v C:\asma_install.txt' -passthru | wait-process
 
+# checking AppServiceMigrationAssistant installation
+$Testpath = 'C:\Users\demouser\AppData\Local\Programs\azure-appService-migrationAssistant'
+$Testpath1 = 'C:\AppServiceMigrationAssistant.msi '
+
+$Folder = Test-Path -Path $Testpath
+$Folder1 = Test-Path -Path $Testpath1
+
+Write-Host "Checking for App serviceMigrationassistant installation"
+if ($Folder -eq 'True' -and $Folder1 -eq 'True') {
+    Write-Host "App service Migration assistant installation is succeeded"
+} 
+else 
+{
+    (New-Object System.Net.WebClient).DownloadFile('https://appmigration.microsoft.com/api/download/windows/AppServiceMigrationAssistant.msi', 'C:\AppServiceMigrationAssistant.msi')
+    Start-Sleep -s 15
+    Wait-Install
+    Write-Host "Installing App Service Migration Assistant..."
+    Start-Process -file 'C:\AppServiceMigrationAssistant.msi ' -arg '/qn /l*v C:\asma_install.txt' -passthru | wait-process
+}
+
 # Install Edge
 Wait-Install
 Write-Host "Installing Edge..."
