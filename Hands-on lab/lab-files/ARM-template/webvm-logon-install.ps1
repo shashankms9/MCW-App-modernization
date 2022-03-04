@@ -40,9 +40,7 @@ if (Test-Path -Path $Folder) {
 } 
 else 
 {
-    Wait-Install
-    Write-Host "Installing App Service Migration Assistant..."
-    Start-Process -file 'C:\AppServiceMigrationAssistant.msi ' -arg '/qn /l*v C:\asma_install.txt' -passthru | wait-process
+    (New-Object System.Net.WebClient).DownloadFile('https://appmigration.microsoft.com/api/download/windows/AppServiceMigrationAssistant.msi', 'C:\AppServiceMigrationAssistant.msi')
     Start-Sleep -s 15
     Wait-Install
     Write-Host "Installing App Service Migration Assistant..."
