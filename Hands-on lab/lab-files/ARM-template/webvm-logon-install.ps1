@@ -32,10 +32,14 @@ Write-Host "Installing App Service Migration Assistant..."
 Start-Process -file 'C:\AppServiceMigrationAssistant.msi ' -arg '/qn /l*v C:\asma_install.txt' -passthru | wait-process
 
 # checking AppServiceMigrationAssistant installation
-$Folder1 = 'C:\Users\demouser\AppData\Local\Programs\azure-appService-migrationAssistant'
-$Folder = 'C:\AppServiceMigrationAssistant.msi '
+$Testpath = 'C:\Users\demouser\AppData\Local\Programs\azure-appService-migrationAssistant'
+$Testpath1 = 'C:\AppServiceMigrationAssistant.msi '
+
+$Folder = Test-Path -Path $Testpath
+$Folder1 = Test-Path -Path $Testpath1
+
 Write-Host "Checking for App serviceMigrationassistant installation"
-if (Test-Path -Path $Folder -and Test-Path $Folder1) {
+if ($Folder -eq 'True' -and $Folder1 -eq 'True') {
     Write-Host "App service Migration assistant installation is succeeded"
 } 
 else 
