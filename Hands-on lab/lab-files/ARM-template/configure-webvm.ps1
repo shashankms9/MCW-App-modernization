@@ -115,7 +115,7 @@ Write-Host "Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$Sq
 
 # Downloading Deferred Installs
 # Download App Service Migration Assistant 
-(New-Object System.Net.WebClient).DownloadFile('https://appmigration.microsoft.com/api/download/windows/AppServiceMigrationAssistan.msi', 'C:\AppServiceMigrationAssistant.msi')
+(New-Object System.Net.WebClient).DownloadFile('https://appmigration.microsoft.com/api/download/windows/AppServiceMigrationAssistant.msi', 'C:\AppServiceMigrationAssistant.msi')
 # Download Edge 
 (New-Object System.Net.WebClient).DownloadFile('https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/e2d06b69-9e44-45e1-bdf5-b3b827fe06b2/MicrosoftEdgeEnterpriseX64.msi', 'C:\MicrosoftEdgeEnterpriseX64.msi')
 # Download 3.1.4 SDK
