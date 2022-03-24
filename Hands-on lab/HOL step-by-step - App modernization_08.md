@@ -153,9 +153,10 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
 1. Select your staging slot from the list of deployment slots.
 
-    ![Deployment slots are listed. Staging slot named partsunlimited-web-20-staging is highlighted.](media/app-service-staging-select.png "Staging deployment slot")
+    ![Deployment slots are listed. Staging slot named partsunlimited-web-20-staging is highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/app-service-staging-select.png)
 
 2. From the toolbar menu, select **Get publish profile**. The publish profile is used to authenticate between GitHub and Azure.
+<<<<<<< HEAD
 
     ![The staging app service slot screen displays with the Get publish profile button highlighted on the toolbar.](media/retrieve_staging_publish_profile.png "Staging Publish Profile")
 
@@ -192,23 +193,73 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
 10. Return the Web VM. Open a Command window. Execute the following code to pull your newly created GitHub stagingdeploy.yml file locally. You are going to update the file content with the template stagingdeploy.yml.
 
+=======
+
+    ![The staging app service slot screen displays with the Get publish profile button highlighted on the toolbar.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/retrieve_staging_publish_profile.png "Staging Publish Profile")
+
+3. Open the downloaded file in a text editor. Keep this editor open.
+
+4. In a web browser, return to the GitHub repository for this lab, and select the **Settings** tab.
+
+    ![The GitHub repository web page displays with Settings highlighted in the toolbar.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/github_settings_tab.png "GitHub Repository Settings Menu")
+
+5. From the left menu, select **Secrets**. Then, select **New repository secret**.
+
+    ![The Secrets item is selected in the left menu and the New repository secret button is highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/github_repository_add_secret.png "New repository secret")
+
+6. Enter the following values in the **New secret** form, then select **Add secret**.
+
+    | Field | Value |
+    |-------|-------|
+    | Name  | AZURE_WEBAPP_PUBLISH_PROFILE |
+    | Value | Copy and paste the contents of the downloaded publish profile open in the text editor. |
+
+    ![The New secret form displays populated with the previous values. The Add secret button is highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/github_publish_profile_secret.png "Add Publish Profile Secret")
+
+7. Select the **Actions** tab.
+
+    ![The GitHub repository page displays with the Actions menu item highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/github_actions_menu.png "Actions Menu")
+
+8. On the **Get started with GitHub Actions** screen, select the **set up a workflow yourself** link.
+
+    ![The Get started with GitHub Actions screen displays with the set up a workflow yourself link highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/github_setupworkflowyourself.png "Set up a workflow yourself")
+
+9. On the workflow editor screen, provide the file name **stagingdeploy.yml**. Commit your changes by selecting the Start Commit button.
+
+    ![The workflow editor screen displays with the file name set to stagingdeploy.yml](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/github_workflownaming.png "Workflow naming")
+
+10. Return the Web VM. Open a Command window. Execute the following code to pull your newly created GitHub stagingdeploy.yml file locally. You are going to update the file content with the template stagingdeploy.yml.
+
+>>>>>>> 0bc93ed11dd28e685431848a35dc907769548517
     ```cmd
         cd "C:\MCW\MCW-App-modernization-stage-2\Hands-on lab\lab-files\src"
         git pull
     ```
 
+<<<<<<< HEAD
     ![The image shows successfully pulling down the new GitHub workflow.](media/git-pull-workflow-file-locally.png "Pull Git Workflow")
+=======
+    ![The image shows successfully pulling down the new GitHub workflow.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/git-pull-workflow-file-locally.png "Pull Git Workflow")
+>>>>>>> 0bc93ed11dd28e685431848a35dc907769548517
 
 11. Open Windows Explorer. Copy the solution template yml file `C:\MCW\MCW-App-modernization-stage-2\Hands-on lab\lab-files\workflow\stagingdeploy.yml` to `C:\MCW\MCW-App-modernization-stage-2\Hands-on lab\lab-files\src\.github\workflows\stagingdeploy.yml`.  You are going to replace the default GitHub workflow yml content.
 
 12. Open the `stagingdeploy.yml` in Visual Studio Code. Replace the suffix value on lines 7 and 11 to match your lab.
 
+<<<<<<< HEAD
     ![YML file is displayed with the suffix values highlighted.](media/ymlreplacesuffix.png "YML file")
+=======
+    ![YML file is displayed with the suffix values highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/ymlreplacesuffix.png "YML file")
+>>>>>>> 0bc93ed11dd28e685431848a35dc907769548517
 
 13. You have just updated the `partsunlimited` GitHub project. It is time to save and push your changes. Execute these commands in a Web VM Command window.
 
     ```cmd
+<<<<<<< HEAD
         cd "C:\MCW\MCW-App-modernization-stage-2\Hands-on lab\lab-files\src"
+=======
+        cd C:\MCW\MCW-App-modernization-main\stage-2\lab-files\src
+>>>>>>> 0bc93ed11dd28e685431848a35dc907769548517
         git add .
         git commit -am "Updated the stagingdeploy.yml with my changes"
         git push 
@@ -216,15 +267,23 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
 14. In GitHub, select **Actions**. The workflow will display as in progress.
 
+<<<<<<< HEAD
     ![The GitHub action workflow displays as being in progress.](media/github_action_in_progress.png "Workflow in progress")
+=======
+    ![The GitHub action workflow displays as being in progress.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/github_action_in_progress.png "Workflow in progress")
+>>>>>>> 0bc93ed11dd28e685431848a35dc907769548517
 
 15. Go back to your lab resource group on the Azure Portal, navigate to your `staging (partsunlimited-web-/staging)` **(2)** App Service resource. You can search for `staging` **(1)** to find your App Service (Slot) for staging.
 
-    ![The search box for resources is filled in with staging. The staging (partsunlimited-web-{uniquesuffix}/staging) Azure App Service Deployment Slot is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/select-staging-app-service.png "Staging Resource")
+    ![The search box for resources is filled in with staging. The staging (partsunlimited-web-{uniquesuffix}/staging) Azure App Service Deployment Slot is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/select-staging-app-service.png "Staging Resource")
 
 16. Notice the dedicated web link for your staging slot. Select to navigate to the website to see the result of your successful deployment through the CI/CD pipeline.
 
+<<<<<<< HEAD
     ![Staging slot for partsunlimited app service is open. URL endpoint for the deployment slot is highlighted.](media/staging-slot-link.png "Staging public endpoint")
+=======
+    ![Staging slot for partsunlimited app service is open. URL endpoint for the deployment slot is highlighted.](https://github.com/CloudLabs-MCW/MCW-App-modernization/raw/stage-2/Hands-on%20lab/media/staging-slot-link.png "Staging public endpoint")
+>>>>>>> 0bc93ed11dd28e685431848a35dc907769548517
 
 ### Task 4: Pushing code changes to staging and production
 
