@@ -17,7 +17,7 @@ You suggest a serverless approach that can handle order processing and the creat
 
     ![File menu is open in Visual Studio Code. Open Folder... command is highlighted.](media/vscode-open-folder.png "Open Folder")
 
-1. Navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src-invoicing-functions\FunctionApp` and select **Select Folder**.
+1. Navigate to `C:\MCW\MCW-App-modernization-stage-2\Hands-on lab\lab-files\src-invoicing-functions\FunctionApp` and select **Select Folder**.
 
 1. Select **Install** to install extensions required for your Azure Functions project. This will install C# for Visual Studio Code and Azure Functions Extension for Visual Studio Code.
 
@@ -26,6 +26,8 @@ You suggest a serverless approach that can handle order processing and the creat
 1. Once install is **Finished (1)** select **Restore (2)** to download dependencies for the project.
 
     ![Visual Studio Code is on screen. Restore dependencies button is highlighted.](media/vscode-restore-dependencies.png ".NET Restore")
+    
+   > If the C# extension is already present in VS code, it may not ask you to restore.
 
 1. When restore is complete close the tabs titled **Extension (1) (2)** and the **welcome tab (3)**. Select **Azure (4)** from the left menu and select **Sign into Azure (5)**. Select **Edge** as your browser if requested.
 
@@ -35,7 +37,8 @@ You suggest a serverless approach that can handle order processing and the creat
 
 1. Close the browser tab and minimize the browser window once your sign in is complete.
 
-1. Within the Visual Studio Code window, drill down **(1)** the resource in your subscription. Right click on your Azure Function named **parts-func-{uniquesuffix} (2)** and select **Deploy to Azure Function App... (3)**.
+1. Within the Visual Studio Code window, drill down **(1)** the resource in your subscription. Right click on your Azure Function named **(2) parts-func-<inject key="DeploymentID" enableCopy="false"/>** 
+and select **Deploy to Function App... (3)**.
 
     ![Azure subscription is shown. The function app **parts-func-{uniquesuffix} (2)** is selected. On the context menu Deploy to Function App is highlighted.](media/vscode-deploy-function-app.png "Deploy to Function App")
 
@@ -45,15 +48,16 @@ You suggest a serverless approach that can handle order processing and the creat
 
 ## Task 2: Connecting Function App and App Service
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your `parts` Storage Account resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the `parts{uniquesuffix}` Storage Account from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your `parts` Storage Account resource by selecting the **hands-on-lab-<inject key="DeploymentID" enableCopy="false"/>** resource group, and selecting the **parts<inject key="DeploymentID" enableCopy="false"/>** Storage Account from the list of resources.
 
     ![The parts{uniquesuffix} Storage Account is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/select-storage-account.png "Storage Resource Selection")
 
 1. Switch to the **Access keys (1)** blade, and select **Show keys (2)**. Select the copy button for the first connection string **(3)**. Paste the value into a text editor, such as Notepad.exe, for later reference.
 
-    ![Access keys blade is open. Show keys button is highlighted. The copy button for the first connection string is pointed.](media/storage-account-connection-copy.png "Storage Access Keys")
+    ![Access keys blade is open. Show keys button is highlighted. The copy button for the first connection string is pointed.](media/storage123.png "Storage Access Keys")
 
-1. Go back to the resource list and navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your Web App and App Service Plan
+1. Go back to the resource list and navigate to your **(2) partsunlimited-web-<inject key="DeploymentID" enableCopy="false"/>**
+App Service resource. You can search for **(1)** `partsunlimited-web` to find your Web App and App Service Plan
 
    ![The search box for the resource is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
 
@@ -63,20 +67,20 @@ You suggest a serverless approach that can handle order processing and the creat
 
 1. On the **Add/Edit connection string** panel, enter the following:
 
-   - **Name(1)**: Enter `StorageConnectionString`.
+   - **Name(1)**: Enter `StorageConnectionString`
    - **Value**: Enter Storage Connection String you copied in Step 2.
    - **Type (3)**: Select **Custom**
    - **Deployment slot setting (4)**: Check this option to make sure connection strings stick to a deployment slot. This will make sure you can have different settings for staging and production.
+   - Select **OK (5)**.
 
     ![Add/Edit Connection string panel is open. The name field is set to StorageConnectionString. The value field is set to the connection string copied in a previous step. Type is set to Custom. The deployment slot setting checkbox is checked. OK button is highlighted. ](media/app-service-storage-connection.png "Deployment Slot Configuration")
-
-1. Select **OK (5)**.
 
 1. Select **Save** and **Continue** for the following confirmation dialog.
 
     ![App Service Configuration page is open. Save button is highlighted.](media/app-service-settings-save.png "App Service Configuration")
 
-1. Go back to the resource list and navigate to your `parts-func-{uniquesuffix}` **(2)** Function App resource. You can search for `func` **(1)** to find your function app.
+1. Go back to the resource list and navigate to your **(2) parts-func-<inject key="DeploymentID" enableCopy="false"/>**     
+    Function App resource. You can search for **(1)** `func`  to find your function app.
 
    ![The search box for the resource is filled in with func. The parts-func-{uniquesuffix} Function App is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/select-function-app.png "Function App Resource Selection")
 
@@ -86,12 +90,11 @@ You suggest a serverless approach that can handle order processing and the creat
 
 1. On the **Add/Edit connection string** panel, enter the following:
 
-    - **Name(1)**: Enter `DefaultConnection`.
-    - **Value**: Enter SQL Connection String you copied in Exercise 3, Task 5, Step 3.
+    - **Name(1)**: Enter `DefaultConnection`
+    - **Value**: Enter SQL Connection String you copied in Exercise 3, Task 6, Step 3.
+    - Select **OK (3)**.
 
     ![Add/Edit Connection string panel is open. The name field is set to StorageConnectionString. The value field is set to the connection string copied in a previous step. Type is set to Custom. The deployment slot setting checkbox is checked. OK button is highlighted.](media/function-app-sql-setting.png "Function App Configuration")
-
-1. Select **OK (3)**.
 
 1. Select **Save** and **Continue** for the following confirmation dialog.
 
@@ -101,7 +104,8 @@ You suggest a serverless approach that can handle order processing and the creat
 
 In this task, we will submit a new order on the Parts Unlimited website and observe the order's processing on the order details page. Once the order is submitted, the web front-end will put a job into an Azure Storage Queue. The Function App that we previously deployed is set to listen to the queue and pull jobs for processing. Once order processing is done, a PDF file will be created, and the link for the PDF file will be accessible on the order details page.
 
-1. Go back to the resource list and navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your Web App and App Service Plan.
+1. Go back to the resource list and navigate to your **(2) partsunlimited-web-<inject key="DeploymentID" enableCopy="false"/>**
+App Service resource. You can search for **(1)** `partsunlimited-web` to find your Web App and App Service Plan.
 
    ![The search box for the resource is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
 
@@ -156,7 +160,8 @@ In this task, we will submit a new order on the Parts Unlimited website and obse
 
 In this task, you add Application Insights to your Function App in the Azure Portal, to be able to collect insights related to Function executions.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **parts-func-{uniquesuffix}** App service from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting the **hands-on-lab-<inject key="DeploymentID" enableCopy="false"/>**
+resource group, and selecting the **parts-func-<inject key="DeploymentID" enableCopy="false"/>** App service from the list of resources.
 
    ![The Function App resource is highlighted in the list of resources.](media/azure-resources-function-app.png "Function App")
 
@@ -164,9 +169,13 @@ In this task, you add Application Insights to your Function App in the Azure Por
 
    ![Application Insights blade is selected. The Turn on Application Insights button is highlighted.](media/function-app-add-app-insights.png "Turn on Application Insights for Function App")
 
-1. On the Application Insights blade, select **Create new resource (1)**, accept the default name provided, and then select **Apply (2)**. Select **Yes (3)** when prompted about restarting the Function App to apply monitoring settings.
+1. On the Application Insights blade, provide the below information.
 
-   ![The Create New Application Insights blade is displayed with a unique name set under Create new resource. Apply and the following Yes approval buttons are highlighted.](media/function-app-app-insights.png "Add Application Insights")
+   - Select **Create new resource(1)**, accept the default resource name and location provided. 
+   - Select existing log analytics workspace **Parts-Workspace-<inject key="DeploymentID" enableCopy="false"/>(2)** workspace from the dropdown as shown in the below screenshot.
+   - Click on **Apply(3)**, Select **Yes** when prompted about restarting the Function App to apply monitoring settings.
+
+   ![The Create New Application Insights blade is displayed with a unique name set under Create new resource. Apply and the following Yes approval buttons are highlighted.](media/Netapp1.png "Add Application Insights")
 
 1. After the Function App restarts, select **View Application Insights data**.
 
@@ -176,4 +185,6 @@ In this task, you add Application Insights to your Function App in the Azure Por
 
    ![Live Metrics Stream is highlighted in the left-hand menu on the Application Insights blade.](media/app-insights-live-metrics-stream.png "Application Insights")
 
+   > It might take few minutes for the Live matrics to get loaded, Refresh the Page to view the Live matrics.
+    
    > While having Live Metric up, try submitting a new order on the Parts Unlimited web site. You will see access to blob storage in the telemetry to upload the PDF **(2)** and execution count on the graph **(3)**.
