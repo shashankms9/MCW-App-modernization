@@ -70,7 +70,7 @@ Disable-InternetExplorerESC
 
 Install-WindowsFeature -name Web-Server -IncludeManagementTools
 
-$branchName = "stage-2"
+$branchName = "stage"
 
 # Download and extract the starter solution files
 # ZIP File sometimes gets corrupted
@@ -84,7 +84,7 @@ while((Get-ChildItem -Directory C:\MCW | Measure-Object).Count -eq 0 )
 
 # Verify, download and extract the starter solution files
 $Path = "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\webvm-logon-install.ps1"
-$branchName = "stage-2"
+$branchName = "stage"
 
 if(Test-Path -Path $Path -PathType Leaf)
 {
