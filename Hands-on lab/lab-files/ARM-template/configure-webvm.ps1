@@ -179,7 +179,7 @@ Start-Process -file 'C:\vscode.exe' -arg '/VERYSILENT /SUPPRESSMSGBOXES /LOG="C:
 
 #Replace Path
 
-(Get-Content C:\MCW\MCW-App-modernization-stage-2\'Hands-on lab'\lab-files\ARM-template\webvm-logon-install.ps1) -replace "replacepath","$Path" | Set-Content C:\MCW\MCW-App-modernization-stage-2\'Hands-on lab'\lab-files\ARM-template\webvm-logon-install.ps1 -Verbos
+(Get-Content C:\MCW\MCW-App-modernization-stage\'Hands-on lab'\lab-files\ARM-template\webvm-logon-install.ps1) -replace "replacepath","$Path" | Set-Content C:\MCW\MCW-App-modernization-stage\'Hands-on lab'\lab-files\ARM-template\webvm-logon-install.ps1 -Verbos
 
 
 #Autologin
