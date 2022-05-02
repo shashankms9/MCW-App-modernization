@@ -38,7 +38,7 @@
 
     ![](media/select-rg.png "Resource groups")
    
-1. Confirm you have all resource group are present as shown below.
+1. Confirm you have a resource group present with name **hands-on-lab-<inject key="DeploymentID" enableCopy="false" />**. Last six digits in resource group name is unique for everyone.
 
     ![](media/image10.png "Resource groups")
    
