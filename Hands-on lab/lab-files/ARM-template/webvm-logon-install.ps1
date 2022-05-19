@@ -128,6 +128,8 @@ else{
 } 
 }
 
+sleep 50
+
 CloudlabsManualAgent setStatus
 
 CloudLabsManualAgent Start
