@@ -27,6 +27,8 @@
    * Password: <inject key="AzureAdUserPassword"></inject>
    
      ![](media/image8.png "Enter Password")
+
+1. In the Welcome to Microsoft Edge page, select **Start without your data** and on the help for importing Google browsing data page select the **Continue without this data** button and procced to select **Confirm and start browsing** in the next page.
      
 1. If you see the pop-up **Stay Signed in?**, click No
 
