@@ -21,14 +21,17 @@ param (
   $AzureTenantID,
   
   [string]
-  $AzureSubscriptionID
+  $AzureSubscriptionID,
+  
+  [string]
+    $adminPassword
 )
 
 Start-Transcript -Path C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension.txt -Append
 
 $vmAdminUsername="demouser"
 $trainerUserName="trainer"
-$trainerUserPassword="Password.!!1"
+$trainerUserPassword="$adminPassword"
 
 function Disable-InternetExplorerESC {
     $AdminKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
@@ -184,7 +187,7 @@ Start-Process -file 'C:\vscode.exe' -arg '/VERYSILENT /SUPPRESSMSGBOXES /LOG="C:
 
 #Autologin
 $Username = "demouser"
-$Pass = "Password.1!!"
+$Pass = "$adminPassword"
 $RegistryPath = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
 Set-ItemProperty $RegistryPath 'AutoAdminLogon' -Value "1" -Type String 
 Set-ItemProperty $RegistryPath 'DefaultUsername' -Value "$Username" -type String 
