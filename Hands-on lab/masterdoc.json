@@ -1,0 +1,42 @@
+[ {
+  "Name": "App modernization",
+  "Language": "English",
+  "Files": [
+        {
+      "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MCW/MCW-App-modernization/prod/Hands-on%20lab/GettingStarted.md",
+      "Order": 1
+    },
+    {
+      "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MCW/MCW-App-modernization/prod/Hands-on%20lab/solution.md",
+      "Order": 2
+    },
+    {
+      "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MCW/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/1.md",
+      "Order": 3
+    },
+    {
+      "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MCW/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/2.md",
+      "Order": 4
+    },
+    {
+      "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MCW/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/3.md",
+      "Order": 5
+    },
+    {
+      "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MCW/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/4.md",
+      "Order": 6
+    },
+    {
+      "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MCW/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/5.md",
+      "Order": 7
+    },
+    {
+      "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MCW/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/6.md",
+      "Order": 8
+    },
+    {
+      "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MCW/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/7.md",
+      "Order": 9
+    }   
+  ]
+} ]
