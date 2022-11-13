@@ -1,59 +1,60 @@
 ﻿@model PartsUnlimited.ViewModels.OrdersModel
-
+<div class="vertical-spreader60"></div>
 <div id="order-history-page">
-    <section>
-        <h2>Order History</h2>
+    <section class="justify-div-center card-shadow" style="height: 600px;">
+        <h2 class="text-in-center">Order History</h2>
 
-        <div class="row">
-            <div class="col-md-6 col-border-md-right">
-                <h4>Search By Date</h4>
+        <div>
+            <div>
+                <h4 class="text-in-center">Search By Date</h4>
 
                 @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
                 {
                     @if (Model.IsAdminSearch)
                     {
-                        <div class="row form-group">
-                            <div class="col-xs-12 col-sm-12 col-md-3 text-right-md">
+                        <div class="justify-div-center">
+                            <div class="justify-div-center">
                                 <label for="inputfield1" class="control-label">Username</label>
                             </div>
-                            <div class="col-xs-12 col-sm-8 col-md-7">
+                            <div class="justify-div-center">
                                 <input type="text" class="form-control" name="username" value="@Model.Username" placeholder="Username"  />
                             </div>
                         </div>
                     }
 
-                    <div class="row form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-3 text-right-md">
+                    <div class="justify-div-center">
+                        <div class="justify-div-center">
                             <label for="inputfield1" class="control-label">Start date</label>
                         </div>
-                        <div class="col-xs-12 col-sm-8 col-md-7">
-                            <input type="text" class="form-control jquery-ui-datepicker" name="start" value="@Model.StartDate.ToString("d")" />
+                        <div class="justify-div-center">
+                            <input type="date" class="form-control" name="start" value="@Model.StartDate.ToString("d")" />
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-3 text-right-md">
+                    <div class="justify-div-center">
+                        <div class="justify-div-center">
                             <label for="inputfield1" class="control-label">End date</label>
                         </div>
-                        <div class="col-xs-12 col-sm-8 col-md-7">
-                            <input type="text" class="form-control jquery-ui-datepicker" name="end" value="@Model.EndDate.ToString("d")" />
+                        <div class="justify-div-center">
+                            <input type="date" class="form-control" name="end" value="@Model.EndDate.ToString("d")" />
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col-sm-8 col-md-10">
-                            <input type="submit" class="btn" value="Search" />
+                    <div class="justify-div-center">
+                        <div class="justify-div-center">
+                            <input type="submit" class="btn justify-div-center" value="Search" />
                         </div>
                     </div>
                 }
             </div>
-            <div class="col-md-6 wide-col-padding">
-                <h4>Search By Order Number</h4>
+            <div class="vertical-spreader30"></div>
+            <div class="justify-div-center">
+                <h4 class="text-in-center">Search By Order Number</h4>
 
-                <div class="row form-group">
+                <div>
                     @using (Html.BeginForm("Details", "Orders", FormMethod.Get))
             {
-                        <div class="col-sm-8 col-md-10">
+                        <div class="justify-div-center">
                             <input type="text" class="form-control" id="name" name="id" placeholder="Order number" />
-                            <input class="btn" type="submit" value="Open" />
+                            <input class="btn justify-div-center" type="submit" value="Open" />
                         </div>
                     }
                 </div>
@@ -95,3 +96,4 @@
         }
     </section>
 </div>
+<div class="vertical-spreader30"></div>

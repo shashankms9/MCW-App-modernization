@@ -3,7 +3,7 @@
     var isNtlm = User.Identity.AuthenticationType == "NTLM";
     
     <li class="dropdown">
-        <a href="@Url.Action("Index", "Store")" id="profile-link" class="dropdown-toggle head-link" data-toggle="dropdown">Profile&nbsp;<br class="hidden-xs" /><b class="caret"></b></a>
+        <a href="@Url.Action("Index", "Store")" id="profile-link"  style="display: flex;" class="dropdown-toggle head-link" data-toggle="dropdown">Profile&nbsp;<br class="hidden-xs" /><b style="margin-top: 7px;" class="caret"></b></a>
         <ul class="dropdown-menu">
             <li>@Html.ActionLink("Manage Account", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
             <li>@Html.ActionLink("View Orders", "Index", "Orders", new { Area = string.Empty })</li>
@@ -23,5 +23,5 @@
 }
 else
 {
-    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "login-link", @class = "head-link" })</li>
+    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "login-link", @class = "head-link font-wt-500" })</li>
 }
