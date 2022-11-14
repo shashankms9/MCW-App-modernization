@@ -2,13 +2,13 @@
 @{
     ViewBag.Title = "Manage your external logins";
 }
-
-<section>
-    <h2>@ViewBag.Title</h2>
-    <p class="text-success">@ViewBag.StatusMessage</p>
+<div class="vertical-spreader60"></div>
+<section class="justify-div-center card-shadow">
+    <h2 class="text-in-center">@ViewBag.Title</h2>
+    <p class="text-success" class="text-in-center">@ViewBag.StatusMessage</p>
     @if (Model.CurrentLogins.Count > 0)
     {
-        <h4>Registered Logins</h4>
+        <h4 class="text-in-center">Registered Logins</h4>
         <table class="table">
             <tbody>
                 @foreach (var account in Model.CurrentLogins)
@@ -24,7 +24,7 @@
                                     <div>
                                         @Html.Hidden("loginProvider", account.LoginProvider)
                                         @Html.Hidden("providerKey", account.ProviderKey)
-                                        <input type="submit" class="btn btn-default" value="Remove" title="Remove this @account.LoginProvider login from your account" />
+                                        <input type="submit" class="btn btn-default justify-div-center" value="Remove" title="Remove this @account.LoginProvider login from your account" />
                                     </div>
                                 }
                             }
@@ -40,18 +40,19 @@
     }
     @if (Model.OtherLogins.Count > 0)
     {
-        <h4>Add another service to log in.</h4>
+        <h4 class="text-in-center">Add another service to log in.</h4>
         using (Html.BeginForm("LinkLogin", "Manage"))
         {
             @Html.AntiForgeryToken()
-            <div id="socialLoginList">
+            <div id="socialLoginList" class="justify-div-center">
                 <p>
                     @foreach (var p in Model.OtherLogins)
                     {
-                        <button type="submit" class="btn btn-default" id="@p.Name" name="provider" value="@p.Name" title="Log in using your @p.DisplayName account">@p.DisplayName</button>
+                        <button type="submit" class="btn btn-default justify-div-center" id="@p.Name" name="provider" value="@p.Name" title="Log in using your @p.DisplayName account">@p.DisplayName</button>
                     }
                 </p>
             </div>
         }
     }
 </section>
+<div class="vertical-spreader30"></div>
