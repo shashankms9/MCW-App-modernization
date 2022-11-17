@@ -4,47 +4,57 @@
 @{
     ViewBag.Title = "Register";
 }
-
-<section id="register-page">
-    <h2>@ViewBag.Title</h2>
-    <div class="row">
-        <div class="col-md-6">
-            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Create a new account.</h4>
-                    @Html.ValidationSummary("", new { @class = "text-danger" })
-                    <div class="form-group">
-                        <div class="col-sm-8 col-md-10">
-                            <div class="input-group">
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email Address" })
-                                <span class="input-group-addon"><img src="/images/login_profile_icon.png"/> </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-8 col-md-10">
-                            <div class="input-group">
-                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
-                                <span class="input-group-addon"><img src="/images/login_safe_icon.png"/></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-8 col-md-10">
-                            <div class="input-group">
-                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
-                                <span class="input-group-addon"><img src="/images/login_safe_icon.png" /></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-8 col-md-10">
-                            <input type="submit" class="btn btn-default" value="Register" />
-                        </div>
-                    </div>
-            }
+<div class="vertical-spreader60"></div>
+<div class="card-shadow login-container">
+    <div class="login-left-container" style="padding: 20px 33px;">
+            <span style="font-size: 23px;">Looks like you're new here!</span>
+            <span style="font-size: 15px !important;" class="login-message">Sign up with your email-address to get started.</span>
+            <div style="display:flex; justify-content:center;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2N653dmY_TJxfWsyEgzw9l1lL6WfUvcJonX5fKzfog66ZwyGu" style="border-radius:150px; width:50%"/>
+            </div>
         </div>
-        <div class="col-md-6"></div>
-    </div>
-</section>
+    <section id="register-page" class="justify-div-center card-shadow" style="width: 65% !important; height: 100% !important;">
+        <div class="vertical-spreader30">
+            <div>
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4 class="text-in-center">Create a new account.</h4>
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <div class="justify-div-center">
+                                <div class="input-group">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email Address" })
+                                    <span class="input-group-addon"><img src="/images/login_profile_icon.png"/> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="justify-div-center">
+                                <div class="input-group">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                                    <span class="input-group-addon"><img src="/images/login_safe_icon.png"/></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="justify-div-center">
+                                <div class="input-group">
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+                                    <span class="input-group-addon"><img src="/images/login_safe_icon.png" /></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="justify-div-center">
+                                <input type="submit" class="btn btn-default justify-div-center" value="Register" />
+                            </div>
+                        </div>
+                }
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+    </section>
+<div>
+
+

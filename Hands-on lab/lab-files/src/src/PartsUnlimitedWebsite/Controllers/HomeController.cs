@@ -91,19 +91,19 @@ namespace PartsUnlimited.Controllers
                     Source = CommunitySource.Facebook
                 },
                 new CommunityPost {
-                    Content= " Donec tincidunt risus in ligula varius, feugiat placerat nisi condimentum. Quisque rutrum eleifend venenatis. Phasellus a hendrerit urna. Cras arcu leo, hendrerit vel mollis nec.",
+                    Content= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo tellus lorem, et bibendum velit sagittis in. Integer nisl augue, cursus id tellus in, sodales porta.",
                     DatePosted = DateTime.Now,
                     Image = "community_2.png",
                     Source = CommunitySource.Facebook
                 },
                 new CommunityPost {
-                    Content= "Aenean vestibulum non lacus non molestie. Curabitur maximus interdum magna, ullamcorper facilisis tellus fermentum eu. Pellentesque iaculis enim ac vestibulum mollis.",
+                    Content= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo tellus lorem, et bibendum velit sagittis in. Integer nisl augue, cursus id tellus in, sodales porta.",
                     DatePosted = DateTime.Now,
                     Image = "community_3.png",
                     Source = CommunitySource.Facebook
                 },
                 new CommunityPost {
-                    Content= "Ut consectetur sed justo vel convallis. Vestibulum quis metus leo. Nulla hendrerit pharetra dui, vel euismod lectus elementum sit amet. Nam dolor turpis, sodales non mi nec.",
+                    Content= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo tellus lorem, et bibendum velit sagittis in. Integer nisl augue, cursus id tellus in, sodales porta.",
                     DatePosted = DateTime.Now,
                     Image = "community_4.png",
                     Source = CommunitySource.Facebook

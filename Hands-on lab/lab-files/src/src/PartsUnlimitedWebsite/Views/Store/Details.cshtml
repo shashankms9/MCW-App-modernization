@@ -18,7 +18,7 @@
     </script>
 }
 <div id="store-details">
-    <section>
+    <!-- <section>
         <h2>@Model.Title</h2>
             <div class="row">
             <div class="col-md-4">
@@ -64,6 +64,80 @@
                 <a href="@Url.Action("AddToCart", "ShoppingCart", new { id = Model.ProductId })" class="btn">Add to Cart</a>
             </div>
         </div>
-    </section>
-
+    </section> -->
+<div class="product-container">
+        <div class="product-container-left-section">
+          <div class="prouduct-left-body">
+            <div id="product-image" class="product-image zoom">
+              <img class="product-image" src="/images/@Model.ProductArtUrl"/>
+            </div>
+            <div class="product-cta">
+              <button class="add-to-cart" onClick="location.href='@Url.Action("AddToCart", "ShoppingCart", new { id = Model.ProductId })'">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 15"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.32 2.405H4.887C3 2.405 2.46.805 2.46.805L2.257.21C2.208.085 2.083 0 1.946 0H.336C.1 0-.064.24.024.46l.644 1.945L3.11 9.767c.047.137.175.23.32.23h8.418l-.493 1.958H3.768l.002.003c-.017 0-.033-.003-.05-.003-1.06 0-1.92.86-1.92 1.92s.86 1.92 1.92 1.92c.99 0 1.805-.75 1.91-1.712l5.55.076c.12.922.91 1.636 1.867 1.636 1.04 0 1.885-.844 1.885-1.885 0-.866-.584-1.593-1.38-1.814l2.423-8.832c.12-.433-.206-.86-.655-.86"
+                    fill="#fff"
+                  ></path>
+                </svg>
+                ADD TO CART
+              </button>
+              <button class="buy-now" type="button" onClick="location.href='@Url.Action("AddToCart", "ShoppingCart", new { id = Model.ProductId })'">
+              <!-- <button class="buy-now" type="button"> -->
+                <span class="buy-now-icon"></span> BUY NOW
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="product-container-right-section">
+          <div class="product-header">
+            <h2>@Model.Title</h2>
+            <span>Special price</span>
+            <p>@Model.Price.ToString("C")</p>
+            <div >
+                 @if (@Model.Inventory > 0)
+                            {
+                                <text>In Stock (Ships 1-3 days)</text>
+                            }
+                            else
+                            {
+                                <text>@string.Format("Out of Stock (Ships {0}-{1} days)", Math.Max(Model.LeadTime, 1), Model.LeadTime + 2)</text>
+                            }
+            </div>
+          </div>
+          <div class="product-desc">
+            <p>Description</p>
+            <div class="desc-style">
+              @Model.Description
+            </div>
+          </div>
+          <div class="product-specifications">
+            <p>Specifications</p>
+            <div class="product-general">
+              <table>
+                <tbody>
+                @foreach (var detail in Model.ProductDetailList)
+                        {
+                            <tr>
+                                <td>@detail.Key</td>
+                                <td>
+                                <ul>
+                                    <li>@detail.Value</li>
+                                </ul>
+                                </td>
+                            </tr>
+                        }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
 </div>
+</div>
+
+
+

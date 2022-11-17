@@ -4,17 +4,17 @@
 
 @if (Model == null || !Model.Any())
 {
-    <div class="alert alert-warning" role="alert">No products found!</div>
+    <div class="alert alert-warning justify-div-center" role="alert">No products found!</div>
 }
 else
 {
-    <div class="row">
+    <div style="display: flex !important; flex-direction: row !important; justify-content: space-evenly !important">
         @foreach (var product in Model)
         {
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <div class="list-item-part">
-                    <a href="@Url.Action("Details", "Store", new {id = product.ProductId})" title="@product.Title">
-                        <div class="product-image-container hover-over hidden-xs">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 card-width-height">
+                <div class="list-item-part percent100-width-height">
+                    <a href="@Url.Action("Details", "Store", new {id = product.ProductId})" title="@product.Title" class="percent100-width-height">
+                        <div class="product-image-container hover-over hidden-xs percent100-width-height">
                             <div class="image">
                                 <img src="/images/@product.ProductArtUrl" alt="@product.Title"/>
                             </div>
@@ -28,7 +28,7 @@ else
                                 </div>
 
                                 <div class="shop-now">
-                                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;<span>Shop Now</span>
+                                    <span class="glyphicon glyphicon-shopping-cart" style="background-color: "></span>&nbsp;<span>Shop Now</span>
                                 </div>
                             </div>
                         </div>

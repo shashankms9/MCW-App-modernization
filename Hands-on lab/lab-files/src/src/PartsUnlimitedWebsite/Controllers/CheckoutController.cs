@@ -58,7 +58,7 @@ namespace PartsUnlimited.Controllers
         public async Task<IActionResult> AddressAndPayment(Order order)
         {
             var formCollection = await HttpContext.Request.ReadFormAsync();
-
+            //  return View("OrderPlaced");
             try
             {
                 if (string.Equals(formCollection["PromoCode"].FirstOrDefault(), PromoCode,

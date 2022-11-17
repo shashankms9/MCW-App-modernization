@@ -1,6 +1,29 @@
 ﻿@model IEnumerable<PartsUnlimited.Models.Category>
+@{
+  var i=1;
+}
 @foreach (var category in Model)
             {
-    <li>@Html.ActionLink(category.Name, "Browse", "Store", new { CategoryId = category.CategoryId }, null)</li>
+        <div class="category-item">
+          <img
+            class="category-item-img"
+            alt="Top Offers"
+            src="../../../../images/category-list@(i + ".jpg")"
+          />
+          <div class="category-item-text">@Html.ActionLink(category.Name, "Browse", "Store", new { CategoryId = category.CategoryId }, null)</div>
+        </div>
+        
+   /* <li class="menu-list" style="display:flex !important; flex-direction: row; justify-content: space-between; text-align: center;cursor:pointer;">
+    @Html.ActionLink(category.Name, "Browse", "Store", new { CategoryId = category.CategoryId }, null)
+    <i class='fas fa-angle-right' style='font-size:1.4rem'></i>
+    </li> */
+    i++;
         }
-<li>@Html.ActionLink("More", "Index", "Store")</li>
+   <div class="category-item">
+          <img
+            class="category-item-img"
+            alt="Top Offers"
+            src="../../../../images/category-list6.jpg"
+          />
+          <div class="category-item-text">@Html.ActionLink("More", "Index", "Store")</div>
+  </div>

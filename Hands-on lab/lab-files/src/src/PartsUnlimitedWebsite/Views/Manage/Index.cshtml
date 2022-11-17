@@ -1,12 +1,15 @@
 ﻿@model PartsUnlimited.Models.IndexViewModel
+
+
 @{
     ViewBag.Title = "Manage";
 }
-<section id="manage-page">
-    <h2>@ViewBag.Title</h2>
-    <p class="text-success">@ViewBag.StatusMessage</p>
+<div class="vertical-spreader60"></div>
+<section id="manage-page" class="justify-div-center card-shadow">
+    <h2 class="text-in-center">@ViewBag.Title</h2>
+    <p class="text-success text-in-center">@ViewBag.StatusMessage</p>
     <div>
-        <h4>Change your account settings</h4>
+        <h4 class="text-in-center">Change your account settings</h4>
         <dl class="dl-horizontal">
             <dt>Email Address:</dt>
             <dd>@User.Identity.Name</dd>
@@ -15,7 +18,7 @@
                 [
                 @if (Model.HasPassword)
             {
-                    @Html.ActionLink("Change your password", "ChangePassword")
+                  @Html.ActionLink("Change your password", "ChangePassword")
                 }
                 else
                 {
@@ -97,3 +100,4 @@
         </dl>
     </div>
 </section>
+<div class="vertical-spreader30"></div>
