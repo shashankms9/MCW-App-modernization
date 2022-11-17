@@ -24,12 +24,10 @@
                 if (recordToDelete !== '') {
 
                     // Start telemetry timer for post
-                    window.appInsights.startTrackEvent('Remove.Item.' + recordToDelete);
 
                     // Perform the ajax post
                     var success = function (data) {
 
-                        console.log(data);
                         // Successful requests get here
                         // Update the page elements
                         if (data.cartCount === 0) {
@@ -52,7 +50,6 @@
                         $('#cart-status').text('Cart (' + data.cartCount + ')');
                         $('#cart-count').text(data.cartCount);
 
-                        window.appInsights.stopTrackEvent('Remove.Item.' + recordToDelete);
                     };
 
                     $.ajax({
@@ -64,6 +61,7 @@
                             'RequestVerificationToken': '@GetAntiXsrfToken()'
                         }
                     });
+                    window.location.reload(true);
                 }
             });
 
