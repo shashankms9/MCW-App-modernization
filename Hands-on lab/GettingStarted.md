@@ -6,11 +6,11 @@
 
    ![](media/appmod-1.png "Lab Environment")
 
-1. To get the lab environment details, you can select **Environment Details** tab. Additionally, the credentials will also be emailed to your email address provided at registration. You can also open the Lab Guide on seprate and full window by selcting the **Split Window** from lower right corner. Also, you can start, stop and restart virtual machines from **Virtual Machines** tab.
+1. To get the lab environment details, you can select **Environment Details** tab. Additionally, the credentials will also be emailed to your email address provided during registration. You can also open the Lab Guide on separate and full window by selecting the **Split Window** from lower right corner. Also, you can start, stop and restart virtual machines from **Virtual Machines** tab.
 
    ![](media/cloudlabs-env-page.png "Lab Environment")
  
-    > You will see SUFFIX value on **Environment Details** tab, use it whereever you see SUFFIX or DeploymentID in lab steps.
+    > You will see SUFFIX value on **Environment Details** tab, use it wherever you see SUFFIX or Deployment ID in lab steps.
 
 
 ## Login to Azure Portal
@@ -18,9 +18,9 @@
 
    ![](media/labenv-1.png "Lab Environment")
 
-1. In the Welcome to Microsoft Edge page, select **Start without your data** and on the help for importing Google browsing data page select the **Continue without this data** button and procced to select **Confirm and start browsing** in the next page.
+1. In the Welcome to Microsoft Edge page, select **Start without your data** and on the help for importing Google browsing data page select the **Continue without this data** button and proceed to select **Confirm and start browsing** in the next page.
    
-1. On **Sign in to Micsoft Azure** tab you will see login screen, in that enter following email/username and then click on **Next**. 
+1. On **Sign in to Microsoft Azure** tab you will see login screen, enter following email/username and then click on **Next**. 
    * Email/Username: <inject key="AzureAdUserEmail"></inject>
    
      ![](media/image7.png "Enter Email")
@@ -40,7 +40,7 @@
 
     ![](media/select-rg.png "Resource groups")
    
-1. Confirm you have a resource group present with name **hands-on-lab-<inject key="DeploymentID" enableCopy="false" />**. Last six digits in resource group name is unique for everyone.
+1. Confirm you have a resource group present with name **hands-on-lab-<inject key="DeploymentID" enableCopy="false" />**. Last six digits in resource group name is unique for every user.
 
     ![](media/image10.png "Resource groups")
    
