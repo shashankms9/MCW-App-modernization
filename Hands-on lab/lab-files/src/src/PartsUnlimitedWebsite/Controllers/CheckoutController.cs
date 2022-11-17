@@ -58,54 +58,54 @@ namespace PartsUnlimited.Controllers
         public async Task<IActionResult> AddressAndPayment(Order order)
         {
             var formCollection = await HttpContext.Request.ReadFormAsync();
-             return View("OrderPlaced");
-            // try
-            // {
-            //     if (string.Equals(formCollection["PromoCode"].FirstOrDefault(), PromoCode,
-            //         StringComparison.OrdinalIgnoreCase) == false)
-            //     {
-            //         return View(order);
-            //     }
-            //     else
-            //     {
-            //         order.Username = HttpContext.User.Identity.Name;
-            //         order.OrderDate = DateTime.Now;
+            //  return View("OrderPlaced");
+            try
+            {
+                if (string.Equals(formCollection["PromoCode"].FirstOrDefault(), PromoCode,
+                    StringComparison.OrdinalIgnoreCase) == false)
+                {
+                    return View(order);
+                }
+                else
+                {
+                    order.Username = HttpContext.User.Identity.Name;
+                    order.OrderDate = DateTime.Now;
 
-            //         //Add the Order
-            //         _db.Orders.Add(order);
-            //         await _db.SaveChangesAsync(HttpContext.RequestAborted);
+                    //Add the Order
+                    _db.Orders.Add(order);
+                    await _db.SaveChangesAsync(HttpContext.RequestAborted);
 
-            //         //Process the order
-            //         var cart = ShoppingCart.GetCart(_db, HttpContext);
-            //         cart.CreateOrder(order);                  
+                    //Process the order
+                    var cart = ShoppingCart.GetCart(_db, HttpContext);
+                    cart.CreateOrder(order);                  
 
-            //         // Save all changes
-            //         await _db.SaveChangesAsync(HttpContext.RequestAborted);
+                    // Save all changes
+                    await _db.SaveChangesAsync(HttpContext.RequestAborted);
 
-            //         try
-            //         {
-            //             string connectionString = Configuration[ConfigurationPath.Combine("ConnectionStrings", "StorageConnectionString")];
-            //             QueueClient queueClient = new QueueClient(connectionString, "orders");
-            //             queueClient.CreateIfNotExists();
-            //             if (queueClient.Exists())
-            //             {
-            //                 var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(order.OrderId.ToString());
-            //                 queueClient.SendMessage(System.Convert.ToBase64String(plainTextBytes));
-            //             }
-            //         }
-            //         catch (Exception ex)
-            //         {
-            //             return View("Error");
-            //         }
+                    try
+                    {
+                        string connectionString = Configuration[ConfigurationPath.Combine("ConnectionStrings", "StorageConnectionString")];
+                        QueueClient queueClient = new QueueClient(connectionString, "orders");
+                        queueClient.CreateIfNotExists();
+                        if (queueClient.Exists())
+                        {
+                            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(order.OrderId.ToString());
+                            queueClient.SendMessage(System.Convert.ToBase64String(plainTextBytes));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        return View("Error");
+                    }
 
-            //         return RedirectToAction("Complete",
-            //             new { id = order.OrderId });
-            //     }
-            // }
-            // catch (Exception ex)
-            // {
-            //     return View("Error");
-            // }
+                    return RedirectToAction("Complete",
+                        new { id = order.OrderId });
+                }
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
         }
 
         //
