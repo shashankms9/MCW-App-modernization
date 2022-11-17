@@ -65,7 +65,7 @@ Invoke-Command -ScriptBlock $pathArgs
 # Copy Web Site Files
 Wait-Install
 Write-Host "Copying default website files..."
-Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\web-deploy-files.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
+Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\PartsUnlimitedWebsite.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
 
 # Copy the database connection string to the web app.
 Write-Host "Updating config.json with the SQL IP Address and connection string information."
