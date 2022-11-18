@@ -4,11 +4,11 @@
 1. Once the environment is provisioned, a virtual machine (JumpVM) and lab guide will get loaded in your browser. Use this virtual machine throughout the workshop to perform the the lab. You can see the number on lab guide bottom area to switch on different exercises of lab guide.
    
 
-   ![](media/appmod-1.png "Lab Environment")
+   ![](media/Getting_started01.png "Lab Environment")
 
 1. To get the lab environment details, you can select **Environment Details** tab. Additionally, the credentials will also be emailed to your email address provided during registration. You can also open the Lab Guide on separate and full window by selecting the **Split Window** from lower right corner. Also, you can start, stop and restart virtual machines from **Virtual Machines** tab.
 
-   ![](media/cloudlabs-env-page.png "Lab Environment")
+   ![](media/Getting_started03.png "Lab Environment")
  
     > You will see SUFFIX value on **Environment Details** tab, use it wherever you see SUFFIX or Deployment ID in lab steps.
 
@@ -17,7 +17,7 @@
 
 1. In the JumpVM, click on Azure portal shortcut of Microsoft Edge browser which is created on desktop.
 
-   ![](media/labenv-1.png "Lab Environment")
+   ![](media/Getting_started02.png "Lab Environment")
 
 1. In the Welcome to Microsoft Edge page, select **Start without your data** and on the help for importing Google browsing data page select the **Continue without this data** button and proceed to select **Confirm and start browsing** in the next page.
    
