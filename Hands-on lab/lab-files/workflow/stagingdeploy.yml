@@ -18,6 +18,17 @@ jobs:
       # Checkout the repo
       - uses: actions/checkout@main
       
+      # Use npm 10
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+
+        with:
+          node-version: '10.x'
+      - run: npm install 
+      - run: npm ci
+      - run: npm run build --if-present #-config ./partsunlimited/tree/main/src/PartsUnlimitedWebsite/package.json;
+      - run: npm test
+      
       # Setup .NET Core SDK
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
@@ -27,8 +38,9 @@ jobs:
       # Run dotnet build and publish
       - name: dotnet build and publish
         run: |
+        
           dotnet build PartsUnlimited.sln --configuration Release
-          dotnet publish PartsUnlimited.sln -c Release -o partsunlimitedweb
+          dotnet publish PartsUnlimited.sln -c Release -o ./PartsUnlimitedWebsite/build
           
       # Deploy to Azure Web app slot
       - name: 'Run Azure webapp deploy action using publish profile credentials'
@@ -36,5 +48,5 @@ jobs:
         with: 
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }}
-          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/partsunlimitedweb'
+          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/PartsUnlimitedWebsite.zip'
           slot-name: ${{ env.DEPLOYMENT_SLOT }}
