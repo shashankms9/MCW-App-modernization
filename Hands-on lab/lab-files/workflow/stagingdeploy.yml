@@ -4,11 +4,11 @@ on:
   push
 
 env:
-  AZURE_WEBAPP_NAME: partsunlimited-web-793324   # replace suffix
+  AZURE_WEBAPP_NAME: partsunlimited-web-suffix   # replace suffix
   AZURE_WEBAPP_PACKAGE_PATH: '.'
   DEPLOYMENT_SLOT: staging
   DOTNET_VERSION: '3.1'
-  AZURE_RESOURCEGROUP_NAME: hands-on-lab-793324  # replace suffix  
+  AZURE_RESOURCEGROUP_NAME: hands-on-lab-suffix  # replace suffix  
   
 jobs:
   build-and-deploy:
