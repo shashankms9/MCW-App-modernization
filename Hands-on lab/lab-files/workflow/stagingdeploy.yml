@@ -1,3 +1,4 @@
+
 name: Build and deploy app
 
 on:
@@ -13,28 +14,38 @@ env:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    # env:
+    #   working-directory: ./src/PartsUnlimitedWebsite
     steps:
-
       # Checkout the repo
       - uses: actions/checkout@main
+      
+      # Use npm 10
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+
+        with:
+          node-version: '10.x'
       
       # Setup .NET Core SDK
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
+
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }} 
-      
+
       # Run dotnet build and publish
       - name: dotnet build and publish
         run: |
           dotnet build PartsUnlimited.sln --configuration Release
-          dotnet publish PartsUnlimited.sln -c Release -o partsunlimitedweb
+          dotnet publish PartsUnlimited.sln -c Release -o PartsUnlimitedWebsite
           
+
       # Deploy to Azure Web app slot
       - name: 'Run Azure webapp deploy action using publish profile credentials'
         uses: azure/webapps-deploy@v2
         with: 
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }}
-          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/partsunlimitedweb'
+          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/PartsUnlimitedWebsite'
           slot-name: ${{ env.DEPLOYMENT_SLOT }}
