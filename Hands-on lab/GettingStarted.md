@@ -15,7 +15,7 @@
 
 ## Login to Azure Portal
 
-1. In the JumpVM, click on the Azure portal shortcut of Microsoft Edge browser which is created on desktop.
+1. In the JumpVM, click on the Azure portal shortcut of Microsoft Edge browser from the desktop.
 
    ![](media/Getting_started02.png "Lab Environment")
 
@@ -41,7 +41,7 @@
 
     ![](media/select-rg.png "Resource groups")
    
-1. Confirm you have a resource group present with name **hands-on-lab-<inject key="DeploymentID" enableCopy="false" />**. Last six digits in resource group name is unique for every user.
+1. Confirm you have a resource group present with name **hands-on-lab-<inject key="DeploymentID" enableCopy="false" />**. Last six digits in the resource group name are unique for every user.
 
     ![](media/image10.png "Resource groups")
    
