@@ -151,6 +151,7 @@ InstallEdgeChromium
 InstallCloudLabsShadow $ODLID $InstallCloudLabsShadow
 InstallAzPowerShellModule
 CreateCredFile $AzureUserName $AzurePassword $AzureTenantID $AzureSubscriptionID $DeploymentID
+az provider register --namespace "Microsoft.LoadTestService"
 
 # Schedule Installs for first Logon
 $argument = "-File `"C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\webvm-logon-install.ps1`""
