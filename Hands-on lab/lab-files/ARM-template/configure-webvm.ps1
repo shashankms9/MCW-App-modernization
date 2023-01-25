@@ -148,7 +148,6 @@ CreateLabFilesDirectory
 DisableWindowsFirewall
 InstallEdgeChromium
 
-InstallCloudLabsShadow $ODLID $InstallCloudLabsShadow
 InstallAzPowerShellModule
 CreateCredFile $AzureUserName $AzurePassword $AzureTenantID $AzureSubscriptionID $DeploymentID
 az provider register --namespace "Microsoft.LoadTestService"
