@@ -184,6 +184,9 @@ Start-Process -file 'C:\vscode.exe' -arg '/VERYSILENT /SUPPRESSMSGBOXES /LOG="C:
 
 (Get-Content C:\MCW\MCW-App-modernization-microsoft-app-modernization-v2\'Hands-on lab'\lab-files\ARM-template\webvm-logon-install.ps1) -replace "replacepath","$Path" | Set-Content C:\MCW\MCW-App-modernization-microsoft-app-modernization-v2\'Hands-on lab'\lab-files\ARM-template\webvm-logon-install.ps1 -Verbos
 
+Invoke-WebRequest 'https://download.microsoft.com/download/C/6/3/C63D8695-CEF2-43C3-AF0A-4989507E429B/DataMigrationAssistant.msi' -OutFile 'C:\DataMigrationAssistant.msi'
+Start-Process -file 'C:\DataMigrationAssistant.msi' -arg '/qn /l*v C:\dma_install.txt' -passthru | wait-process
+
 
 #Autologin
 $Username = "demouser"
