@@ -1,5 +1,25 @@
 param (
-    [Parameter(Mandatory=$False)] [string] $SqlPass = ""
+    [Parameter(Mandatory=$False)] [string] $SqlPass = "",
+
+    [Parameter(Mandatory = $true)]
+
+    [string]
+    $AzureUserName,
+
+    [string]
+    $AzurePassword,
+
+    [string]
+    $ODLID,
+
+    [string]
+    $InstallCloudLabsShadow,
+
+    [string]
+    $DeploymentID,
+  
+  [string]
+    $adminPassword    
 )
 
 # Disable Internet Explorer Enhanced Security Configuration
@@ -102,41 +122,29 @@ function Setup-Sql {
 
 Setup-Sql
 
-
 $env:chocolateyUseWindowsCompression = 'true'
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 choco feature enable -n allowGlobalConfirmation
 choco install dotnetfx -y -force
 
-# Download and install Data Mirgation Assistant
+#download logon task script
 $WebClient = New-Object System.Net.WebClient
-$WebClient.DownloadFile("https://download.microsoft.com/download/C/6/3/C63D8695-CEF2-43C3-AF0A-4989507E429B/DataMigrationAssistant.msi","C:\DataMigrationAssistant.msi")
-sleep 5
-$arguments = "/i `"C:\DataMigrationAssistant.msi`" /quiet"
-sleep 5
-Start-Process msiexec.exe -ArgumentList $arguments -Wait
+$WebClient.DownloadFile("https://experienceazure.blob.core.windows.net/templates/mcw-continuous-delivery-in-azure-devops/devops-with-github-customised/logontask.ps1","C:\Packages\logontask.ps1")
 
-sleep 5
+#Autologin
+$Username = "demouser"
+$Pass = "$adminPassword"
+$RegistryPath = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
+Set-ItemProperty $RegistryPath 'AutoAdminLogon' -Value "1" -Type String 
+Set-ItemProperty $RegistryPath 'DefaultUsername' -Value "$Username" -type String 
+Set-ItemProperty $RegistryPath 'DefaultPassword' -Value "$Pass" -type String
+Set-ItemProperty -Path $AutoLogonRegPath -Name "AutoLogonCount" -Value "1" -type DWord
 
-$app = Get-Item -Path 'C:\Program Files\Microsoft Data Migration Assistant\Dma.exe' 
-
-
-if($app -ne $null)
-{    
-    $validstatus = "Successfull"
-    $validstatus
-}
-else {
-        $WebClient = New-Object System.Net.WebClient
-        $WebClient.DownloadFile("https://download.microsoft.com/download/C/6/3/C63D8695-CEF2-43C3-AF0A-4989507E429B/DataMigrationAssistant.msi","C:\DataMigrationAssistant.msi")
-        sleep 5
-        $arguments = "/i `"C:\DataMigrationAssistant.msi`" /quiet"
-        sleep 5
-        Start-Process msiexec.exe -ArgumentList $arguments -Wait
-        $validstatus = "app was not found but installed by loop"
-        $validstatus
-
-      }
+# Scheduled Task to Run PostConfig.ps1 screen on logon
+$Trigger= New-ScheduledTaskTrigger -AtLogOn
+$User= "$($env:ComputerName)\$Username" 
+$Action= New-ScheduledTaskAction -Execute "C:\Windows\System32\WindowsPowerShell\v1.0\Powershell.exe" -Argument "-executionPolicy Unrestricted -File C:\Packages\logontask.ps1"
+Register-ScheduledTask -TaskName "Installdocker" -Trigger $Trigger -User $User -Action $Action -RunLevel Highest -Force
 
 Restart-Computer
 
