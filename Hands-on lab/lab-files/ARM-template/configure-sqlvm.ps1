@@ -109,12 +109,10 @@ choco feature enable -n allowGlobalConfirmation
 choco install dotnetfx -y -force
 
 # Download and install Data Mirgation Assistant
-(New-Object System.Net.WebClient).DownloadFile('https://download.microsoft.com/download/C/6/3/C63D8695-CEF2-43C3-AF0A-4989507E429B/DataMigrationAssistant.msi', 'C:\DataMigrationAssistant.msi')
-Start-Process -file 'C:\DataMigrationAssistant.msi' -arg '/qn /l*v C:\dma_install.txt' -passthru | wait-process
+$WebClient = New-Object System.Net.WebClient
+$WebClient.DownloadFile("https://download.microsoft.com/download/C/6/3/C63D8695-CEF2-43C3-AF0A-4989507E429B/DataMigrationAssistant.msi","C:\DataMigrationAssistant.msi")
 
-Sleep 50
-Invoke-WebRequest 'https://download.microsoft.com/download/C/6/3/C63D8695-CEF2-43C3-AF0A-4989507E429B/DataMigrationAssistant.msi' -OutFile 'C:\DataMigrationAssistant.msi'
-Start-Process -file 'C:\DataMigrationAssistant.msi' -arg '/qn /l*v C:\dma_install.txt' -passthru | wait-process
-
+$arguments = "/i `"C:\DataMigrationAssistant.msi`" /quiet"
+Start-Process msiexec.exe -ArgumentList $arguments -Wait
 
 Restart-Computer
