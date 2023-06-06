@@ -129,7 +129,7 @@ choco install dotnetfx -y -force
 
 #download logon task script
 $WebClient = New-Object System.Net.WebClient
-$WebClient.DownloadFile("https://experienceazure.blob.core.windows.net/templates/mcw-continuous-delivery-in-azure-devops/devops-with-github-customised/logontask.ps1","C:\Packages\logontask.ps1")
+$WebClient.DownloadFile("https://raw.githubusercontent.com/CloudLabs-MCW/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/lab-files/ARM-template/sqlvm-logontask.ps1","C:\Packages\logontask.ps1")
 
 #Autologin
 $Username = "demouser"
