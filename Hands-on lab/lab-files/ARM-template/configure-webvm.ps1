@@ -135,7 +135,7 @@ $commonscriptpath = "$path" + "\cloudlabs-common\cloudlabs-windows-functions.ps1
 Enable-CloudLabsEmbeddedShadow $vmAdminUsername $trainerUserName $trainerUserPassword
 
 CloudLabsManualAgent Install
-
+WindowsServerCommon
 #WindowsServerCommon
 
 [Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls
