@@ -113,6 +113,9 @@ $WebClient = New-Object System.Net.WebClient
 $WebClient.DownloadFile("https://download.microsoft.com/download/C/6/3/C63D8695-CEF2-43C3-AF0A-4989507E429B/DataMigrationAssistant.msi","C:\DataMigrationAssistant.msi")
 
 $arguments = "/i `"C:\DataMigrationAssistant.msi`" /quiet"
+sleep 5
 Start-Process msiexec.exe -ArgumentList $arguments -Wait
+
+sleep 5
 
 Restart-Computer
