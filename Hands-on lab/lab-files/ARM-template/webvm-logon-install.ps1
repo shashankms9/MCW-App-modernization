@@ -94,6 +94,7 @@ $cred = new-object -typename System.Management.Automation.PSCredential -argument
 
 Connect-AzAccount -Credential $cred
 
+Start-Sleep 200
 $k = 0 
 for ($i=1; ($i + $k) -le 7; $i++)
 {
