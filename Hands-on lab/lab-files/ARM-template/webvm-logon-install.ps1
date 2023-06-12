@@ -77,8 +77,6 @@ Unregister-ScheduledTask -TaskName "Install Lab Requirements" -Confirm:$false
 Write-Host "Restarting IIS"
 iisreset.exe /restart
 
-
-
 #Check if Webvm ip is accessible or not
 Import-Module Az
 
@@ -122,17 +120,44 @@ if ($HTTP_Status -eq 200) {
      Write-Host "Post Deployment is successful"
     }
 else{
+    $branchName = "microsoft-app-modernization-v2"
+    Write-Host "Installing .NET Core 3.1 SDK..."
+    $pathArgs = {C:\dotnet-sdk-3.1.413-win-x64.exe /Install /Quiet /Norestart /Logs logCore31SDK.txt}
+    Invoke-Command -ScriptBlock $pathArgs
+
+    # Copy Web Site Files
+    Wait-Install
+    Write-Host "Copying default website files..."
+    Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\PartsUnlimitedWebsite.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
+
+    # Copy the database connection string to the web app.
+    Write-Host "Updating config.json with the SQL IP Address and connection string information."
+    Copy-Item "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.json" -Destination 'C:\inetpub\wwwroot' -Force
+
+    # Restart the app for the startup to pick up the database connection string.
+    Write-Host "Restarting IIS"
+    iisreset.exe /restart
+} 
+}
+
+sleep 120
+
+if ($HTTP_Status -eq 200) {
+     $k = 8
+     $Validstatus="Succeeded"  ##Failed or Successful at the last step
+     $Validmessage="Post Deployment is successful"
+     Write-Host "Post Deployment is successful"
+    }
+else{
     Write-Warning "Validation Failed - see log output"
     $Validstatus="Failed"  ##Failed or Successful at the last step
     $Validmessage="Post Deployment Failed"
      Write-Host "Post Deployment Failed"
 } 
-}
 
-sleep 50
+Sleep 50
 
 Invoke-AzVMRunCommand -ResourceGroupName "hands-on-lab-$DeploymentID" -Name 'SqlServer2008' -CommandId 'RunPowerShellScript' -ScriptPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\sqlvm-logontask.ps1"
-
 
 CloudlabsManualAgent setStatus
 
