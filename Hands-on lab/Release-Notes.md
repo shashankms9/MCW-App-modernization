@@ -12,7 +12,7 @@
    
    - Enhanced lab guide instructions and updated screenshots with the latest UI from Microsoft Azure for better user experience.
  -------------------------
-### 19 May October 2023
+### 19 May 2023
 
  - Minor updates in the lab.
    
