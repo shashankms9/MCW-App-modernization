@@ -1,6 +1,6 @@
 Start-Transcript -Path C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension1.txt -Append
 
-$commonscriptpath = "replacepath\cloudlabs-common\cloudlabs-windows-functions.ps1"
+$commonscriptpath = "C:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\1.10.15\Downloads\0\cloudlabs-common\cloudlabs-windows-functions.ps1"
 . $commonscriptpath
 
 
@@ -96,7 +96,7 @@ Start-Sleep 200
 $k = 0 
 for ($i=1; ($i + $k) -le 7; $i++)
 {
-    $vmipdetails=Get-AzPublicIpAddress -ResourceGroupName "hands-on-lab-$DeploymentID" -Name "WebVM-ip" 
+    $vmipdetails=Get-AzPublicIpAddress -ResourceGroupName "MigrateSevers" -Name "hostvmip" 
 
     $vmip=$vmipdetails.IpAddress
  
@@ -157,7 +157,7 @@ else{
 
 Sleep 50
 
-Invoke-AzVMRunCommand -ResourceGroupName "hands-on-lab-$DeploymentID" -Name 'SqlServer2008' -CommandId 'RunPowerShellScript' -ScriptPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\sqlvm-logontask.ps1"
+Invoke-AzVMRunCommand -ResourceGroupName "MigrateSevers" -Name 'SqlServer2008' -CommandId 'RunPowerShellScript' -ScriptPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\sqlvm-logontask.ps1"
 
 CloudlabsManualAgent setStatus
 
