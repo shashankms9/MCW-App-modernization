@@ -152,7 +152,7 @@ $SqlIP = Get-AzPublicIpAddress -ResourceGroupName MigrateSevers -Name SqlServer2
 
 # Replace SQL Connection String
 $item = "C:\MCW\MCW-App-modernization-$branchName"
-Write-Host "Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;"
+Write-Host "Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$adminPassword;"
 # The config.release.json file is populated with configuration data during compile and release from VS.  config.json is used by the solution on the WebM.
 ((Get-Content -path "$item\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.release.json" -Raw) -replace 'SETCONNECTIONSTRING',"Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$adminPassword;") | Set-Content -Path "$item\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.json"
 
@@ -223,27 +223,6 @@ Remove-Item -Path $shortcutPath -Force
 $shortcutPath = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('Desktop'), 'C:\Users\Public\Desktop\Microsoft Data Migration Assistant.lnk')
 Remove-Item -Path $shortcutPath -Force
 
-<#
-#create Azure portal shortcut
-Start-Process msiexec.exe -Wait '/I C:\Packages\MicrosoftEdgeBetaEnterpriseX64.msi /qn' -Verbose 
-    sleep 5
-    $WshShell = New-Object -comObject WScript.Shell
-    $Shortcut = $WshShell.CreateShortcut("C:\Users\Public\Desktop\Azure Portal.lnk")
-    $Shortcut.TargetPath = """C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"""
-    $argA = """https://portal.azure.com"""
-    $Shortcut.Arguments = $argA 
-    $Shortcut.Save()
-
-
-Start-Process msiexec.exe -Wait '/I C:\Packages\MicrosoftEdgeBetaEnterpriseX64.msi /qn' -Verbose 
-    sleep 5
-    $WshShell = New-Object -comObject WScript.Shell
-    $Shortcut = $WshShell.CreateShortcut("C:\Users\Public\Desktop\Azure Portal.lnk")
-    $Shortcut.TargetPath = """C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"""
-    $argA = """https://portal.azure.com"""
-    $Shortcut.Arguments = $argA 
-    $Shortcut.Save()
-#>
 
 Function Set-VMNetworkConfiguration {
     [CmdletBinding()]
