@@ -157,7 +157,7 @@ else{
 
 Sleep 50
 
-Invoke-AzVMRunCommand -ResourceGroupName "MigrateSevers" -Name 'SqlServer2008' -CommandId 'RunPowerShellScript' -ScriptPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\sqlvm-logontask.ps1"
+#Invoke-AzVMRunCommand -ResourceGroupName "MigrateSevers" -Name 'SqlServer2008' -CommandId 'RunPowerShellScript' -ScriptPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\sqlvm-logontask.ps1"
 
 CloudlabsManualAgent setStatus
 
