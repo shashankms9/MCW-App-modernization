@@ -25,7 +25,7 @@ function Wait-Install {
         Start-Sleep -Seconds 1
     }
 }
-$branchName = "microsoft-app-modernization-v2"
+$branchName = "Migrate-Secure"
 # Install App Service Migration Assistant
 Wait-Install
 Write-Host "Installing App Service Migration Assistant..."
@@ -120,7 +120,7 @@ if ($HTTP_Status -eq 200) {
      Write-Host "Post Deployment is successful"
     }
 else{
-    $branchName = "microsoft-app-modernization-v2"
+    $branchName = "Migrate-Secure"
     Write-Host "Installing .NET Core 3.1 SDK..."
     $pathArgs = {C:\dotnet-sdk-3.1.413-win-x64.exe /Install /Quiet /Norestart /Logs logCore31SDK.txt}
     Invoke-Command -ScriptBlock $pathArgs
