@@ -357,7 +357,7 @@ Function Rearm-VM {
     $localcredential = New-Object System.Management.Automation.PSCredential ($localusername, $securePassword)
 
     Write-Output "Re-arm (extend eval license) for VM $ComputerName at $ip"
-    set-item wsman:\localhost\Client\TrustedHosts -value $ip -Force
+    #set-item wsman:\localhost\Client\TrustedHosts -value $ip -Force
 
     Invoke-Command -ComputerName $ip -ScriptBlock { 
         slmgr.vbs /rearm
