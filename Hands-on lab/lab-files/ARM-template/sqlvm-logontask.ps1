@@ -1,4 +1,6 @@
 
+Start-Transcript -Path C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension21.txt -Append
+
 
 
 function Add-SqlFirewallRule {
@@ -52,10 +54,6 @@ function Setup-Sql {
 Setup-Sql
 
 
-Start-Transcript -Path C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension1.txt -Append
-
-$commonscriptpath = "C:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\1.10.15\Downloads\0\cloudlabs-common\cloudlabs-windows-functions.ps1"
-. $commonscriptpath
 
 
 function Wait-Install {
@@ -119,11 +117,17 @@ Invoke-Command -ScriptBlock $pathArgs
 # Copy Web Site Files
 Wait-Install
 Write-Host "Copying default website files..."
-Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\PartsUnlimitedWebsite.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
 
-# Copy the database connection string to the web app.
-Write-Host "Updating config.json with the SQL IP Address and connection string information."
-Copy-Item "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.json" -Destination 'C:\inetpub\wwwroot' -Force
+$sourceFile = "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\PartsUnlimitedWebsite.zip"
+$destinationFolder =  'C:\inetpub\wwwroot'
+
+# Load the System.IO.Compression.FileSystem assembly
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+
+# Use .NET classes to extract the contents of the file
+[System.IO.Compression.ZipFile]::ExtractToDirectory($sourceFile, $destinationFolder) 
+
+
 
 Unregister-ScheduledTask -TaskName "Install Lab Requirements" -Confirm:$false
 
