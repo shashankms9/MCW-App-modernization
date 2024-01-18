@@ -93,6 +93,8 @@ $opsDir = "C:\MCW"
 # Provide the path to the compressed file and the destination folder
 $sourceFile = "C:\MCW.zip"
 $destinationFolder = "C:\MCW"
+$item = get-item "C:\MCW\*"
+Rename-Item $item -NewName "MCW-App-modernization-$branchName"
 
 # Load the System.IO.Compression.FileSystem assembly
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -107,7 +109,7 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 
 Add-SqlFirewallRule
-
+$SqlPass = "demo!pass123"
 # Attach the downloaded backup files to the local SQL Server instance
 function Setup-Sql {
     #Add snap-in
@@ -115,7 +117,7 @@ function Setup-Sql {
 
     $ServerName = 'SQLSERVER2008'
     $DatabaseName = 'PartsUnlimited'
-    
+    $SqlPass = "demo!pass123"
     $Cmd = "USE [master] CREATE DATABASE [$DatabaseName]"
     Invoke-Sqlcmd $Cmd -QueryTimeout 3600 -ServerInstance $ServerName
 
