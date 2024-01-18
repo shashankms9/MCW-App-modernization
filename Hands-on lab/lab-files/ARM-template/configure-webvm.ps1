@@ -405,8 +405,8 @@ Set-VMHost -EnableEnhancedSessionMode $true
 
 # Create the nested Windows VMs - from VHDs
 Write-Output "Create Hyper-V VMs"
-New-VM -Name WindowsServer -MemoryStartupBytes 4GB -BootDevice VHD -VHDPath "$vmdir\SmartHotelWeb1\SmartHotelWeb1.vhdx" -Path "$vmdir\SmartHotelWeb1" -Generation 2 -Switch $switchName 
-#New-VM -Name smarthotelweb2 -MemoryStartupBytes 4GB -BootDevice VHD -VHDPath "$vmdir\SmartHotelWeb2\SmartHotelWeb2.vhdx" -Path "$vmdir\SmartHotelWeb2" -Generation 2 -Switch $switchName
+#New-VM -Name WindowsServer -MemoryStartupBytes 4GB -BootDevice VHD -VHDPath "$vmdir\SmartHotelWeb1\SmartHotelWeb1.vhdx" -Path "$vmdir\SmartHotelWeb1" -Generation 2 -Switch $switchName 
+New-VM -Name WindowsServer -MemoryStartupBytes 4GB -BootDevice VHD -VHDPath "$vmdir\SmartHotelWeb2\SmartHotelWeb2.vhdx" -Path "$vmdir\SmartHotelWeb2" -Generation 2 -Switch $switchName
 #New-VM -Name smarthotelSQL1 -MemoryStartupBytes 4GB -BootDevice VHD -VHDPath "$vmdir\SmartHotelSQL1\SmartHotelSQL1.vhdx" -Path "$vmdir\SmartHotelSQL1" -Generation 2 -Switch $switchName
 New-VM -Name UbuntuServer -MemoryStartupBytes 4GB -BootDevice VHD -VHDPath "$vmdir\UbuntuWAF\UbuntuWAF.vhdx"           -Path "$vmdir\UbuntuWAF"      -Generation 1 -Switch $switchName
 
