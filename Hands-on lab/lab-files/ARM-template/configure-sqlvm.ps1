@@ -93,14 +93,15 @@ $opsDir = "C:\MCW"
 # Provide the path to the compressed file and the destination folder
 $sourceFile = "C:\MCW.zip"
 $destinationFolder = "C:\MCW"
-$item = get-item "C:\MCW\*"
-Rename-Item $item -NewName "MCW-App-modernization-$branchName"
 
 # Load the System.IO.Compression.FileSystem assembly
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 # Use .NET classes to extract the contents of the file
 [System.IO.Compression.ZipFile]::ExtractToDirectory($sourceFile, $destinationFolder) 
+$item = get-item "C:\MCW\*"
+Rename-Item $item -NewName "MCW-App-modernization-$branchName"
+
 }
 
 
