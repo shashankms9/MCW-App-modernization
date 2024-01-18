@@ -14,7 +14,8 @@ function Disable-InternetExplorerESC {
 
 # Disable IE ESC
 Disable-InternetExplorerESC
-
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls, [Net.SecurityProtocolType]::Tls11, [Net.SecurityProtocolType]::Tls12, [Net.SecurityProtocolType]::Ssl3
+[Net.ServicePointManager]::SecurityProtocol = "Tls, Tls11, Tls12, Ssl3"
 #Enable TLS 1.2
 function enable-tls-1.2
 {
@@ -72,6 +73,38 @@ function Add-SqlFirewallRule {
     # Add the new rule
     $fwPolicy.Rules.Add($NewRule)
 }
+
+$LocalTempDir = $env:TEMP; $ChromeInstaller = "ChromeInstaller.exe"; (new-object    System.Net.WebClient).DownloadFile('http://dl.google.com/chrome/install/375.126/chrome_installer.exe', "$LocalTempDir\$ChromeInstaller"); & "$LocalTempDir\$ChromeInstaller" /silent /install; $Process2Monitor =  "ChromeInstaller"; Do { $ProcessesFound = Get-Process | ?{$Process2Monitor -contains $_.Name} | Select-Object -ExpandProperty Name; If ($ProcessesFound) { "Still running: $($ProcessesFound -join ', ')" | Write-Host; Start-Sleep -Seconds 2 } else { rm "$LocalTempDir\$ChromeInstaller" -ErrorAction SilentlyContinue -Verbose } } Until (!$ProcessesFound)
+
+
+Install-WindowsFeature -name Web-Server -IncludeManagementTools
+
+$branchName = "Migrate-Secure"
+
+# Download and extract the starter solution files
+# ZIP File sometimes gets corrupted
+Write-Host "Downloading MCW-App-modernization from GitHub" -ForegroundColor Green
+New-Item -ItemType directory -Path C:\MCW
+while((Get-ChildItem -Recurse C:\MCW | Measure-Object).Count -eq 0 )
+{
+    (New-Object System.Net.WebClient).DownloadFile("https://github.com/CloudLabs-MCW/MCW-App-modernization/zipball/$branchName", 'C:\MCW.zip')
+    
+$opsDir = "C:\MCW"
+# Provide the path to the compressed file and the destination folder
+$sourceFile = "C:\MCW.zip"
+$destinationFolder = "C:\MCW"
+
+# Load the System.IO.Compression.FileSystem assembly
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+
+# Use .NET classes to extract the contents of the file
+[System.IO.Compression.ZipFile]::ExtractToDirectory($sourceFile, $destinationFolder) 
+}
+
+
+
+
+
 
 Add-SqlFirewallRule
 
