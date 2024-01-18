@@ -155,7 +155,7 @@ Start-Process -file 'C:\DataMigrationAssistant.msi' -arg '/qn /l*v C:\dma_instal
 
 $branchName = "Migrate-Secure"
 # Schedule Installs for first Logon
-$argument = "-File `"C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\sqlvm-logon-install.ps1`""
+$argument = "-File `"C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\sqlvm-logontask.ps1`""
 $triggerAt = New-ScheduledTaskTrigger -AtLogOn -User demouser
 $action = New-ScheduledTaskAction -Execute "powershell" -Argument $argument 
 Register-ScheduledTask -TaskName "Install Lab Requirements" -Trigger $triggerAt -Action $action -User demouser
