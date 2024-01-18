@@ -31,7 +31,7 @@ function Setup-Sql {
 
     $ServerName = 'SQLSERVER2008'
     $DatabaseName = 'PartsUnlimited'
-    
+    $SqlPass = "demo!pass123"
     $Cmd = "USE [master] CREATE DATABASE [$DatabaseName]"
     Invoke-Sqlcmd $Cmd -QueryTimeout 3600 -ServerInstance $ServerName
 
