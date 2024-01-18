@@ -412,8 +412,8 @@ New-VM -Name UbuntuServer -MemoryStartupBytes 4GB -BootDevice VHD -VHDPath "$vmd
 
 # Configure IP addresses (don't change the IPs! VM config depends on them)
 Write-Output "Configure VM networking"
-Get-VMNetworkAdapter -VMName "WindowsServer" | Set-VMNetworkConfiguration -IPAddress "192.168.0.4" -Subnet "255.255.255.0" -DefaultGateway "192.168.0.1" -DNSServer "8.8.8.8"
-#Get-VMNetworkAdapter -VMName "smarthotelweb2" | Set-VMNetworkConfiguration -IPAddress "192.168.0.5" -Subnet "255.255.255.0" -DefaultGateway "192.168.0.1" -DNSServer "8.8.8.8"
+#Get-VMNetworkAdapter -VMName "WindowsServer" | Set-VMNetworkConfiguration -IPAddress "192.168.0.4" -Subnet "255.255.255.0" -DefaultGateway "192.168.0.1" -DNSServer "8.8.8.8"
+Get-VMNetworkAdapter -VMName "WindowsServer" | Set-VMNetworkConfiguration -IPAddress "192.168.0.5" -Subnet "255.255.255.0" -DefaultGateway "192.168.0.1" -DNSServer "8.8.8.8"
 #Get-VMNetworkAdapter -VMName "smarthotelsql1" | Set-VMNetworkConfiguration -IPAddress "192.168.0.6" -Subnet "255.255.255.0" -DefaultGateway "192.168.0.1" -DNSServer "8.8.8.8"
 Get-VMNetworkAdapter -VMName "UbuntuServer" | Set-VMNetworkConfiguration -IPAddress "192.168.0.8" -Subnet "255.255.255.0" -DefaultGateway "192.168.0.1" -DNSServer "8.8.8.8"
 
@@ -443,25 +443,25 @@ Rearm-VM -ComputerName "WindowsServer" -Username "Administrator" -Password "demo
 $newname = "hostvms" + "$DeploymentID"
 
 # Schedule Installs for first Logon
-$argument = "-File `"C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\webvm-logon-install.ps1`""
-$triggerAt = New-ScheduledTaskTrigger -AtLogOn -User demouser
-$action = New-ScheduledTaskAction -Execute "powershell" -Argument $argument 
-Register-ScheduledTask -TaskName "Install Lab Requirements" -Trigger $triggerAt -Action $action -User demouser
+#$argument = "-File `"C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\webvm-logon-install.ps1`""
+#$triggerAt = New-ScheduledTaskTrigger -AtLogOn -User demouser
+#$action = New-ScheduledTaskAction -Execute "powershell" -Argument $argument 
+#Register-ScheduledTask -TaskName "Install Lab Requirements" -Trigger $triggerAt -Action $action -User demouser
 
 #Autologin
-$Username = "demouser"
-$Pass = "$adminPassword"
-$RegistryPath = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
-Set-ItemProperty $RegistryPath 'AutoAdminLogon' -Value "1" -Type String 
-Set-ItemProperty $RegistryPath 'DefaultUsername' -Value "$Username" -type String 
-Set-ItemProperty $RegistryPath 'DefaultPassword' -Value "$Pass" -type String
+#$Username = "demouser"
+#$Pass = "$adminPassword"
+#$RegistryPath = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
+#Set-ItemProperty $RegistryPath 'AutoAdminLogon' -Value "1" -Type String 
+#Set-ItemProperty $RegistryPath 'DefaultUsername' -Value "$Username" -type String 
+#Set-ItemProperty $RegistryPath 'DefaultPassword' -Value "$Pass" -type String
 
 
-$Validstatus="Pending"  ##Failed or Successful at the last step
-$Validmessage="Post Deployment is Pending"
+#$Validstatus="Pending"  ##Failed or Successful at the last step
+#$Validmessage="Post Deployment is Pending"
 
 #Set the final deployment status
-CloudlabsManualAgent setStatus
+#CloudlabsManualAgent setStatus
 
 Stop-Transcript  
 
