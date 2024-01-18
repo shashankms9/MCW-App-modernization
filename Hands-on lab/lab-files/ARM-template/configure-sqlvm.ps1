@@ -151,5 +151,21 @@ Sleep 50
 Invoke-WebRequest 'https://download.microsoft.com/download/C/6/3/C63D8695-CEF2-43C3-AF0A-4989507E429B/DataMigrationAssistant.msi' -OutFile 'C:\DataMigrationAssistant.msi'
 Start-Process -file 'C:\DataMigrationAssistant.msi' -arg '/qn /l*v C:\dma_install.txt' -passthru | wait-process
 
+$branchName = "Migrate-Secure"
+# Schedule Installs for first Logon
+$argument = "-File `"C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\sqlvm-logon-install.ps1`""
+$triggerAt = New-ScheduledTaskTrigger -AtLogOn -User demouser
+$action = New-ScheduledTaskAction -Execute "powershell" -Argument $argument 
+Register-ScheduledTask -TaskName "Install Lab Requirements" -Trigger $triggerAt -Action $action -User demouser
+
+#Autologin
+$Username = "demouser"
+$Pass = "demo!pass123"
+$RegistryPath = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
+Set-ItemProperty $RegistryPath 'AutoAdminLogon' -Value "1" -Type String 
+Set-ItemProperty $RegistryPath 'DefaultUsername' -Value "$Username" -type String 
+Set-ItemProperty $RegistryPath 'DefaultPassword' -Value "$Pass" -type String
+
+
 
 Restart-Computer
