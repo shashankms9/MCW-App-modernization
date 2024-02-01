@@ -1,5 +1,4 @@
 param (
-    [Parameter(Mandatory=$False)] [string] $SqlPass = "",
     [Parameter(Mandatory = $true)]
     [string]
     $AzureUserName,
@@ -34,6 +33,7 @@ param (
 
 Start-Transcript -Path C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension.txt -Append
 
+$SqlPass = $adminPassword
 
 [Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls
 [Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls"
