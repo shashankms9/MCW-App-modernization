@@ -4,27 +4,33 @@ param (
     [Parameter(Mandatory = $true)]
     [string]
     $AzureUserName,
-
+ 
     [string]
     $AzurePassword,
-
+ 
+    [string]
+    $AzureTenantID,
+ 
+    [string]
+    $AzureSubscriptionID,
+ 
     [string]
     $ODLID,
-
-    [string]
-    $InstallCloudLabsShadow,
-
+ 
     [string]
     $DeploymentID,
-    
-     [string]
-  $AzureTenantID,
-  
-  [string]
-  $AzureSubscriptionID,
-  
-  [string]
-    $adminPassword
+ 
+    [string]
+    $vmAdminUsername,
+ 
+    [string]
+    $adminPassword,
+ 
+    [string]
+    $trainerUserName,
+ 
+    [string]
+    $trainerUserPassword
 )
 
 Start-Transcript -Path C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension.txt -Append
