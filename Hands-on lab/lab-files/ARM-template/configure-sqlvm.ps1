@@ -19,16 +19,7 @@ param (
     $DeploymentID,
  
     [string]
-    $vmAdminUsername,
- 
-    [string]
-    $adminPassword,
- 
-    [string]
-    $trainerUserName,
- 
-    [string]
-    $trainerUserPassword
+    $adminPassword
 )
 
 Start-Transcript -Path C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension.txt -Append
