@@ -1,7 +1,53 @@
 param (
-    [Parameter(Mandatory=$False)] [string] $SqlPass = ""
+    [Parameter(Mandatory=$False)] [string] $SqlPass = "",
+    [Parameter(Mandatory = $true)]
+    [string]
+    $AzureUserName,
+ 
+    [string]
+    $AzurePassword,
+ 
+    [string]
+    $AzureTenantID,
+ 
+    [string]
+    $AzureSubscriptionID,
+ 
+    [string]
+    $ODLID,
+ 
+    [string]
+    $DeploymentID,
+ 
+    [string]
+    $vmAdminUsername,
+ 
+    [string]
+    $adminPassword,
+ 
+    [string]
+    $trainerUserName,
+ 
+    [string]
+    $trainerUserPassword
 )
+
 Start-Transcript -Path C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension.txt -Append
+
+
+[Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls
+[Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls"
+ 
+#Import Common Functions
+$path = pwd
+$path=$path.Path
+$commonscriptpath = "$path" + "\cloudlabs-common\cloudlabs-windows-functions.ps1"
+. $commonscriptpath
+#Installing Modern VM Validator
+InstallModernVmValidator
+
+CreateCredFile $AzureUserName $AzurePassword $AzureTenantID $AzureSubscriptionID $DeploymentID
+
 # Disable Internet Explorer Enhanced Security Configuration
 function Disable-InternetExplorerESC {
     $AdminKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
