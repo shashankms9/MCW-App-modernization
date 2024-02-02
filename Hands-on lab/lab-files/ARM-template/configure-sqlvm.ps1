@@ -155,48 +155,6 @@ Invoke-WebRequest 'https://download.microsoft.com/download/C/6/3/C63D8695-CEF2-4
 Start-Process -file 'C:\DataMigrationAssistant.msi' -arg '/qn /l*v C:\dma_install.txt' -passthru | wait-process
 
 $branchName = "Migrate-Secure"
-
-# Download and extract the starter solution files
-# ZIP File sometimes gets corrupted
-Write-Host "Downloading MCW-App-modernization from GitHub" -ForegroundColor Green
-New-Item -ItemType directory -Path C:\MCW
-while((Get-ChildItem -Directory C:\MCW | Measure-Object).Count -eq 0 )
-{
-    (New-Object System.Net.WebClient).DownloadFile("https://github.com/CloudLabs-MCW/MCW-App-modernization/zipball/$branchName", 'C:\MCW.zip')
-     Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
-}
-
-# Verify, download and extract the starter solution files
-$Path = "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\webvm-logon-install.ps1"
-$branchName = "microsoft-app-modernization-v2"
-
-if(Test-Path -Path $Path -PathType Leaf)
-{
- Write-Host "File exists!"
-}
-else
-{
-do
-{
-(New-Object System.Net.WebClient).DownloadFile("https://github.com/CloudLabs-MCW/MCW-App-modernization/archive/refs/heads/$branchName.zip", 'C:\MCW.zip')
-Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
-$data = "Test-Path -Path $Path -PathType Leaf"
-}Until($data)
-
- Write-Host "Downloaded Files"
-
-}
-
-#rename the random branch name
-$item = get-item "C:\MCW\*"
-Rename-Item $item -NewName "MCW-App-modernization-$branchName"
-
-# Replace SQL Connection String
-$item = "C:\MCW\MCW-App-modernization-$branchName"
-Write-Host "Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;"
-# The config.release.json file is populated with configuration data during compile and release from VS.  config.json is used by the solution on the WebM.
-((Get-Content -path "$item\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.release.json" -Raw) -replace 'SETCONNECTIONSTRING',"Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$adminPassword;") | Set-Content -Path "$item\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.json"
-
 # Schedule Installs for first Logon
 $argument = "-File `"C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\sqlvm-logontask.ps1`""
 $triggerAt = New-ScheduledTaskTrigger -AtLogOn -User demouser
