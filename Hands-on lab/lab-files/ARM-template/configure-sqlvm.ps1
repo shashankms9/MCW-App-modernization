@@ -1,5 +1,6 @@
 param (
-    [Parameter(Mandatory=$False)] [string] $SqlPass = ""
+    [Parameter(Mandatory=$False)] [string] $SqlPass = "",
+    [Parameter(Mandatory=$False)] [string] $SqlIPAddress = ""
 )
 Start-Transcript -Path C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension.txt -Append
 # Disable Internet Explorer Enhanced Security Configuration
@@ -153,6 +154,16 @@ Start-Process -file 'C:\DataMigrationAssistant.msi' -arg '/qn /l*v C:\dma_instal
 Sleep 50
 Invoke-WebRequest 'https://download.microsoft.com/download/C/6/3/C63D8695-CEF2-43C3-AF0A-4989507E429B/DataMigrationAssistant.msi' -OutFile 'C:\DataMigrationAssistant.msi'
 Start-Process -file 'C:\DataMigrationAssistant.msi' -arg '/qn /l*v C:\dma_install.txt' -passthru | wait-process
+
+$adminPassword = "demo!pass123"
+
+$sqlip = $SqlIPAddress
+# Replace SQL Connection String
+$item = "C:\MCW\MCW-App-modernization-$branchName"
+Write-Host "Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;"
+# The config.release.json file is populated with configuration data during compile and release from VS.  config.json is used by the solution on the WebM.
+((Get-Content -path "$item\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.release.json" -Raw) -replace 'SETCONNECTIONSTRING',"Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$adminPassword;") | Set-Content -Path "$item\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.json"
+
 
 $branchName = "Migrate-Secure"
 # Schedule Installs for first Logon
