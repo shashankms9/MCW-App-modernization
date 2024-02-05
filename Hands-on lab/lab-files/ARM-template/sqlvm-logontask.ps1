@@ -155,3 +155,11 @@ Unregister-ScheduledTask -TaskName "Install Lab Requirements" -Confirm:$false
 Write-Host "Restarting IIS"
 iisreset.exe /restart
 
+$branchName = "Migrate-Secure"
+
+Copy-Item "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.json" -Destination 'C:\inetpub\wwwroot' -Force
+
+
+Restart-Service -Force MSSQLSERVER
+#In case restart failed but service was shut down.
+Start-Service -Name 'MSSQLSERVER'
