@@ -77,9 +77,6 @@ Unregister-ScheduledTask -TaskName "Install Lab Requirements" -Confirm:$false
 Write-Host "Restarting IIS"
 iisreset.exe /restart
 
-#Check if Webvm ip is accessible or not
-Import-Module Az
-
 CD C:\LabFiles
 $credsfilepath = ".\AzureCreds.txt"
 $creds = Get-Content $credsfilepath | Out-String | ConvertFrom-StringData
