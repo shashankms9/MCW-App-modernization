@@ -1,5 +1,8 @@
 param (
     [Parameter(Mandatory=$False)] [string] $SqlPass = ""
+
+    [string]
+    $adminPassword
 )
 
 # Disable Internet Explorer Enhanced Security Configuration
