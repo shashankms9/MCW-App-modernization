@@ -48,6 +48,10 @@ Feel free to start, stop, or restart your virtual machine as needed from the **R
    - **Password:** <inject key="AzureAdUserPassword"></inject>
  
         ![](media/GS3.png "Enter Password")
+
+1. If you see the pop-up **Action Required**, click **Ask Later**.
+
+    ![](media/action.png)       
  
 1. If prompted to stay signed in, you can click **No**.
 
