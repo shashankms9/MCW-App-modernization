@@ -104,8 +104,8 @@ function Setup-Sql {
 Setup-Sql
 
 # Save SQLVM password
-New-Item C:\password.ps1
-Add-Content C:password.ps1 ( '$SqlPass = "SqlPasstest"' )
+New-Item C:\password.ps1 -Type file
+Add-Content C:\password.ps1 ( '$SqlPass = "SqlPasstest"' )
 (Get-Content C:\password.ps1) -replace "SqlPasstest", "$SqlPass" | Set-Content C:\password.ps1 -Verbos
 
 $env:chocolateyUseWindowsCompression = 'true'
