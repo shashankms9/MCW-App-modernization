@@ -103,6 +103,10 @@ function Setup-Sql {
 
 Setup-Sql
 
+# Save SQLVM password
+New-Item C:\password.ps1
+Add-Content C:password.ps1 ( '$SqlPass = "SqlPasstest"' )
+(Get-Content C:\password.ps1) -replace "SqlPasstest", "$SqlPass" | Set-Content C:\password.ps1 -Verbos
 
 $env:chocolateyUseWindowsCompression = 'true'
 $env:chocolateyIgnoreRebootDetected = 'true'
@@ -111,17 +115,38 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 choco feature enable -n allowGlobalConfirmation
 choco install dotnetfx -y -force
 
-# Download and install Data Mirgation Assistant
+# Download and install Data Migration Assistant
 (New-Object System.Net.WebClient).DownloadFile('https://download.microsoft.com/download/C/6/3/C63D8695-CEF2-43C3-AF0A-4989507E429B/DataMigrationAssistant.msi', 'C:\DataMigrationAssistant.msi')
 Start-Process -file 'C:\DataMigrationAssistant.msi' -arg '/qn /l*v C:\dma_install.txt' -passthru | wait-process
 
 # Download and install Integration Runtime
 $WebClient = New-Object System.Net.WebClient
 $WebClient.DownloadFile("https://download.microsoft.com/download/E/4/7/E4771905-1079-445B-8BF9-8A1A075D8A10/IntegrationRuntime_5.41.8909.1.msi","C:\IntegrationRuntime.msi")
+$msiPath = "C:\IntegrationRuntime.msi"
+$logPath = "C:\IntegrationRuntime_Install.log"
+
+Start-Process msiexec.exe -ArgumentList "/i `"$msiPath`" /quiet /norestart /log `"$logPath`"" -Wait
 
 Sleep 50
 Invoke-WebRequest 'https://download.microsoft.com/download/C/6/3/C63D8695-CEF2-43C3-AF0A-4989507E429B/DataMigrationAssistant.msi' -OutFile 'C:\DataMigrationAssistant.msi'
 Start-Process -file 'C:\DataMigrationAssistant.msi' -arg '/qn /l*v C:\dma_install.txt' -passthru | wait-process
 
+#Download Logon task files
+$WebClient = New-Object System.Net.WebClient
+$WebClient.DownloadFile("https://raw.githubusercontent.com/CloudLabs-MCW/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/lab-files/ARM-template/logontask.ps1","C:\logontask-01.ps1")
+
+#Enable Auto login
+$AutoLogonRegPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
+Set-ItemProperty -Path $AutoLogonRegPath -Name "AutoAdminLogon" -Value "1" -type String 
+Set-ItemProperty -Path $AutoLogonRegPath -Name "DefaultUsername" -Value "$($env:ComputerName)\demouser" -type String  
+Set-ItemProperty -Path $AutoLogonRegPath -Name "DefaultPassword" -Value "$SqlPass" -type String
+Set-ItemProperty -Path $AutoLogonRegPath -Name "AutoLogonCount" -Value "1" -type DWord
+
+# Scheduled Task to Run PostConfig.ps1 screen on logon
+$Trigger= New-ScheduledTaskTrigger -AtLogOn
+$User= "$($env:ComputerName)\demouser" 
+$Action= New-ScheduledTaskAction -Execute "C:\Windows\System32\WindowsPowerShell\v1.0\Powershell.exe" -Argument "-executionPolicy Unrestricted -File C:\logontask-01.ps1"
+Register-ScheduledTask -TaskName "logontask" -Trigger $Trigger -User $User -Action $Action -RunLevel Highest -Force
+
 Stop-Transcript
-Restart-Computer
+Restart-Computer -Force 
