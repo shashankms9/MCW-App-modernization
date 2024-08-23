@@ -9,7 +9,7 @@ In this lab, we will guide you through the process of setting up Azure Migrate, 
 
 By the end of this lab, you will gain hands-on experience in modernizing applications for the cloud, implementing cloud-native services, and leveraging Azure's capabilities to improve scalability, security, and performance.
 
-## Lab objectives
+## Objectives
 In this lab, you will complete the following tasks:
    - **Review the Legacy On-Prem Application**: Analyze the existing on-premises application architecture and dependencies to understand the migration requirements and potential challenges.
    - **Setting up Azure Migrate**: Configure Azure Migrate to assess the on-premises environment and prepare it for migration to Azure.
