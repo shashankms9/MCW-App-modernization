@@ -1,17 +1,18 @@
 # NET App Modernization
+---
 ## Estimated Duration: 4.5 Hours
 
 ## Lab objectives
 In this lab, you will complete the following tasks:
-   - Exercise 1: Review the Legacy On-Prem Application
-   - Exercise 2: Setting up Azure Migrate
-   - Exercise 3: Migrate your application with App Service Migration Assistant
-   - Exercise 4: Migrate the on-premises database to Azure SQL Database
-   - Exercise 5: Setup CI/CD pipeline with GitHub Actions for the web app
-   - Exercise 6: Using serverless Azure Functions to process orders
-   - Exercise 7: Publish the application via Application Gateway and Firewall (Optional)
-   - Exercise 8: Performance testing of web app (Optional)
-   - Exercise 9: Securing web app connection string with Azure Key Vault and Managed Identity (Optional)
+   - **Exercise 1**: Review the Legacy On-Prem Application
+   - **Exercise 2**: Setting up Azure Migrate
+   - **Exercise 3**: Migrate your application with App Service Migration Assistant
+   - **Exercise 4**: Migrate the on-premises database to Azure SQL Database
+   - **Exercise 5**: Setup CI/CD pipeline with GitHub Actions for the web app
+   - **Exercise 6**: Using serverless Azure Functions to process orders
+   - **Exercise 7**: Publish the application via Application Gateway and Firewall (Optional)
+   - **Exercise 8**: Performance testing of web app (Optional)
+   - **Exercise 9**: Securing web app connection string with Azure Key Vault and Managed Identity (Optional)
 
 ## Getting Started with Lab
 
@@ -60,3 +61,15 @@ In this lab, you will complete the following tasks:
     ![](media/image10.png "Resource groups")
    
 1. Now, click on Next from the lower right corner to move to the next page.
+
+## Support Contact
+ 
+1. The CloudLabs support team is available 24/7, 365 days a year, via email and live chat to ensure seamless assistance at any time. We offer dedicated support channels tailored specifically for both learners and instructors, ensuring that all your needs are promptly and efficiently addressed.
+ 
+   Learner Support Contacts:
+ 
+   - Email Support: labs-support@spektrasystems.com
+   - Live Chat Support: https://cloudlabs.ai/labs-support
+ 
+1. Now, click on Next from the lower right corner to move on to the next page.
+## Happy Learning!!
