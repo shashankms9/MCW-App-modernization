@@ -27,6 +27,8 @@ In this lab, you will complete the following tasks:
 
 ## Architecture Diagram
 
+![This solution diagram includes a high-level overview of the architecture implemented within this hands-on lab.](media/architecture-diagram.png "Solution architecture diagram")
+
 ## Getting Started with Lab
 
 ## Explanation of Components
