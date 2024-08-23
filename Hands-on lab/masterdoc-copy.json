@@ -1,0 +1,54 @@
+[ {
+  "Name": "App Modernization",
+  "Language": "English",
+  "Files": [
+        {
+      "RawFilePath": "https://githubusercontent.com/RajatJangra2653/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/GettingStarted.md",
+      "Order": 1
+    },
+    {
+      "RawFilePath": "https://githubusercontent.com/RajatJangra2653/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/solution.md",
+      "Order": 2
+    },
+    {
+      "RawFilePath": "https://githubusercontent.com/RajatJangra2653/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/1.md",
+      "Order": 3
+    },
+    {
+      "RawFilePath": "https://githubusercontent.com/RajatJangra2653/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/2.md",
+      "Order": 4
+    },
+    {
+      "RawFilePath": "https://githubusercontent.com/RajatJangra2653/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/3.md",
+      "Order": 5
+    },
+    {
+      "RawFilePath": "https://githubusercontent.com/RajatJangra2653/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/4.md",
+      "Order": 6
+    },
+    {
+      "RawFilePath": "https://githubusercontent.com/RajatJangra2653/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/5.md",
+      "Order": 7
+    },
+    {
+      "RawFilePath": "https://githubusercontent.com/RajatJangra2653/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/6.md",
+      "Order": 8
+    },
+    {
+      "RawFilePath": "https://githubusercontent.com/RajatJangra2653/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/7.md",
+      "Order": 9
+    },
+    {
+      "RawFilePath": "https://githubusercontent.com/RajatJangra2653/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/8.md",
+      "Order": 10
+    },
+    {
+      "RawFilePath": "https://githubusercontent.com/RajatJangra2653/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/9.md",
+      "Order": 11
+    },
+    {
+      "RawFilePath": "https://githubusercontent.com/RajatJangra2653/MCW-App-modernization/microsoft-app-modernization-v2/Hands-on%20lab/lab-completed.md",
+      "Order": 12
+    }
+  ]
+} ]
