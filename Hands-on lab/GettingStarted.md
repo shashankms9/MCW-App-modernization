@@ -30,9 +30,23 @@ In this hands-on lab, the architecture flow comprises several key components. Yo
 
 ![This solution diagram includes a high-level overview of the architecture implemented within this hands-on lab.](media/architecture-diagram.png "Solution architecture diagram")
 
-## Getting Started with Lab
-
 ## Explanation of Components
+
+- **Azure App Service**: A managed platform for deploying and scaling web applications and APIs, supporting multiple languages with built-in security, auto-scaling, and load balancing.
+
+- **Azure SQL Database**: A fully managed relational database service for storing application data, providing high availability, scalability, and security.
+
+- **Azure Queue Storage**: A message queuing service for storing large numbers of messages to enable reliable and decoupled communication between application components.
+
+- **Azure Functions**: A serverless compute service that executes code in response to events, used here for processing orders and managing business logic dynamically.
+
+- **Azure Blob Storage**: A scalable object storage solution for unstructured data, used to store invoices and other multimedia files with high durability and availability.
+
+- **Azure Application Insights**: An application performance management tool that provides real-time monitoring, diagnostics, and analytics to ensure optimal app performance.
+
+- **GitHub Actions**: A CI/CD tool integrated with GitHub for automating build, test, and deployment workflows, ensuring continuous integration and delivery.
+
+## Getting Started with Lab
 
 1. Once the environment is provisioned, a virtual machine (JumpVM) and lab guide will get loaded in your browser. Use this virtual machine throughout the workshop to perform the lab. You can see the number on the lab guide bottom area to switch to different exercises of the lab guide.
    
