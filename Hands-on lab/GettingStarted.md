@@ -2,6 +2,13 @@
 ---
 ## Estimated Duration: 4.5 Hours
 
+## Overview
+In this hands-on lab, you will migrate a legacy on-premises application to Microsoft Azure using various Azure services and tools. Over the years, cloud computing has revolutionized how applications are hosted and managed, offering benefits such as scalability, security, and reduced infrastructure overhead. Azure provides a comprehensive suite of tools and services to facilitate the seamless migration of applications and databases from on-premises environments to the cloud.
+
+In this lab, we will guide you through the process of setting up Azure Migrate, assessing your existing on-premises application, and migrating it to Azure App Service using the App Service Migration Assistant. You will also learn how to migrate on-premises databases to Azure SQL Database and enhance the application's functionality with Azure's serverless offerings, such as Azure Functions. Additionally, we'll cover the setup of a CI/CD pipeline using GitHub Actions to automate deployments and explore advanced topics like securing application secrets with Azure Key Vault, performance testing, and deploying the application using Azure Application Gateway and Firewall. 
+
+By the end of this lab, you will gain hands-on experience in modernizing applications for the cloud, implementing cloud-native services, and leveraging Azure's capabilities to improve scalability, security, and performance.
+
 ## Lab objectives
 In this lab, you will complete the following tasks:
    - **Review the Legacy On-Prem Application**: Analyze the existing on-premises application architecture and dependencies to understand the migration requirements and potential challenges.
