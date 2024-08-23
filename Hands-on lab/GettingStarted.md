@@ -22,6 +22,12 @@ In this lab, you will complete the following tasks:
    - **Securing web app connection string with Azure Key Vault and Managed Identity (Optional)**: Enhance the security of the web application by using Azure Key Vault and Managed Identity to securely manage and access sensitive connection strings.
 
 ## Pre-requisites
+- **Basic Knowledge of Azure Migrate**: Understanding the purpose and features of Azure Migrate.
+- **Familiarity with Azure App Service**: Knowledge of Azure App Service features and configuration.
+- **Basic Knowledge of Azure SQL Database**: Understanding of Azure SQL Database features and configuration.
+- **Experience with GitHub Actions**: Understanding of CI/CD concepts and experience with setting up GitHub Actions workflows.
+- **Understanding of Serverless Computing**: Basic knowledge of serverless architecture and its use cases.
+- **Basic Knowledge of Azure Key Vault and Managed Identity**: Understanding of how these services can be used to manage and secure sensitive information.
 
 ## Architecture
 In this hands-on lab, the architecture flow comprises several key components. You'll start by deploying the web application on Azure App Service and setting up the necessary Azure resources. The core of this architecture is the e-commerce web application hosted on Azure App Service, which interacts with various Azure services to provide a seamless user experience. The Azure SQL Database serves as the primary data store, maintaining the product catalog and user information. Orders submitted by users are placed in Azure Queue Storage, enabling reliable communication between the front-end and back-end components. Azure Functions then process these queued orders, performing tasks such as order validation and inventory updates. Additionally, Azure Blob Storage is used for storing invoices, and Azure Application Insights provides monitoring and performance management. The CI/CD pipeline, managed by GitHub Actions, automates deployments, ensuring efficient application updates and integration.
