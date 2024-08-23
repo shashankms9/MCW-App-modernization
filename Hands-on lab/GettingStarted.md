@@ -4,15 +4,15 @@
 
 ## Lab objectives
 In this lab, you will complete the following tasks:
-   - **Exercise 1**: Review the Legacy On-Prem Application
-   - **Exercise 2**: Setting up Azure Migrate
-   - **Exercise 3**: Migrate your application with App Service Migration Assistant
-   - **Exercise 4**: Migrate the on-premises database to Azure SQL Database
-   - **Exercise 5**: Setup CI/CD pipeline with GitHub Actions for the web app
-   - **Exercise 6**: Using serverless Azure Functions to process orders
-   - **Exercise 7**: Publish the application via Application Gateway and Firewall (Optional)
-   - **Exercise 8**: Performance testing of web app (Optional)
-   - **Exercise 9**: Securing web app connection string with Azure Key Vault and Managed Identity (Optional)
+   - **Review the Legacy On-Prem Application**: Analyze the existing on-premises application architecture and dependencies to understand the migration requirements and potential challenges.
+   - **Setting up Azure Migrate**: Configure Azure Migrate to assess the on-premises environment and prepare it for migration to Azure.
+   - **Migrate your application with App Service Migration Assistant**: Use the App Service Migration Assistant to move the legacy web application to Azure App Service with minimal downtime.
+   - **Migrate the on-premises database to Azure SQL Database**: Migrate the on-premises database to Azure SQL Database to take advantage of managed database services and high availability.
+   - **Setup CI/CD pipeline with GitHub Actions for the web app**: Implement a continuous integration and continuous deployment (CI/CD) pipeline using GitHub Actions to automate the build, test, and deployment process for the web application.
+   - **Using serverless Azure Functions to process orders**: Develop and deploy serverless Azure Functions to handle order processing, reducing infrastructure management overhead and improving scalability.
+   - **Publish the application via Application Gateway and Firewall (Optional)**: Secure and optimize the application's deployment using Azure Application Gateway and Firewall for enhanced traffic management and protection.
+   - **Performance testing of web app (Optional)**: Conduct performance testing on the migrated web application to identify bottlenecks and ensure it meets performance standards.
+   - **Securing web app connection string with Azure Key Vault and Managed Identity (Optional)**: Enhance the security of the web application by using Azure Key Vault and Managed Identity to securely manage and access sensitive connection strings.
 
 ## Getting Started with Lab
 
