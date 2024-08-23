@@ -1,7 +1,19 @@
+# NET App Modernization
+## Estimated Duration: 30 minutes
 
-# Getting Started with Lab
+## Lab objectives
+In this lab, you will complete the following tasks:
+   - Exercise 1: Review the Legacy On-Prem Application
+   - Exercise 2: Setting up Azure Migrate
+   - Exercise 3: Migrate your application with App Service Migration Assistant
+   - Exercise 4: Migrate the on-premises database to Azure SQL Database
+   - Exercise 5: Setup CI/CD pipeline with GitHub Actions for the web app
+   - Exercise 6: Using serverless Azure Functions to process orders
+   - Exercise 7: Publish the application via Application Gateway and Firewall (Optional)
+   - Exercise 8: Performance testing of web app (Optional)
+   - Exercise 9: Securing web app connection string with Azure Key Vault and Managed Identity (Optional)
 
-## Overall Estimated Duration: 4 Hours
+## Getting Started with Lab
 
 1. Once the environment is provisioned, a virtual machine (JumpVM) and lab guide will get loaded in your browser. Use this virtual machine throughout the workshop to perform the lab. You can see the number on the lab guide bottom area to switch to different exercises of the lab guide.
    
