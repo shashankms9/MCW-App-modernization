@@ -1,5 +1,5 @@
 # NET App Modernization
-## Estimated Duration: 30 minutes
+## Estimated Duration: 4.5 Hours
 
 ## Lab objectives
 In this lab, you will complete the following tasks:
