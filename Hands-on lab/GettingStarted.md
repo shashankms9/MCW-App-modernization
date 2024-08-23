@@ -1,6 +1,6 @@
 # .NET App Modernization
 ---
-## Estimated Duration: 4.5 Hours
+### Estimated Duration: 4.5 Hours
 
 ## Overview
 In this hands-on lab, you will migrate a legacy on-premises application to Microsoft Azure using various Azure services and tools. Over the years, cloud computing has revolutionized how applications are hosted and managed, offering benefits such as scalability, security, and reduced infrastructure overhead. Azure provides a comprehensive suite of tools and services to facilitate the seamless migration of applications and databases from on-premises environments to the cloud.
