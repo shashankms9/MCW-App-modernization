@@ -21,6 +21,12 @@ In this lab, you will complete the following tasks:
    - **Performance testing of web app (Optional)**: Conduct performance testing on the migrated web application to identify bottlenecks and ensure it meets performance standards.
    - **Securing web app connection string with Azure Key Vault and Managed Identity (Optional)**: Enhance the security of the web application by using Azure Key Vault and Managed Identity to securely manage and access sensitive connection strings.
 
+## Pre-requisites
+
+## Architecture
+
+## Architecture Diagram
+
 ## Getting Started with Lab
 
 1. Once the environment is provisioned, a virtual machine (JumpVM) and lab guide will get loaded in your browser. Use this virtual machine throughout the workshop to perform the lab. You can see the number on the lab guide bottom area to switch to different exercises of the lab guide.
