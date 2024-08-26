@@ -1,5 +1,4 @@
 # .NET App Modernization
----
 ### Overall Estimated Duration: 4.5 Hours
 
 ## Overview
