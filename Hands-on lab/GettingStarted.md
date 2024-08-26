@@ -12,23 +12,23 @@ By the end of this lab, you will gain hands-on experience in modernizing applica
 ## Objectives
 In this lab, you will learn how to migrate and modernize an on-premises application to Azure, implement DevOps practices, utilize serverless computing, and secure applications. By the end of this lab, you will be able to:
 
-   - **Analyze the Legacy On-Premises Application**: Understand the existing on-premises application architecture and dependencies to identify migration requirements and potential challenges.
+   - **Review the Legacy On-Prem Application**: Understand the existing on-premises application architecture and dependencies to identify migration requirements and potential challenges.
 
-   - **Configure Azure Migrate for Assessment**: Set up Azure Migrate to assess the on-premises environment, preparing it for a seamless migration to Azure.
+   - **Setting up Azure Migrate**: Set up Azure Migrate to assess the on-premises environment, preparing it for a seamless migration to Azure.
 
-   - **Migrate Web Application Using App Service Migration Assistant**: Use the App Service Migration Assistant to transfer the legacy web application to Azure App Service with minimal downtime, ensuring business continuity.
+   - **Migrate your application with App Service Migration Assistant**: Use the App Service Migration Assistant to transfer the legacy web application to Azure App Service with minimal downtime, ensuring business continuity.
 
    - **Migrate On-Premises Database to Azure SQL Database**: Migrate the on-premises database to Azure SQL Database to leverage managed database services and ensure high availability.
 
-   - **Implement CI/CD Pipeline with GitHub Actions**: Set up a continuous integration and continuous deployment (CI/CD) pipeline using GitHub Actions to automate the build, test, and deployment processes for the web application.
+   - **Setup CI/CD pipeline with GitHub Actions for the web app**: Set up a continuous integration and continuous deployment (CI/CD) pipeline using GitHub Actions to automate the build, test, and deployment processes for the web application.
 
-   - **Deploy Serverless Azure Functions for Order Processing**: Develop and deploy serverless Azure Functions to handle order processing, reducing infrastructure management overhead and enhancing scalability.
+   - **Using serverless Azure Functions to process orders**: Develop and deploy serverless Azure Functions to handle order processing, reducing infrastructure management overhead and enhancing scalability.
 
-   - **Secure and Optimize Application Deployment with Azure Application Gateway and Firewall (Optional)**: Use Azure Application Gateway and Firewall to enhance the security and performance of the application's deployment, providing improved traffic management and protection.
+   - **Publish the application via Application Gateway and Firewall (Optional)**: Use Azure Application Gateway and Firewall to enhance the security and performance of the application's deployment, providing improved traffic management and protection.
 
-   - **Conduct Performance Testing on the Migrated Web Application (Optional)**: Perform performance testing to identify any bottlenecks and ensure the web application meets performance standards after migration.
+   - **Performance testing of web app (Optional)**: Perform performance testing to identify any bottlenecks and ensure the web application meets performance standards after migration.
 
-   - **Secure Web Application with Azure Key Vault and Managed Identity (Optional)**: Enhance the security of the web application by using Azure Key Vault and Managed Identity to securely manage and access sensitive connection strings.
+   - **Securing web app connection string with Azure Key Vault and Managed Identity (Optional)**: Enhance the security of the web application by using Azure Key Vault and Managed Identity to securely manage and access sensitive connection strings.
 
 ## Pre-requisites
 - **Basic Knowledge of Azure Migrate**: Understanding the purpose and features of Azure Migrate.
