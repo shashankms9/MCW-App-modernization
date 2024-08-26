@@ -1,6 +1,6 @@
 # .NET App Modernization
 ---
-### Estimated Duration: 4.5 Hours
+### Overall Estimated Duration: 4.5 Hours
 
 ## Overview
 In this hands-on lab, you will migrate a legacy on-premises application to Microsoft Azure using various Azure services and tools. Over the years, cloud computing has revolutionized how applications are hosted and managed, offering benefits such as scalability, security, and reduced infrastructure overhead. Azure provides a comprehensive suite of tools and services to facilitate the seamless migration of applications and databases from on-premises environments to the cloud.
@@ -10,16 +10,25 @@ In this lab, we will guide you through the process of setting up Azure Migrate, 
 By the end of this lab, you will gain hands-on experience in modernizing applications for the cloud, implementing cloud-native services, and leveraging Azure's capabilities to improve scalability, security, and performance.
 
 ## Objectives
-In this lab, you will complete the following tasks:
-   - **Review the Legacy On-Prem Application**: Analyze the existing on-premises application architecture and dependencies to understand the migration requirements and potential challenges.
-   - **Setting up Azure Migrate**: Configure Azure Migrate to assess the on-premises environment and prepare it for migration to Azure.
-   - **Migrate your application with App Service Migration Assistant**: Use the App Service Migration Assistant to move the legacy web application to Azure App Service with minimal downtime.
-   - **Migrate the on-premises database to Azure SQL Database**: Migrate the on-premises database to Azure SQL Database to take advantage of managed database services and high availability.
-   - **Setup CI/CD pipeline with GitHub Actions for the web app**: Implement a continuous integration and continuous deployment (CI/CD) pipeline using GitHub Actions to automate the build, test, and deployment process for the web application.
-   - **Using serverless Azure Functions to process orders**: Develop and deploy serverless Azure Functions to handle order processing, reducing infrastructure management overhead and improving scalability.
-   - **Publish the application via Application Gateway and Firewall (Optional)**: Secure and optimize the application's deployment using Azure Application Gateway and Firewall for enhanced traffic management and protection.
-   - **Performance testing of web app (Optional)**: Conduct performance testing on the migrated web application to identify bottlenecks and ensure it meets performance standards.
-   - **Securing web app connection string with Azure Key Vault and Managed Identity (Optional)**: Enhance the security of the web application by using Azure Key Vault and Managed Identity to securely manage and access sensitive connection strings.
+In this lab, you will learn how to migrate and modernize an on-premises application to Azure, implement DevOps practices, utilize serverless computing, and secure applications. By the end of this lab, you will be able to:
+
+   - **Analyze the Legacy On-Premises Application**: Understand the existing on-premises application architecture and dependencies to identify migration requirements and potential challenges.
+
+   - **Configure Azure Migrate for Assessment**: Set up Azure Migrate to assess the on-premises environment, preparing it for a seamless migration to Azure.
+
+   - **Migrate Web Application Using App Service Migration Assistant**: Use the App Service Migration Assistant to transfer the legacy web application to Azure App Service with minimal downtime, ensuring business continuity.
+
+   - **Migrate On-Premises Database to Azure SQL Database**: Migrate the on-premises database to Azure SQL Database to leverage managed database services and ensure high availability.
+
+   - **Implement CI/CD Pipeline with GitHub Actions**: Set up a continuous integration and continuous deployment (CI/CD) pipeline using GitHub Actions to automate the build, test, and deployment processes for the web application.
+
+   - **Deploy Serverless Azure Functions for Order Processing**: Develop and deploy serverless Azure Functions to handle order processing, reducing infrastructure management overhead and enhancing scalability.
+
+   - **Secure and Optimize Application Deployment with Azure Application Gateway and Firewall (Optional)**: Use Azure Application Gateway and Firewall to enhance the security and performance of the application's deployment, providing improved traffic management and protection.
+
+   - **Conduct Performance Testing on the Migrated Web Application (Optional)**: Perform performance testing to identify any bottlenecks and ensure the web application meets performance standards after migration.
+
+   - **Secure Web Application with Azure Key Vault and Managed Identity (Optional)**: Enhance the security of the web application by using Azure Key Vault and Managed Identity to securely manage and access sensitive connection strings.
 
 ## Pre-requisites
 - **Basic Knowledge of Azure Migrate**: Understanding the purpose and features of Azure Migrate.
@@ -30,11 +39,7 @@ In this lab, you will complete the following tasks:
 - **Basic Knowledge of Azure Key Vault and Managed Identity**: Understanding of how these services can be used to manage and secure sensitive information.
 
 ## Architecture
-In this hands-on lab, the architecture flow consists of several crucial steps. Begin by configuring Azure Migrate as the central hub for assessing and migrating Parts Unlimited's E-Commerce website. Using the App Service Migration Assistant tool from Azure Migrate, it is determined that the website is fully compatible with Azure App Service. Next, Azure App Service is provisioned, and the application is deployed to Azure. Following the successful migration of the web application, the Data Migration Assistant (DMA) assessment confirms that the database can be moved to Azure SQL Database without any compatibility issues.
-
-Subsequently, Parts Unlimited sets up a private GitHub repository, pushes the codebase, and configures deployment slots for staging and production environments. GitHub Actions and Workflows are implemented to automate the CI/CD pipeline, streamlining the build, test, and deployment processes.
-
-Lastly, Parts Unlimited transitions its order processing system to a serverless architecture. They adopt an event-driven model using Azure Functions and Azure Storage Queue for asynchronous order processing and invoice creation. New orders are added to the queue by the web front end, and Azure Functions scale based on the queue's job load, ensuring elastic handling of order volumes. Additional components include Azure Blob Storage for invoice storage and Azure Application Insights for monitoring and performance management.
+In this hands-on lab, the architecture flow begins by using Azure Migrate to assess and migrate Parts Unlimited's E-Commerce website to Azure App Service, confirming compatibility with the App Service Migration Assistant tool. The Data Migration Assistant (DMA) then verifies that the database can be moved to Azure SQL Database without issues. A private GitHub repository is set up for the codebase, and deployment slots for staging and production are configured, with GitHub Actions automating the CI/CD pipeline. Finally, Parts Unlimited adopts a serverless architecture for its order processing system, utilizing Azure Functions and Azure Storage Queue for scalable, asynchronous processing, supported by Azure Blob Storage for invoices and Azure Application Insights for monitoring.
 
 > **Note:** The solution provided is only one of many possible, viable approaches.
 
