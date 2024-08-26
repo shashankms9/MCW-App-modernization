@@ -9,8 +9,7 @@ In this lab, we will guide you through the process of setting up Azure Migrate, 
 By the end of this lab, you will gain hands-on experience in modernizing applications for the cloud, implementing cloud-native services, and leveraging Azure's capabilities to improve scalability, security, and performance.
 
 ## Objectives
-In this lab, you will learn how to migrate and modernize an on-premises application to Azure, implement DevOps practices, utilize serverless computing, and secure applications. By the end of this lab, you will be able to:
-
+Understand how to deploy OpenAI models in Azure, configure them, and secure them with API keys. Gain skills in programming functions and deploying multi-agent Copilot applications to Azure. By the end of this lab, you will be able to:
    - **Review the Legacy On-Prem Application**: Understand the existing on-premises application architecture and dependencies to identify migration requirements and potential challenges.
    - **Setting up Azure Migrate**: Set up Azure Migrate to assess the on-premises environment, preparing it for a seamless migration to Azure.
    - **Migrate your application with App Service Migration Assistant**: Use the App Service Migration Assistant to transfer the legacy web application to Azure App Service with minimal downtime, ensuring business continuity.
