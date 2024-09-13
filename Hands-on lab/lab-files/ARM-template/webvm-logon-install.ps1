@@ -80,13 +80,13 @@ iisreset.exe /restart
 #Check if Webvm ip is accessible or not
 Import-Module Az
 
-CD C:\LabFiles
-$credsfilepath = ".\AzureCreds.txt"
-$creds = Get-Content $credsfilepath | Out-String | ConvertFrom-StringData
-$AzureUserName = "$($creds.AzureUserName)"
-$AzurePassword = "$($creds.AzurePassword)"
-$DeploymentID = "$($creds.DeploymentID)"
-$SubscriptionId = "$($creds.AzureSubscriptionID)"
+. C:\LabFiles\AzureCreds.ps1
+
+$AzureUserName = $AzureUserName
+$AzurePassword = $AzurePassword
+$DeploymentID = $DeploymentID
+$SubscriptionId = $AzureSubscriptionID
+$AzureTenantID = $AzureTenantID
 
 $AppID = $env:AppID
 $AppSecret = $env:AppSecret
