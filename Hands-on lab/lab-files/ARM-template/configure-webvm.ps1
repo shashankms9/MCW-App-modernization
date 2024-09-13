@@ -27,13 +27,13 @@ param (
     $adminPassword,
 
     [string]
-    AppId,
+    $AppId,
 
     [string]
-    AppSecret,
+    $AppSecret,
     
     [string]
-    azuserobjectid
+    $azuserobjectid
 )
 
 Start-Transcript -Path C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension.txt -Append
