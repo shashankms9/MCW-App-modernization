@@ -24,7 +24,16 @@ param (
     $AzureSubscriptionID,
   
     [string]
-    $adminPassword
+    $adminPassword,
+
+    [string]
+    AppId,
+
+    [string]
+    AppSecret,
+    
+    [string]
+    azuserobjectid
 )
 
 Start-Transcript -Path C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension.txt -Append
@@ -32,6 +41,10 @@ Start-Transcript -Path C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension.txt -
 $vmAdminUsername="demouser"
 $trainerUserName="trainer"
 $trainerUserPassword="$adminPassword"
+
+[System.Environment]::SetEnvironmentVariable('AppID', $AppID,[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('AppSecret', $AppSecret,[System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable('azuserobjectid', $azuserobjectid,[System.EnvironmentVariableTarget]::Machine)
 
 function Disable-InternetExplorerESC {
     $AdminKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
@@ -64,7 +77,7 @@ function Wait-Install {
     }
 }
 
-# To resolve the error of https://github.com/microsoft/MCW-App-modernization/issues/68. The cause of the error is Powershell by default uses TLS 1.0 to connect to website, but website security requires TLS 1.2. You can change this behavior with running any of the below command to use all protocols. You can also specify single protocol.
+# To resolve the error of https://github.com/microsoft/MCW-App-modernization/issues/68. The cause of the error is Powershell by default uses TLS 1.0 to connect to the website, but website security requires TLS 1.2. You can change this behavior by running any of the below commands to use all protocols. You can also specify the single protocol.
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls, [Net.SecurityProtocolType]::Tls11, [Net.SecurityProtocolType]::Tls12, [Net.SecurityProtocolType]::Ssl3
 [Net.ServicePointManager]::SecurityProtocol = "Tls, Tls11, Tls12, Ssl3"
 
@@ -81,7 +94,7 @@ Write-Host "Downloading MCW-App-modernization from GitHub" -ForegroundColor Gree
 New-Item -ItemType directory -Path C:\MCW
 while((Get-ChildItem -Directory C:\MCW | Measure-Object).Count -eq 0 )
 {
-    (New-Object System.Net.WebClient).DownloadFile("https://github.com/CloudLabs-MCW/MCW-App-modernization/zipball/$branchName", 'C:\MCW.zip')
+    (New-Object System.Net.WebClient).DownloadFile("https://github.com/shashankms9/MCW-App-modernization/zipball/$branchName", 'C:\MCW.zip')
      Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
 }
 
@@ -97,7 +110,7 @@ else
 {
 do
 {
-(New-Object System.Net.WebClient).DownloadFile("https://github.com/CloudLabs-MCW/MCW-App-modernization/archive/refs/heads/$branchName.zip", 'C:\MCW.zip')
+(New-Object System.Net.WebClient).DownloadFile("https://github.com/shashankms9/MCW-App-modernization/archive/refs/heads/$branchName.zip", 'C:\MCW.zip')
 Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
 $data = "Test-Path -Path $Path -PathType Leaf"
 }Until($data)
