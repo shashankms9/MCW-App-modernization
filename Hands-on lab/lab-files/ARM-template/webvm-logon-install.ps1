@@ -87,10 +87,15 @@ $AzureUserName = "$($creds.AzureUserName)"
 $AzurePassword = "$($creds.AzurePassword)"
 $DeploymentID = "$($creds.DeploymentID)"
 $SubscriptionId = "$($creds.AzureSubscriptionID)"
-$passwd = ConvertTo-SecureString $AzurePassword -AsPlainText -Force
-$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $AzureUserName, $passwd
 
-Connect-AzAccount -Credential $cred
+$AppID = $env:AppID
+$AppSecret = $env:AppSecret
+$azuserobjectid = $env:azuserobjectid
+
+$securePassword = $AppSecret | ConvertTo-SecureString -AsPlainText -Force
+$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $AppID, $SecurePassword
+Connect-AzAccount -ServicePrincipal -Credential $cred -Tenant $AzureTenantID | Out-Null
+Select-AzSubscription -SubscriptionId $SubscriptionId
 
 Start-Sleep 200
 $k = 0 
